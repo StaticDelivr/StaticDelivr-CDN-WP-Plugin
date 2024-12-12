@@ -1,15 +1,15 @@
 === StaticDelivr CDN ===
 Contributors: Coozywana
 Donate link: https://staticdelivr.com/become-a-sponsor
-Tags: CDN, performance, optimization, static resources, Free CDN, WordPress CDN
+Tags: CDN, performance, optimization, Free CDN, WordPress CDN
 Requires at least: 5.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your WordPress site’s performance by rewriting theme, plugin, and core file resource URLs to use the StaticDelivr CDN for faster loading times and optimized delivery of static assets.
+Enhance your WordPress site’s performance by rewriting URLs to use the StaticDelivr CDN.
 
 == Description ==
 

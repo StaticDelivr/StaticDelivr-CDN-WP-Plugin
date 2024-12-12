@@ -4,6 +4,8 @@
  * Description: Enhance your WordPress site’s performance by rewriting theme, plugin, and core file URLs to use the high-performance StaticDelivr CDN, reducing load times and server bandwidth.
  * Version: 1.0.0
  * Author: Coozywana
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 if (!defined('ABSPATH')) {
@@ -32,7 +34,7 @@ class StaticDelivrCDN {
             return $src;
         }
 
-        $parsed_url = parse_url($src);
+        $parsed_url = wp_parse_url($src);
 
         // Rewrite WordPress core files
         if (isset($parsed_url['path']) && strpos($parsed_url['path'], 'wp-includes/') !== false) {
