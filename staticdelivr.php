@@ -38,6 +38,23 @@ class StaticDelivr {
     }
 
     /**
+     * Extract the clean WordPress path from a given URL path.
+     *
+     * @param string $path The original path.
+     * @return string The extracted WordPress path or the original path if no match.
+     */
+    private function extract_wp_path($path) {
+        $wp_patterns = ['wp-includes/', 'wp-content/'];
+        foreach ($wp_patterns as $pattern) {
+            $index = strpos($path, $pattern);
+            if ($index !== false) {
+                return substr($path, $index);
+            }
+        }
+        return $path;
+    }
+
+    /**
      * Rewrite the URL to use StaticDelivr CDN.
      *
      * @param string $src The original source URL.
@@ -52,43 +69,47 @@ class StaticDelivr {
 
         $parsed_url = wp_parse_url($src);
 
-        // Rewrite WordPress core files
-        if (isset($parsed_url['path']) && strpos($parsed_url['path'], 'wp-includes/') !== false) {
-            $file_path = ltrim($parsed_url['path'], '/');
-            return sprintf('https://cdn.staticdelivr.com/wp/core/trunk/%s', $file_path);
-        }
+        // Extract the clean WordPress path
+        if (isset($parsed_url['path'])) {
+            $clean_path = $this->extract_wp_path($parsed_url['path']);
 
-        // Rewrite theme and plugin URLs
-        if (isset($parsed_url['path']) && strpos($parsed_url['path'], 'wp-content/') !== false) {
-            $path_parts = explode('/', ltrim($parsed_url['path'], '/'));
+            // Rewrite WordPress core files
+            if (strpos($clean_path, 'wp-includes/') === 0) {
+                return sprintf('https://cdn.staticdelivr.com/wp/core/trunk/%s', ltrim($clean_path, '/'));
+            }
 
-            if (in_array('themes', $path_parts)) {
-                // Rewrite theme URLs
-                $theme_name = $path_parts[array_search('themes', $path_parts) + 1] ?? '';
-                $theme = wp_get_theme($theme_name);
-                $version = $theme->get('Version');
-                $file_path = implode('/', array_slice($path_parts, array_search('themes', $path_parts) + 2));
+            // Rewrite theme and plugin URLs
+            if (strpos($clean_path, 'wp-content/') === 0) {
+                $path_parts = explode('/', $clean_path);
 
-                // Skip rewriting if version is not found
-                if (empty($version)) {
-                    return $src;
+                if (in_array('themes', $path_parts)) {
+                    // Rewrite theme URLs
+                    $theme_name = $path_parts[array_search('themes', $path_parts) + 1] ?? '';
+                    $theme = wp_get_theme($theme_name);
+                    $version = $theme->get('Version');
+                    $file_path = implode('/', array_slice($path_parts, array_search('themes', $path_parts) + 2));
+
+                    // Skip rewriting if version is not found
+                    if (empty($version)) {
+                        return $src;
+                    }
+
+                    return sprintf('https://cdn.staticdelivr.com/wp/themes/%s/%s/%s', $theme_name, $version, $file_path);
+                } elseif (in_array('plugins', $path_parts)) {
+                    // Rewrite plugin URLs
+                    $plugin_name = $path_parts[array_search('plugins', $path_parts) + 1] ?? '';
+                    $plugin_file_path = STATICDELIVR_PLUGIN_DIR . $plugin_name . '/' . $plugin_name . '.php';
+                    $plugin_data = file_exists($plugin_file_path) ? get_plugin_data($plugin_file_path) : [];
+                    $tag_name = $plugin_data['Version'] ?? '';
+                    $file_path = implode('/', array_slice($path_parts, array_search('plugins', $path_parts) + 2));
+
+                    // Skip rewriting if tag name is not found
+                    if (empty($tag_name)) {
+                        return $src;
+                    }
+
+                    return sprintf('https://cdn.staticdelivr.com/wp/plugins/%s/tags/%s/%s', $plugin_name, $tag_name, $file_path);
                 }
-
-                return sprintf('https://cdn.staticdelivr.com/wp/themes/%s/%s/%s', $theme_name, $version, $file_path);
-            } elseif (in_array('plugins', $path_parts)) {
-                // Rewrite plugin URLs
-                $plugin_name = $path_parts[array_search('plugins', $path_parts) + 1] ?? '';
-                $plugin_file_path = STATICDELIVR_PLUGIN_DIR . $plugin_name . '/' . $plugin_name . '.php';
-                $plugin_data = file_exists($plugin_file_path) ? get_plugin_data($plugin_file_path) : [];
-                $tag_name = $plugin_data['Version'] ?? '';
-                $file_path = implode('/', array_slice($path_parts, array_search('plugins', $path_parts) + 2));
-
-                // Skip rewriting if tag name is not found
-                if (empty($tag_name)) {
-                    return $src;
-                }
-
-                return sprintf('https://cdn.staticdelivr.com/wp/plugins/%s/tags/%s/%s', $plugin_name, $tag_name, $file_path);
             }
         }
 
