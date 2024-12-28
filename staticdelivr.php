@@ -160,7 +160,7 @@ class StaticDelivr {
                     <tr valign="top">
                         <th scope="row">Enable StaticDelivr CDN</th>
                         <td>
-                            <input type="checkbox" name="<?php echo STATICDELIVR_PREFIX . 'enabled'; ?>" value="1" <?php checked(1, get_option(STATICDELIVR_PREFIX . 'enabled', true)); ?> />
+                            <input type="checkbox" name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'enabled'); ?>" value="1" <?php checked(1, get_option(STATICDELIVR_PREFIX . 'enabled', true)); ?> />
                         </td>
                     </tr>
                 </table>
