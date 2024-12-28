@@ -28,7 +28,7 @@ if (!defined('STATICDELIVR_PREFIX')) {
     define('STATICDELIVR_PREFIX', 'staticdelivr_');
 }
 
-class StaticDelivr_CDN {
+class StaticDelivr {
 
     public function __construct() {
         add_filter('style_loader_src', [$this, 'rewrite_url'], 10, 2);
@@ -150,4 +150,4 @@ class StaticDelivr_CDN {
     }
 }
 
-new StaticDelivr_CDN();
+new StaticDelivr();
