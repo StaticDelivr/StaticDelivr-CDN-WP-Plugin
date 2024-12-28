@@ -28,7 +28,7 @@ if (!defined('STATICDELIVR_PREFIX')) {
     define('STATICDELIVR_PREFIX', 'staticdelivr_');
 }
 
-class StaticDelivr_CDN {
+class StaticDelivr {
 
     public function __construct() {
         add_filter('style_loader_src', [$this, 'rewrite_url'], 10, 2);
@@ -51,15 +51,22 @@ class StaticDelivr_CDN {
         }
 
         $parsed_url = wp_parse_url($src);
-
-        // Rewrite WordPress core files
-        if (isset($parsed_url['path']) && strpos($parsed_url['path'], 'wp-includes/') !== false) {
-            $file_path = ltrim($parsed_url['path'], '/');
-            return sprintf('https://cdn.staticdelivr.com/wp/core/trunk/%s', $file_path);
+        
+        if (!isset($parsed_url['path'])) {
+            return $src;
         }
-
-        // Rewrite theme and plugin URLs
-        if (isset($parsed_url['path']) && strpos($parsed_url['path'], 'wp-content/') !== false) {
+    
+        // Handle WordPress core files
+        if (strpos($parsed_url['path'], 'wp-includes/') !== false) {
+            // Find the position of wp-includes and extract everything from there
+            $wp_includes_pos = strpos($parsed_url['path'], 'wp-includes/');
+            $file_path = substr($parsed_url['path'], $wp_includes_pos);
+ 
+            return sprintf('https://cdn.staticdelivr.com/wp/core/trunk/%s%s', $file_path);
+        }
+    
+        // Handle theme and plugin URLs 
+        if (strpos($parsed_url['path'], 'wp-content/') !== false) {
             $path_parts = explode('/', ltrim($parsed_url['path'], '/'));
 
             if (in_array('themes', $path_parts)) {
@@ -82,16 +89,16 @@ class StaticDelivr_CDN {
                 $plugin_data = file_exists($plugin_file_path) ? get_plugin_data($plugin_file_path) : [];
                 $tag_name = $plugin_data['Version'] ?? '';
                 $file_path = implode('/', array_slice($path_parts, array_search('plugins', $path_parts) + 2));
-
+    
                 // Skip rewriting if tag name is not found
                 if (empty($tag_name)) {
                     return $src;
                 }
-
+    
                 return sprintf('https://cdn.staticdelivr.com/wp/plugins/%s/tags/%s/%s', $plugin_name, $tag_name, $file_path);
             }
         }
-
+    
         return $src;
     }
 
@@ -150,4 +157,4 @@ class StaticDelivr_CDN {
     }
 }
 
-new StaticDelivr_CDN();
+new StaticDelivr();
