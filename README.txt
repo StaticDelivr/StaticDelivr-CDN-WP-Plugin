@@ -26,6 +26,36 @@ StaticDelivr is a global content delivery network (CDN) that supports delivering
 - **Multi-CDN Support**: Leverages multiple CDNs to ensure optimal availability and performance.
 - **Free and Open Source**: Supports the open-source community by offering free access to a high-performance CDN.
 
+### Use of Third-Party Service
+
+This plugin relies on the [StaticDelivr CDN](https://staticdelivr.com) to deliver static assets, including WordPress themes, plugins, and core files. The CDN uses the public WordPress SVN repository to fetch these files and serves them through a globally distributed network for faster performance and reduced bandwidth costs.
+
+- **Service Terms of Use**: [StaticDelivr Terms](https://staticdelivr.com/legal/terms-of-service)
+- **Privacy Policy**: [StaticDelivr Privacy Policy](https://staticdelivr.com/legal/privacy-policy)
+
+### How It Works
+
+**StaticDelivr CDN** rewrites your WordPress asset URLs to deliver them through its high-performance network:
+
+- **Original URL**: `https://example.com/wp-content/themes/theme-name/version/style.css`
+- **Rewritten CDN URL**: `https://cdn.staticdelivr.com/wp/themes/theme-name/version/style.css`
+
+This process applies to themes, plugins, and core files:
+
+- **Themes**:
+  Original: `https://example.com/wp-content/themes/twentytwentythree/1.0/style.css`
+  CDN: `https://cdn.staticdelivr.com/wp/themes/twentytwentythree/1.0/style.css`
+
+- **Plugins**:
+  Original: `https://example.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js`
+  CDN: `https://cdn.staticdelivr.com/wp/plugins/woocommerce/tags/9.3.3/assets/js/frontend/woocommerce.min.js`
+
+- **Core Files**:
+  Original: `https://example.com/wp-includes/js/jquery/jquery.min.js`
+  CDN: `https://cdn.staticdelivr.com/wp/core/trunk/wp-includes/js/jquery/jquery.min.js`
+
+This ensures faster delivery through StaticDelivr’s globally distributed network.
+
 ### Why Use StaticDelivr?
 
 - **Global Distribution**: StaticDelivr serves your assets from a globally distributed network, reducing latency and improving load times.
