@@ -2,7 +2,7 @@
 /**
  * Plugin Name: StaticDelivr CDN
  * Description: Enhance your WordPress site's performance by rewriting theme, plugin, and core file URLs to use the high-performance StaticDelivr CDN, reducing load times and server bandwidth. Includes automatic image optimization.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: Coozywana
@@ -544,51 +544,116 @@ class StaticDelivr {
      */
     private function get_fallback_inline_script() {
         $script = '(function(){';
+        $script .= 'var SD_DEBUG = true;';
+        
+        // Helper to copy attributes between elements
         $script .= 'function copyAttributes(from, to){';
         $script .= 'if (!from || !to || !from.attributes) return;';
         $script .= 'for (var i = 0; i < from.attributes.length; i++) {';
         $script .= 'var attr = from.attributes[i];';
         $script .= 'if (!attr || !attr.name) continue;';
-        $script .= "if (attr.name === 'src' || attr.name === 'href' || attr.name === 'data-original-src' || attr.name === 'data-original-href') {";
-        $script .= 'continue;';
-        $script .= '}';
+        $script .= "if (attr.name === 'src' || attr.name === 'href' || attr.name === 'data-original-src' || attr.name === 'data-original-href') continue;";
         $script .= 'to.setAttribute(attr.name, attr.value);';
         $script .= '}';
         $script .= '}';
+        
+        // Helper to extract original URL from StaticDelivr CDN image URL
+        $script .= 'function extractOriginalFromCdnUrl(cdnUrl){';
+        $script .= 'if (!cdnUrl) return null;';
+        $script .= 'if (cdnUrl.indexOf("cdn.staticdelivr.com") === -1) return null;';
+        $script .= 'try {';
+        $script .= 'var urlObj = new URL(cdnUrl);';
+        $script .= 'var originalUrl = urlObj.searchParams.get("url");';
+        $script .= 'if (SD_DEBUG && originalUrl) console.log("[StaticDelivr] Extracted original URL:", originalUrl);';
+        $script .= 'return originalUrl || null;';
+        $script .= '} catch(e) {';
+        $script .= 'if (SD_DEBUG) console.log("[StaticDelivr] Failed to parse CDN URL:", cdnUrl, e);';
+        $script .= 'return null;';
+        $script .= '}';
+        $script .= '}';
+        
+        // Main error handler
         $script .= 'function handleError(event){';
-        $script .= 'var el = event && (event.target || event.srcElement);';
-        $script .= 'if (!el || !el.tagName || !el.dataset) return;';
-        $script .= "if (el.dataset.staticdelivrFallbackDone === '1') return;";
-        $script .= "var original = el.getAttribute('data-original-src') || el.getAttribute('data-original-href');";
-        $script .= 'if (!original) return;';
-        $script .= "console.log('[StaticDelivr] CDN asset failed, falling back to origin:', el.tagName, original);";
-        $script .= "el.dataset.staticdelivrFallbackDone = '1';";
-        $script .= "if (el.tagName === 'SCRIPT') {";
-        $script .= "var replacement = document.createElement('script');";
-        $script .= 'replacement.src = original;';
-        $script .= 'replacement.async = el.async;';
-        $script .= 'replacement.defer = el.defer;';
-        $script .= "replacement.type = el.type || 'text/javascript';";
-        $script .= 'if (el.noModule) {';
-        $script .= 'replacement.noModule = true;';
+        $script .= 'var el = event.target || event.srcElement;';
+        $script .= 'if (!el) return;';
+        $script .= 'var tagName = el.tagName ? el.tagName.toUpperCase() : "";';
+        $script .= 'if (!tagName) return;';
+        
+        // Debug: log all errors we catch
+        $script .= 'if (SD_DEBUG) {';
+        $script .= 'var currentSrc = el.src || el.href || el.currentSrc || "";';
+        $script .= 'if (currentSrc.indexOf("staticdelivr") !== -1) {';
+        $script .= 'console.log("[StaticDelivr] Caught error on:", tagName, currentSrc);';
         $script .= '}';
-        $script .= 'if (el.crossOrigin) {';
-        $script .= 'replacement.crossOrigin = el.crossOrigin;';
         $script .= '}';
-        $script .= 'copyAttributes(el, replacement);';
+        
+        // Skip if already processed
+        $script .= 'if (el.getAttribute && el.getAttribute("data-sd-fallback") === "done") return;';
+        
+        // Get the failed URL
+        $script .= 'var failedUrl = "";';
+        $script .= 'if (tagName === "IMG") failedUrl = el.src || el.currentSrc || "";';
+        $script .= 'else if (tagName === "SCRIPT") failedUrl = el.src || "";';
+        $script .= 'else if (tagName === "LINK") failedUrl = el.href || "";';
+        $script .= 'else return;';
+        
+        // Only handle StaticDelivr CDN URLs
+        $script .= 'if (failedUrl.indexOf("cdn.staticdelivr.com") === -1) return;';
+        
+        // Try to get original URL from data attribute first, then extract from CDN URL
+        $script .= 'var original = el.getAttribute("data-original-src") || el.getAttribute("data-original-href");';
+        $script .= 'if (!original) original = extractOriginalFromCdnUrl(failedUrl);';
+        
+        $script .= 'if (!original) {';
+        $script .= 'if (SD_DEBUG) console.log("[StaticDelivr] Could not determine original URL for:", failedUrl);';
+        $script .= 'return;';
+        $script .= '}';
+        
+        // Mark as processed
+        $script .= 'el.setAttribute("data-sd-fallback", "done");';
+        $script .= 'console.log("[StaticDelivr] CDN failed, falling back to origin:", tagName, original);';
+        
+        // Handle based on element type
+        $script .= 'if (tagName === "SCRIPT") {';
+        $script .= 'var newScript = document.createElement("script");';
+        $script .= 'newScript.src = original;';
+        $script .= 'newScript.async = el.async;';
+        $script .= 'newScript.defer = el.defer;';
+        $script .= 'if (el.type) newScript.type = el.type;';
+        $script .= 'if (el.noModule) newScript.noModule = true;';
+        $script .= 'if (el.crossOrigin) newScript.crossOrigin = el.crossOrigin;';
+        $script .= 'copyAttributes(el, newScript);';
         $script .= 'if (el.parentNode) {';
-        $script .= 'el.parentNode.insertBefore(replacement, el.nextSibling);';
+        $script .= 'el.parentNode.insertBefore(newScript, el.nextSibling);';
         $script .= 'el.parentNode.removeChild(el);';
         $script .= '}';
-        $script .= "} else if (el.tagName === 'LINK') {";
-        $script .= 'copyAttributes(el, el);';
+        $script .= 'console.log("[StaticDelivr] Script fallback complete:", original);';
+        
+        $script .= '} else if (tagName === "LINK") {';
         $script .= 'el.href = original;';
-        $script .= "} else if (el.tagName === 'IMG') {";
+        $script .= 'console.log("[StaticDelivr] Stylesheet fallback complete:", original);';
+        
+        $script .= '} else if (tagName === "IMG") {';
+        // Clear srcset first to prevent browser from using it
+        $script .= 'if (el.srcset) {';
+        $script .= 'var newSrcset = el.srcset.split(",").map(function(entry) {';
+        $script .= 'var parts = entry.trim().split(/\\s+/);';
+        $script .= 'var url = parts[0];';
+        $script .= 'var descriptor = parts.slice(1).join(" ");';
+        $script .= 'var extracted = extractOriginalFromCdnUrl(url);';
+        $script .= 'if (extracted) url = extracted;';
+        $script .= 'return descriptor ? url + " " + descriptor : url;';
+        $script .= '}).join(", ");';
+        $script .= 'el.srcset = newSrcset;';
+        $script .= '}';
         $script .= 'el.src = original;';
+        $script .= 'console.log("[StaticDelivr] Image fallback complete:", original);';
         $script .= '}';
         $script .= '}';
-        $script .= "window.addEventListener('error', handleError, true);";
-        $script .= "console.log('[StaticDelivr] Fallback script initialized');";
+        
+        // Listen for errors in capture phase
+        $script .= 'window.addEventListener("error", handleError, true);';
+        $script .= 'console.log("[StaticDelivr] Fallback script initialized (v1.2.1)");';
         $script .= '})();';
         return $script;
     }

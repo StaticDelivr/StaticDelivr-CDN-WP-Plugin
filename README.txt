@@ -5,7 +5,7 @@ Tags: CDN, performance, image optimization, webp, free
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -114,6 +114,12 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 
 == Changelog ==
 
+= 1.2.1 =
+* Improved image fallback - now automatically extracts original URL from CDN URL when images fail to load
+* Fixed fallback for images blocked by Cloudflare or other security services
+* Enhanced srcset fallback support
+* Better error handling for edge cases
+
 = 1.2.0 =
 * Added automatic image optimization - images are now compressed and converted to modern formats (WebP, AVIF)
 * Separate settings for Assets CDN (CSS/JS) and Image Optimization
@@ -132,6 +138,9 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+Improved image fallback reliability - images now automatically fall back to origin when CDN can't fetch them (e.g., Cloudflare protection).
 
 = 1.2.0 =
 Major update! Now includes automatic image optimization. Your images will be compressed and converted to modern formats, potentially reducing bandwidth by 80-95%. Configure in Settings > StaticDelivr CDN.
