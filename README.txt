@@ -2,10 +2,10 @@
 Contributors: Coozywana
 Donate link: https://staticdelivr.com/become-a-sponsor
 Tags: CDN, performance, optimization, Free CDN, WordPress CDN
-Requires at least: 5.0
-Tested up to: 6.7
+Requires at least: 5.8
+Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,6 +20,7 @@ StaticDelivr is a global content delivery network (CDN) that supports delivering
 ### Key Features
 
 - **Automatic URL Rewriting**: Automatically rewrites URLs of enqueued styles, scripts, and core files for themes, plugins, and WordPress itself to use the StaticDelivr CDN.
+- **Automatic Fallback**: If a CDN asset fails to load, the plugin automatically falls back to your origin server, ensuring your site never breaks.
 - **Simple Settings**: Enable or disable the functionality with a simple toggle in the plugin settings page.
 - **Compatibility**: Works seamlessly with all WordPress themes and plugins that correctly enqueue their assets.
 - **Improved Performance**: Delivers assets from the StaticDelivr CDN for lightning-fast loading and enhanced user experience.
@@ -84,7 +85,7 @@ Go to `Settings > StaticDelivr CDN` in your WordPress admin dashboard and toggle
 Yes, the plugin works with all WordPress themes and plugins that enqueue their assets correctly using WordPress functions.
 
 = Will this plugin affect my site's functionality? =
-No, the plugin only changes the source URLs of static assets. It does not affect any functionality of your site.
+No, the plugin only changes the source URLs of static assets. It does not affect any functionality of your site. Additionally, the plugin includes an automatic fallback mechanism that loads assets from your origin server if the CDN fails, ensuring your site always works.
 
 = Is StaticDelivr free to use? =
 Yes, StaticDelivr is a free, open-source CDN designed to support the open-source community.
@@ -95,12 +96,20 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 
 == Changelog ==
 
-= 1.0 =
+= 1.1.0 =
+* Added automatic fallback mechanism - if a CDN asset fails to load, the plugin automatically retries from your origin server
+* Improved reliability by injecting fallback script early in page head
+* Added console logging for debugging fallback events
+
+= 1.0.0 =
 * Initial release.
 
 == Upgrade Notice ==
 
-= 1.0 =
+= 1.1.0 =
+Added automatic fallback to origin server if CDN assets fail to load, ensuring your site never breaks.
+
+= 1.0.0 =
 Initial release.
 
 == License ==
