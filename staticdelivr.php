@@ -1,13 +1,15 @@
 <?php
 /**
  * Plugin Name: StaticDelivr CDN
- * Description: Enhance your WordPress site's performance by rewriting theme, plugin, and core file URLs to use the high-performance StaticDelivr CDN, reducing load times and server bandwidth. Includes automatic image optimization.
- * Version: 1.2.1
+ * Description: Speed up your WordPress site with free CDN delivery and automatic image optimization. Reduces load times and bandwidth costs.
+ * Version: 1.3.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: Coozywana
+ * Author URI: https://staticdelivr.com
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain: staticdelivr
  */
 
 if (!defined('ABSPATH')) {
@@ -15,6 +17,9 @@ if (!defined('ABSPATH')) {
 }
 
 // Define plugin constants
+if (!defined('STATICDELIVR_VERSION')) {
+    define('STATICDELIVR_VERSION', '1.3.0');
+}
 if (!defined('STATICDELIVR_PLUGIN_FILE')) {
     define('STATICDELIVR_PLUGIN_FILE', __FILE__);
 }
@@ -29,6 +34,45 @@ if (!defined('STATICDELIVR_PREFIX')) {
 }
 if (!defined('STATICDELIVR_IMG_CDN_BASE')) {
     define('STATICDELIVR_IMG_CDN_BASE', 'https://cdn.staticdelivr.com/img/images');
+}
+
+// Activation hook - set default options
+register_activation_hook(__FILE__, 'staticdelivr_activate');
+function staticdelivr_activate() {
+    // Enable both features by default for new installs
+    if (get_option(STATICDELIVR_PREFIX . 'assets_enabled') === false) {
+        update_option(STATICDELIVR_PREFIX . 'assets_enabled', 1);
+    }
+    if (get_option(STATICDELIVR_PREFIX . 'images_enabled') === false) {
+        update_option(STATICDELIVR_PREFIX . 'images_enabled', 1);
+    }
+    if (get_option(STATICDELIVR_PREFIX . 'image_quality') === false) {
+        update_option(STATICDELIVR_PREFIX . 'image_quality', 80);
+    }
+    if (get_option(STATICDELIVR_PREFIX . 'image_format') === false) {
+        update_option(STATICDELIVR_PREFIX . 'image_format', 'webp');
+    }
+    
+    // Set flag to show welcome notice
+    set_transient(STATICDELIVR_PREFIX . 'activation_notice', true, 60);
+}
+
+// Add Settings link to plugins page
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'staticdelivr_action_links');
+function staticdelivr_action_links($links) {
+    $settings_link = '<a href="' . esc_url(admin_url('options-general.php?page=' . STATICDELIVR_PREFIX . 'cdn-settings')) . '">' . __('Settings', 'staticdelivr') . '</a>';
+    array_unshift($links, $settings_link);
+    return $links;
+}
+
+// Add helpful links in plugin meta row
+add_filter('plugin_row_meta', 'staticdelivr_row_meta', 10, 2);
+function staticdelivr_row_meta($links, $file) {
+    if (plugin_basename(__FILE__) === $file) {
+        $links[] = '<a href="https://staticdelivr.com" target="_blank">' . __('Website', 'staticdelivr') . '</a>';
+        $links[] = '<a href="https://staticdelivr.com/become-a-sponsor" target="_blank">' . __('Support Development', 'staticdelivr') . '</a>';
+    }
+    return $links;
 }
 
 class StaticDelivr {
@@ -73,6 +117,96 @@ class StaticDelivr {
         // Admin hooks
         add_action('admin_menu', [$this, 'add_settings_page']);
         add_action('admin_init', [$this, 'register_settings']);
+        add_action('admin_notices', [$this, 'show_activation_notice']);
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_admin_styles']);
+    }
+
+    /**
+     * Enqueue admin styles for settings page.
+     */
+    public function enqueue_admin_styles($hook) {
+        if ($hook !== 'settings_page_' . STATICDELIVR_PREFIX . 'cdn-settings') {
+            return;
+        }
+        
+        // Inline styles for the settings page
+        wp_add_inline_style('wp-admin', $this->get_admin_styles());
+    }
+
+    /**
+     * Get admin CSS styles.
+     */
+    private function get_admin_styles() {
+        return '
+            .staticdelivr-status-bar {
+                background: #f0f0f1;
+                border: 1px solid #c3c4c7;
+                padding: 12px 15px;
+                margin: 15px 0 20px;
+                display: flex;
+                gap: 25px;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            .staticdelivr-status-item {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .staticdelivr-status-item .label {
+                color: #50575e;
+            }
+            .staticdelivr-status-item .value {
+                font-weight: 600;
+            }
+            .staticdelivr-status-item .value.active {
+                color: #00a32a;
+            }
+            .staticdelivr-status-item .value.inactive {
+                color: #b32d2e;
+            }
+            .staticdelivr-example {
+                background: #f6f7f7;
+                padding: 12px 15px;
+                margin: 10px 0 0;
+                font-family: Consolas, Monaco, monospace;
+                font-size: 12px;
+                overflow-x: auto;
+                border-left: 4px solid #2271b1;
+            }
+            .staticdelivr-example code {
+                background: none;
+                padding: 0;
+            }
+            .staticdelivr-example .becomes {
+                color: #2271b1;
+                display: block;
+                margin: 6px 0;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            }
+        ';
+    }
+
+    /**
+     * Show activation notice.
+     */
+    public function show_activation_notice() {
+        if (!get_transient(STATICDELIVR_PREFIX . 'activation_notice')) {
+            return;
+        }
+        
+        delete_transient(STATICDELIVR_PREFIX . 'activation_notice');
+        
+        $settings_url = admin_url('options-general.php?page=' . STATICDELIVR_PREFIX . 'cdn-settings');
+        ?>
+        <div class="notice notice-success is-dismissible">
+            <p>
+                <strong>🚀 StaticDelivr CDN is now active!</strong> 
+                Your site is already optimized with CDN delivery and image optimization enabled by default.
+                <a href="<?php echo esc_url($settings_url); ?>">View Settings</a> to customize.
+            </p>
+        </div>
+        <?php
     }
 
     /**
@@ -682,7 +816,7 @@ class StaticDelivr {
             array(
                 'type'              => 'boolean',
                 'sanitize_callback' => 'absint',
-                'default'           => false,
+                'default'           => true,
             )
         );
 
@@ -693,7 +827,7 @@ class StaticDelivr {
             array(
                 'type'              => 'boolean',
                 'sanitize_callback' => 'absint',
-                'default'           => false,
+                'default'           => true,
             )
         );
 
@@ -755,16 +889,44 @@ class StaticDelivr {
      * Render the settings page.
      */
     public function render_settings_page() {
+        $assets_enabled = get_option(STATICDELIVR_PREFIX . 'assets_enabled', true);
+        $images_enabled = get_option(STATICDELIVR_PREFIX . 'images_enabled', true);
+        $image_quality = get_option(STATICDELIVR_PREFIX . 'image_quality', 80);
+        $image_format = get_option(STATICDELIVR_PREFIX . 'image_format', 'webp');
+        $site_url = home_url();
         ?>
         <div class="wrap">
-            <h1>StaticDelivr CDN Settings</h1>
+            <h1>StaticDelivr CDN</h1>
             <p>Optimize your WordPress site by delivering assets through the <a href="https://staticdelivr.com" target="_blank">StaticDelivr CDN</a>.</p>
             
+            <!-- Status Bar -->
+            <div class="staticdelivr-status-bar">
+                <div class="staticdelivr-status-item">
+                    <span class="label">Assets CDN:</span>
+                    <span class="value <?php echo $assets_enabled ? 'active' : 'inactive'; ?>">
+                        <?php echo $assets_enabled ? '● Enabled' : '○ Disabled'; ?>
+                    </span>
+                </div>
+                <div class="staticdelivr-status-item">
+                    <span class="label">Image Optimization:</span>
+                    <span class="value <?php echo $images_enabled ? 'active' : 'inactive'; ?>">
+                        <?php echo $images_enabled ? '● Enabled' : '○ Disabled'; ?>
+                    </span>
+                </div>
+                <?php if ($images_enabled): ?>
+                <div class="staticdelivr-status-item">
+                    <span class="label">Quality:</span>
+                    <span class="value"><?php echo esc_html($image_quality); ?>%</span>
+                </div>
+                <div class="staticdelivr-status-item">
+                    <span class="label">Format:</span>
+                    <span class="value"><?php echo esc_html(strtoupper($image_format)); ?></span>
+                </div>
+                <?php endif; ?>
+            </div>
+            
             <form method="post" action="options.php">
-                <?php
-                settings_fields(STATICDELIVR_PREFIX . 'cdn_settings');
-                do_settings_sections(STATICDELIVR_PREFIX . 'cdn_settings');
-                ?>
+                <?php settings_fields(STATICDELIVR_PREFIX . 'cdn_settings'); ?>
                 
                 <h2 class="title">Assets Optimization (CSS &amp; JavaScript)</h2>
                 <p class="description">Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN.</p>
@@ -773,10 +935,15 @@ class StaticDelivr {
                         <th scope="row">Enable Assets CDN</th>
                         <td>
                             <label>
-                                <input type="checkbox" name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'assets_enabled'); ?>" value="1" <?php checked(1, get_option(STATICDELIVR_PREFIX . 'assets_enabled', false)); ?> />
+                                <input type="checkbox" name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'assets_enabled'); ?>" value="1" <?php checked(1, $assets_enabled); ?> />
                                 Enable CDN for CSS &amp; JavaScript files
                             </label>
                             <p class="description">Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading.</p>
+                            <div class="staticdelivr-example">
+                                <code><?php echo esc_html($site_url); ?>/wp-includes/js/jquery.js</code>
+                                <span class="becomes">→</span>
+                                <code>https://cdn.staticdelivr.com/wp/core/trunk/wp-includes/js/jquery.js</code>
+                            </div>
                         </td>
                     </tr>
                 </table>
@@ -788,29 +955,33 @@ class StaticDelivr {
                         <th scope="row">Enable Image Optimization</th>
                         <td>
                             <label>
-                                <input type="checkbox" name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'images_enabled'); ?>" value="1" <?php checked(1, get_option(STATICDELIVR_PREFIX . 'images_enabled', false)); ?> />
+                                <input type="checkbox" name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'images_enabled'); ?>" value="1" <?php checked(1, $images_enabled); ?> id="staticdelivr-images-toggle" />
                                 Enable CDN for images
                             </label>
                             <p class="description">Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression.</p>
+                            <div class="staticdelivr-example">
+                                <code><?php echo esc_html($site_url); ?>/wp-content/uploads/photo.jpg (2MB)</code>
+                                <span class="becomes">→</span>
+                                <code>https://cdn.staticdelivr.com/img/images?url=...&amp;q=80&amp;format=webp (~20KB)</code>
+                            </div>
                         </td>
                     </tr>
-                    <tr valign="top">
+                    <tr valign="top" id="staticdelivr-quality-row" style="<?php echo $images_enabled ? '' : 'opacity: 0.5;'; ?>">
                         <th scope="row">Image Quality</th>
                         <td>
-                            <input type="number" name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'image_quality'); ?>" value="<?php echo esc_attr(get_option(STATICDELIVR_PREFIX . 'image_quality', 80)); ?>" min="1" max="100" step="1" class="small-text" />
+                            <input type="number" name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'image_quality'); ?>" value="<?php echo esc_attr($image_quality); ?>" min="1" max="100" step="1" class="small-text" <?php echo $images_enabled ? '' : 'disabled'; ?> />
                             <p class="description">Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85 for best balance of quality and size.</p>
                         </td>
                     </tr>
-                    <tr valign="top">
+                    <tr valign="top" id="staticdelivr-format-row" style="<?php echo $images_enabled ? '' : 'opacity: 0.5;'; ?>">
                         <th scope="row">Image Format</th>
                         <td>
-                            <?php $current_format = get_option(STATICDELIVR_PREFIX . 'image_format', 'webp'); ?>
-                            <select name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'image_format'); ?>">
-                                <option value="auto" <?php selected($current_format, 'auto'); ?>>Auto (Best for browser)</option>
-                                <option value="webp" <?php selected($current_format, 'webp'); ?>>WebP (Recommended)</option>
-                                <option value="avif" <?php selected($current_format, 'avif'); ?>>AVIF (Best compression)</option>
-                                <option value="jpeg" <?php selected($current_format, 'jpeg'); ?>>JPEG</option>
-                                <option value="png" <?php selected($current_format, 'png'); ?>>PNG</option>
+                            <select name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'image_format'); ?>" <?php echo $images_enabled ? '' : 'disabled'; ?>>
+                                <option value="auto" <?php selected($image_format, 'auto'); ?>>Auto (Best for browser)</option>
+                                <option value="webp" <?php selected($image_format, 'webp'); ?>>WebP (Recommended)</option>
+                                <option value="avif" <?php selected($image_format, 'avif'); ?>>AVIF (Best compression)</option>
+                                <option value="jpeg" <?php selected($image_format, 'jpeg'); ?>>JPEG</option>
+                                <option value="png" <?php selected($image_format, 'png'); ?>>PNG</option>
                             </select>
                             <p class="description">
                                 <strong>WebP</strong>: Great compression, widely supported.<br>
@@ -824,12 +995,12 @@ class StaticDelivr {
                 <h2 class="title">How It Works</h2>
                 <div style="background: #f0f0f1; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0;">Assets (CSS &amp; JS)</h4>
-                    <p style="margin-bottom: 5px;"><code>https://example.com/wp-includes/js/jquery.js</code></p>
+                    <p style="margin-bottom: 5px;"><code><?php echo esc_html($site_url); ?>/wp-includes/js/jquery.js</code></p>
                     <p style="margin-bottom: 15px;">→ <code>https://cdn.staticdelivr.com/wp/core/trunk/wp-includes/js/jquery.js</code></p>
                     
                     <h4>Images</h4>
-                    <p style="margin-bottom: 5px;"><code>https://example.com/wp-content/uploads/photo.jpg</code> (2MB)</p>
-                    <p style="margin-bottom: 0;">→ <code>https://cdn.staticdelivr.com/img/...?q=80&amp;f=webp</code> (~20KB)</p>
+                    <p style="margin-bottom: 5px;"><code><?php echo esc_html($site_url); ?>/wp-content/uploads/photo.jpg</code> (2MB)</p>
+                    <p style="margin-bottom: 0;">→ <code>https://cdn.staticdelivr.com/img/images?url=...&amp;q=80&amp;format=webp</code> (~20KB)</p>
                 </div>
 
                 <h2 class="title">Benefits</h2>
@@ -842,6 +1013,27 @@ class StaticDelivr {
 
                 <?php submit_button(); ?>
             </form>
+            
+            <script>
+            document.getElementById('staticdelivr-images-toggle').addEventListener('change', function() {
+                var qualityRow = document.getElementById('staticdelivr-quality-row');
+                var formatRow = document.getElementById('staticdelivr-format-row');
+                var qualityInput = qualityRow.querySelector('input');
+                var formatInput = formatRow.querySelector('select');
+                
+                if (this.checked) {
+                    qualityRow.style.opacity = '1';
+                    formatRow.style.opacity = '1';
+                    qualityInput.disabled = false;
+                    formatInput.disabled = false;
+                } else {
+                    qualityRow.style.opacity = '0.5';
+                    formatRow.style.opacity = '0.5';
+                    qualityInput.disabled = true;
+                    formatInput.disabled = true;
+                }
+            });
+            </script>
         </div>
         <?php
     }
