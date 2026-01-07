@@ -2,7 +2,7 @@
 /**
  * Plugin Name: StaticDelivr CDN
  * Description: Speed up your WordPress site with free CDN delivery and automatic image optimization. Reduces load times and bandwidth costs.
- * Version: 1.3.0
+ * Version: 1.3.1
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: Coozywana
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 
 // Define plugin constants
 if (!defined('STATICDELIVR_VERSION')) {
-    define('STATICDELIVR_VERSION', '1.3.0');
+    define('STATICDELIVR_VERSION', '1.3.1');
 }
 if (!defined('STATICDELIVR_PLUGIN_FILE')) {
     define('STATICDELIVR_PLUGIN_FILE', __FILE__);
@@ -52,7 +52,7 @@ function staticdelivr_activate() {
     if (get_option(STATICDELIVR_PREFIX . 'image_format') === false) {
         update_option(STATICDELIVR_PREFIX . 'image_format', 'webp');
     }
-    
+
     // Set flag to show welcome notice
     set_transient(STATICDELIVR_PREFIX . 'activation_notice', true, 60);
 }
@@ -69,8 +69,8 @@ function staticdelivr_action_links($links) {
 add_filter('plugin_row_meta', 'staticdelivr_row_meta', 10, 2);
 function staticdelivr_row_meta($links, $file) {
     if (plugin_basename(__FILE__) === $file) {
-        $links[] = '<a href="https://staticdelivr.com" target="_blank">' . __('Website', 'staticdelivr') . '</a>';
-        $links[] = '<a href="https://staticdelivr.com/become-a-sponsor" target="_blank">' . __('Support Development', 'staticdelivr') . '</a>';
+        $links[] = '<a href="https://staticdelivr.com" target="_blank" rel="noopener noreferrer">' . __('Website', 'staticdelivr') . '</a>';
+        $links[] = '<a href="https://staticdelivr.com/become-a-sponsor" target="_blank" rel="noopener noreferrer">' . __('Support Development', 'staticdelivr') . '</a>';
     }
     return $links;
 }
@@ -94,9 +94,16 @@ class StaticDelivr {
     /**
      * Supported image extensions for optimization.
      *
-     * @var array
+     * @var array<int,string>
      */
     private $image_extensions = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif', 'bmp', 'tiff'];
+
+    /**
+     * Cache for plugin/theme versions to avoid repeated filesystem work per request.
+     *
+     * @var array<string,string>
+     */
+    private $version_cache = [];
 
     public function __construct() {
         // CSS/JS rewriting hooks
@@ -128,7 +135,7 @@ class StaticDelivr {
         if ($hook !== 'settings_page_' . STATICDELIVR_PREFIX . 'cdn-settings') {
             return;
         }
-        
+
         // Inline styles for the settings page
         wp_add_inline_style('wp-admin', $this->get_admin_styles());
     }
@@ -194,14 +201,14 @@ class StaticDelivr {
         if (!get_transient(STATICDELIVR_PREFIX . 'activation_notice')) {
             return;
         }
-        
+
         delete_transient(STATICDELIVR_PREFIX . 'activation_notice');
-        
+
         $settings_url = admin_url('options-general.php?page=' . STATICDELIVR_PREFIX . 'cdn-settings');
         ?>
         <div class="notice notice-success is-dismissible">
             <p>
-                <strong>🚀 StaticDelivr CDN is now active!</strong> 
+                <strong>🚀 StaticDelivr CDN is now active!</strong>
                 Your site is already optimized with CDN delivery and image optimization enabled by default.
                 <a href="<?php echo esc_url($settings_url); ?>">View Settings</a> to customize.
             </p>
@@ -295,10 +302,10 @@ class StaticDelivr {
 
         // Build CDN URL with optimization parameters
         $params = [];
-        
+
         // URL parameter is required
         $params['url'] = $original_url;
-        
+
         $quality = $this->get_image_quality();
         if ($quality && $quality < 100) {
             $params['q'] = $quality;
@@ -318,9 +325,7 @@ class StaticDelivr {
         }
 
         // Build CDN URL with query parameters
-        $cdn_url = STATICDELIVR_IMG_CDN_BASE . '?' . http_build_query($params);
-
-        return $cdn_url;
+        return STATICDELIVR_IMG_CDN_BASE . '?' . http_build_query($params);
     }
 
     /**
@@ -363,7 +368,7 @@ class StaticDelivr {
 
         foreach ($sources as $width => &$source) {
             if (isset($source['url'])) {
-                $source['url'] = $this->build_image_cdn_url($source['url'], $width);
+                $source['url'] = $this->build_image_cdn_url($source['url'], (int) $width);
             }
         }
 
@@ -435,7 +440,7 @@ class StaticDelivr {
         // Extract width and height if present
         $width = null;
         $height = null;
-        
+
         if (preg_match('/width=["\']?(\d+)/i', $img_tag, $w_match)) {
             $width = (int) $w_match[1];
         }
@@ -467,13 +472,13 @@ class StaticDelivr {
                     if (preg_match('/^(.+?)\s+(\d+w|\d+x)$/i', $source, $parts)) {
                         $url = trim($parts[1]);
                         $descriptor = $parts[2];
-                        
+
                         // Extract width from descriptor
                         $width = null;
                         if (preg_match('/(\d+)w/', $descriptor, $w_match)) {
                             $width = (int) $w_match[1];
                         }
-                        
+
                         $cdn_url = $this->build_image_cdn_url($url, $width);
                         $new_sources[] = $cdn_url . ' ' . $descriptor;
                     } else {
@@ -527,6 +532,58 @@ class StaticDelivr {
     }
 
     /**
+     * Get theme version by stylesheet (folder name), cached.
+     *
+     * @param string $theme_slug Theme folder name.
+     * @return string
+     */
+    private function get_theme_version($theme_slug) {
+        $key = 'theme:' . $theme_slug;
+        if (isset($this->version_cache[$key])) {
+            return $this->version_cache[$key];
+        }
+        $theme = wp_get_theme($theme_slug);
+        $version = (string) $theme->get('Version');
+        $this->version_cache[$key] = $version;
+        return $version;
+    }
+
+    /**
+     * Get plugin version by slug (folder name), cached.
+     *
+     * This fixes the bug where the code assumed:
+     *   plugins/{slug}/{slug}.php
+     * and also fixes the use of STATICDELIVR_PLUGIN_DIR (wrong base dir).
+     *
+     * @param string $plugin_slug Plugin folder name (slug).
+     * @return string
+     */
+    private function get_plugin_version($plugin_slug) {
+        $key = 'plugin:' . $plugin_slug;
+        if (isset($this->version_cache[$key])) {
+            return $this->version_cache[$key];
+        }
+
+        if (!function_exists('get_plugins')) {
+            require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        }
+
+        $all_plugins = get_plugins();
+
+        // $plugin_file looks like "wordpress-seo/wp-seo.php", "hello-dolly/hello.php", etc.
+        foreach ($all_plugins as $plugin_file => $plugin_data) {
+            if (strpos($plugin_file, $plugin_slug . '/') === 0) {
+                $version = isset($plugin_data['Version']) ? (string) $plugin_data['Version'] : '';
+                $this->version_cache[$key] = $version;
+                return $version;
+            }
+        }
+
+        $this->version_cache[$key] = '';
+        return '';
+    }
+
+    /**
      * Rewrite the URL to use StaticDelivr CDN.
      *
      * @param string $src The original source URL.
@@ -542,52 +599,55 @@ class StaticDelivr {
         $parsed_url = wp_parse_url($src);
 
         // Extract the clean WordPress path
-        if (isset($parsed_url['path'])) {
-            $clean_path = $this->extract_wp_path($parsed_url['path']);
+        if (!isset($parsed_url['path'])) {
+            return $src;
+        }
 
-            // Rewrite WordPress core files
-            if (strpos($clean_path, 'wp-includes/') === 0) {
-                $rewritten = sprintf('https://cdn.staticdelivr.com/wp/core/trunk/%s', ltrim($clean_path, '/'));
+        $clean_path = $this->extract_wp_path($parsed_url['path']);
+
+        // Rewrite WordPress core files
+        if (strpos($clean_path, 'wp-includes/') === 0) {
+            $rewritten = sprintf('https://cdn.staticdelivr.com/wp/core/trunk/%s', ltrim($clean_path, '/'));
+            $this->remember_original_source($handle, $src);
+            return $rewritten;
+        }
+
+        // Rewrite theme and plugin URLs
+        if (strpos($clean_path, 'wp-content/') === 0) {
+            $path_parts = explode('/', $clean_path);
+
+            if (in_array('themes', $path_parts, true)) {
+                // Rewrite theme URLs
+                $themes_index = array_search('themes', $path_parts, true);
+                $theme_name = $path_parts[$themes_index + 1] ?? '';
+                $version = $this->get_theme_version($theme_name);
+                $file_path = implode('/', array_slice($path_parts, $themes_index + 2));
+
+                // Skip rewriting if version is not found
+                if (empty($version)) {
+                    return $src;
+                }
+
+                $rewritten = sprintf('https://cdn.staticdelivr.com/wp/themes/%s/%s/%s', $theme_name, $version, $file_path);
                 $this->remember_original_source($handle, $src);
                 return $rewritten;
             }
 
-            // Rewrite theme and plugin URLs
-            if (strpos($clean_path, 'wp-content/') === 0) {
-                $path_parts = explode('/', $clean_path);
+            if (in_array('plugins', $path_parts, true)) {
+                // Rewrite plugin URLs
+                $plugins_index = array_search('plugins', $path_parts, true);
+                $plugin_name = $path_parts[$plugins_index + 1] ?? '';
+                $version = $this->get_plugin_version($plugin_name);
+                $file_path = implode('/', array_slice($path_parts, $plugins_index + 2));
 
-                if (in_array('themes', $path_parts)) {
-                    // Rewrite theme URLs
-                    $theme_name = $path_parts[array_search('themes', $path_parts) + 1] ?? '';
-                    $theme = wp_get_theme($theme_name);
-                    $version = $theme->get('Version');
-                    $file_path = implode('/', array_slice($path_parts, array_search('themes', $path_parts) + 2));
-
-                    // Skip rewriting if version is not found
-                    if (empty($version)) {
-                        return $src;
-                    }
-
-                    $rewritten = sprintf('https://cdn.staticdelivr.com/wp/themes/%s/%s/%s', $theme_name, $version, $file_path);
-                    $this->remember_original_source($handle, $src);
-                    return $rewritten;
-                } elseif (in_array('plugins', $path_parts)) {
-                    // Rewrite plugin URLs
-                    $plugin_name = $path_parts[array_search('plugins', $path_parts) + 1] ?? '';
-                    $plugin_file_path = STATICDELIVR_PLUGIN_DIR . $plugin_name . '/' . $plugin_name . '.php';
-                    $plugin_data = file_exists($plugin_file_path) ? get_plugin_data($plugin_file_path) : [];
-                    $tag_name = $plugin_data['Version'] ?? '';
-                    $file_path = implode('/', array_slice($path_parts, array_search('plugins', $path_parts) + 2));
-
-                    // Skip rewriting if tag name is not found
-                    if (empty($tag_name)) {
-                        return $src;
-                    }
-
-                    $rewritten = sprintf('https://cdn.staticdelivr.com/wp/plugins/%s/tags/%s/%s', $plugin_name, $tag_name, $file_path);
-                    $this->remember_original_source($handle, $src);
-                    return $rewritten;
+                // Skip rewriting if version is not found
+                if (empty($version)) {
+                    return $src;
                 }
+
+                $rewritten = sprintf('https://cdn.staticdelivr.com/wp/plugins/%s/tags/%s/%s', $plugin_name, $version, $file_path);
+                $this->remember_original_source($handle, $src);
+                return $rewritten;
             }
         }
 
@@ -624,7 +684,6 @@ class StaticDelivr {
         }
 
         $original = esc_attr($this->original_sources[$handle]);
-        // Use preg_replace to add data-original-src attribute to the script tag.
         // phpcs:ignore WordPress.WP.EnqueuedResources.NonEnqueuedScript -- modifying existing enqueued script tag, not outputting a new script.
         return preg_replace('/(<script\b)/i', '$1 data-original-src="' . $original . '"', $tag, 1);
     }
@@ -660,13 +719,10 @@ class StaticDelivr {
         $handle = STATICDELIVR_PREFIX . 'fallback';
         $inline = $this->get_fallback_inline_script();
 
-        // Register a script with an empty src so WordPress outputs an inline script
-        // and the script is properly registered/enqueued per WP best practices.
         if (!wp_script_is($handle, 'registered')) {
-            wp_register_script($handle, '', array(), '1.2.0', false);
+            wp_register_script($handle, '', array(), '1.2.1', false);
         }
 
-        // Add the inline script before the script tag so it runs early.
         wp_add_inline_script($handle, $inline, 'before');
         wp_enqueue_script($handle);
     }
@@ -679,8 +735,6 @@ class StaticDelivr {
     private function get_fallback_inline_script() {
         $script = '(function(){';
         $script .= 'var SD_DEBUG = true;';
-        
-        // Helper to copy attributes between elements
         $script .= 'function copyAttributes(from, to){';
         $script .= 'if (!from || !to || !from.attributes) return;';
         $script .= 'for (var i = 0; i < from.attributes.length; i++) {';
@@ -690,8 +744,7 @@ class StaticDelivr {
         $script .= 'to.setAttribute(attr.name, attr.value);';
         $script .= '}';
         $script .= '}';
-        
-        // Helper to extract original URL from StaticDelivr CDN image URL
+
         $script .= 'function extractOriginalFromCdnUrl(cdnUrl){';
         $script .= 'if (!cdnUrl) return null;';
         $script .= 'if (cdnUrl.indexOf("cdn.staticdelivr.com") === -1) return null;';
@@ -705,49 +758,41 @@ class StaticDelivr {
         $script .= 'return null;';
         $script .= '}';
         $script .= '}';
-        
-        // Main error handler
+
         $script .= 'function handleError(event){';
         $script .= 'var el = event.target || event.srcElement;';
         $script .= 'if (!el) return;';
         $script .= 'var tagName = el.tagName ? el.tagName.toUpperCase() : "";';
         $script .= 'if (!tagName) return;';
-        
-        // Debug: log all errors we catch
+
         $script .= 'if (SD_DEBUG) {';
         $script .= 'var currentSrc = el.src || el.href || el.currentSrc || "";';
         $script .= 'if (currentSrc.indexOf("staticdelivr") !== -1) {';
         $script .= 'console.log("[StaticDelivr] Caught error on:", tagName, currentSrc);';
         $script .= '}';
         $script .= '}';
-        
-        // Skip if already processed
+
         $script .= 'if (el.getAttribute && el.getAttribute("data-sd-fallback") === "done") return;';
-        
-        // Get the failed URL
+
         $script .= 'var failedUrl = "";';
         $script .= 'if (tagName === "IMG") failedUrl = el.src || el.currentSrc || "";';
         $script .= 'else if (tagName === "SCRIPT") failedUrl = el.src || "";';
         $script .= 'else if (tagName === "LINK") failedUrl = el.href || "";';
         $script .= 'else return;';
-        
-        // Only handle StaticDelivr CDN URLs
+
         $script .= 'if (failedUrl.indexOf("cdn.staticdelivr.com") === -1) return;';
-        
-        // Try to get original URL from data attribute first, then extract from CDN URL
+
         $script .= 'var original = el.getAttribute("data-original-src") || el.getAttribute("data-original-href");';
         $script .= 'if (!original) original = extractOriginalFromCdnUrl(failedUrl);';
-        
+
         $script .= 'if (!original) {';
         $script .= 'if (SD_DEBUG) console.log("[StaticDelivr] Could not determine original URL for:", failedUrl);';
         $script .= 'return;';
         $script .= '}';
-        
-        // Mark as processed
+
         $script .= 'el.setAttribute("data-sd-fallback", "done");';
         $script .= 'console.log("[StaticDelivr] CDN failed, falling back to origin:", tagName, original);';
-        
-        // Handle based on element type
+
         $script .= 'if (tagName === "SCRIPT") {';
         $script .= 'var newScript = document.createElement("script");';
         $script .= 'newScript.src = original;';
@@ -762,13 +807,12 @@ class StaticDelivr {
         $script .= 'el.parentNode.removeChild(el);';
         $script .= '}';
         $script .= 'console.log("[StaticDelivr] Script fallback complete:", original);';
-        
+
         $script .= '} else if (tagName === "LINK") {';
         $script .= 'el.href = original;';
         $script .= 'console.log("[StaticDelivr] Stylesheet fallback complete:", original);';
-        
+
         $script .= '} else if (tagName === "IMG") {';
-        // Clear srcset first to prevent browser from using it
         $script .= 'if (el.srcset) {';
         $script .= 'var newSrcset = el.srcset.split(",").map(function(entry) {';
         $script .= 'var parts = entry.trim().split(/\\s+/);';
@@ -783,9 +827,9 @@ class StaticDelivr {
         $script .= 'el.src = original;';
         $script .= 'console.log("[StaticDelivr] Image fallback complete:", original);';
         $script .= '}';
+
         $script .= '}';
-        
-        // Listen for errors in capture phase
+
         $script .= 'window.addEventListener("error", handleError, true);';
         $script .= 'console.log("[StaticDelivr] Fallback script initialized (v1.2.1)");';
         $script .= '})();';
@@ -897,8 +941,8 @@ class StaticDelivr {
         ?>
         <div class="wrap">
             <h1>StaticDelivr CDN</h1>
-            <p>Optimize your WordPress site by delivering assets through the <a href="https://staticdelivr.com" target="_blank">StaticDelivr CDN</a>.</p>
-            
+            <p>Optimize your WordPress site by delivering assets through the <a href="https://staticdelivr.com" target="_blank" rel="noopener noreferrer">StaticDelivr CDN</a>.</p>
+
             <!-- Status Bar -->
             <div class="staticdelivr-status-bar">
                 <div class="staticdelivr-status-item">
@@ -924,10 +968,10 @@ class StaticDelivr {
                 </div>
                 <?php endif; ?>
             </div>
-            
+
             <form method="post" action="options.php">
                 <?php settings_fields(STATICDELIVR_PREFIX . 'cdn_settings'); ?>
-                
+
                 <h2 class="title">Assets Optimization (CSS &amp; JavaScript)</h2>
                 <p class="description">Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN.</p>
                 <table class="form-table">
@@ -997,7 +1041,7 @@ class StaticDelivr {
                     <h4 style="margin-top: 0;">Assets (CSS &amp; JS)</h4>
                     <p style="margin-bottom: 5px;"><code><?php echo esc_html($site_url); ?>/wp-includes/js/jquery.js</code></p>
                     <p style="margin-bottom: 15px;">→ <code>https://cdn.staticdelivr.com/wp/core/trunk/wp-includes/js/jquery.js</code></p>
-                    
+
                     <h4>Images</h4>
                     <p style="margin-bottom: 5px;"><code><?php echo esc_html($site_url); ?>/wp-content/uploads/photo.jpg</code> (2MB)</p>
                     <p style="margin-bottom: 0;">→ <code>https://cdn.staticdelivr.com/img/images?url=...&amp;q=80&amp;format=webp</code> (~20KB)</p>
@@ -1013,14 +1057,14 @@ class StaticDelivr {
 
                 <?php submit_button(); ?>
             </form>
-            
+
             <script>
             document.getElementById('staticdelivr-images-toggle').addEventListener('change', function() {
                 var qualityRow = document.getElementById('staticdelivr-quality-row');
                 var formatRow = document.getElementById('staticdelivr-format-row');
                 var qualityInput = qualityRow.querySelector('input');
                 var formatInput = formatRow.querySelector('select');
-                
+
                 if (this.checked) {
                     qualityRow.style.opacity = '1';
                     formatRow.style.opacity = '1';
