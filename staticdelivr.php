@@ -2,7 +2,7 @@
 /**
  * Plugin Name: StaticDelivr CDN
  * Description: Speed up your WordPress site with free CDN delivery and automatic image optimization. Reduces load times and bandwidth costs.
- * Version: 1.3.1
+ * Version: 1.4.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: Coozywana
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 
 // Define plugin constants
 if (!defined('STATICDELIVR_VERSION')) {
-    define('STATICDELIVR_VERSION', '1.3.1');
+    define('STATICDELIVR_VERSION', '1.4.0');
 }
 if (!defined('STATICDELIVR_PLUGIN_FILE')) {
     define('STATICDELIVR_PLUGIN_FILE', __FILE__);
@@ -104,6 +104,13 @@ class StaticDelivr {
      * @var array<string,string>
      */
     private $version_cache = [];
+
+    /**
+     * Cached WordPress version.
+     *
+     * @var string|null
+     */
+    private $wp_version_cache = null;
 
     public function __construct() {
         // CSS/JS rewriting hooks
@@ -267,6 +274,31 @@ class StaticDelivr {
      */
     private function get_image_format() {
         return get_option(STATICDELIVR_PREFIX . 'image_format', 'webp');
+    }
+
+    /**
+     * Get the current WordPress version (cached).
+     * Extracts clean version number from development/RC versions.
+     *
+     * @return string The WordPress version (e.g., "6.9" or "6.9.1")
+     */
+    private function get_wp_version() {
+        if ($this->wp_version_cache !== null) {
+            return $this->wp_version_cache;
+        }
+
+        $raw_version = get_bloginfo('version');
+
+        // Extract just the version number (e.g., "6.9.1" from "6.9.1-alpha-12345" or "6.9-RC1")
+        // This handles development versions, RCs, betas, etc.
+        if (preg_match('/^(\d+\.\d+(?:\.\d+)?)/', $raw_version, $matches)) {
+            $this->wp_version_cache = $matches[1];
+        } else {
+            // Fallback to raw version if pattern doesn't match
+            $this->wp_version_cache = $raw_version;
+        }
+
+        return $this->wp_version_cache;
     }
 
     /**
@@ -607,7 +639,8 @@ class StaticDelivr {
 
         // Rewrite WordPress core files
         if (strpos($clean_path, 'wp-includes/') === 0) {
-            $rewritten = sprintf('https://cdn.staticdelivr.com/wp/core/trunk/%s', ltrim($clean_path, '/'));
+            $wp_version = $this->get_wp_version();
+            $rewritten = sprintf('https://cdn.staticdelivr.com/wp/core/tags/%s/%s', $wp_version, ltrim($clean_path, '/'));
             $this->remember_original_source($handle, $src);
             return $rewritten;
         }
@@ -938,6 +971,7 @@ class StaticDelivr {
         $image_quality = get_option(STATICDELIVR_PREFIX . 'image_quality', 80);
         $image_format = get_option(STATICDELIVR_PREFIX . 'image_format', 'webp');
         $site_url = home_url();
+        $wp_version = $this->get_wp_version();
         ?>
         <div class="wrap">
             <h1>StaticDelivr CDN</h1>
@@ -945,6 +979,10 @@ class StaticDelivr {
 
             <!-- Status Bar -->
             <div class="staticdelivr-status-bar">
+                <div class="staticdelivr-status-item">
+                    <span class="label">WordPress Version:</span>
+                    <span class="value"><?php echo esc_html($wp_version); ?></span>
+                </div>
                 <div class="staticdelivr-status-item">
                     <span class="label">Assets CDN:</span>
                     <span class="value <?php echo $assets_enabled ? 'active' : 'inactive'; ?>">
@@ -984,9 +1022,9 @@ class StaticDelivr {
                             </label>
                             <p class="description">Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading.</p>
                             <div class="staticdelivr-example">
-                                <code><?php echo esc_html($site_url); ?>/wp-includes/js/jquery.js</code>
+                                <code><?php echo esc_html($site_url); ?>/wp-includes/js/jquery/jquery.min.js</code>
                                 <span class="becomes">→</span>
-                                <code>https://cdn.staticdelivr.com/wp/core/trunk/wp-includes/js/jquery.js</code>
+                                <code>https://cdn.staticdelivr.com/wp/core/tags/<?php echo esc_html($wp_version); ?>/wp-includes/js/jquery/jquery.min.js</code>
                             </div>
                         </td>
                     </tr>
@@ -1039,8 +1077,8 @@ class StaticDelivr {
                 <h2 class="title">How It Works</h2>
                 <div style="background: #f0f0f1; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0;">Assets (CSS &amp; JS)</h4>
-                    <p style="margin-bottom: 5px;"><code><?php echo esc_html($site_url); ?>/wp-includes/js/jquery.js</code></p>
-                    <p style="margin-bottom: 15px;">→ <code>https://cdn.staticdelivr.com/wp/core/trunk/wp-includes/js/jquery.js</code></p>
+                    <p style="margin-bottom: 5px;"><code><?php echo esc_html($site_url); ?>/wp-includes/js/jquery/jquery.min.js</code></p>
+                    <p style="margin-bottom: 15px;">→ <code>https://cdn.staticdelivr.com/wp/core/tags/<?php echo esc_html($wp_version); ?>/wp-includes/js/jquery/jquery.min.js</code></p>
 
                     <h4>Images</h4>
                     <p style="margin-bottom: 5px;"><code><?php echo esc_html($site_url); ?>/wp-content/uploads/photo.jpg</code> (2MB)</p>
