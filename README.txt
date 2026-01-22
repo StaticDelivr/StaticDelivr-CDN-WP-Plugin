@@ -5,7 +5,7 @@ Tags: CDN, performance, image optimization, webp, free
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -57,7 +57,7 @@ This process applies to themes, plugins, and core files:
 
 - **Core Files**:
   Original: \`https://example.com/wp-includes/js/jquery/jquery.min.js\`
-  CDN: \`https://cdn.staticdelivr.com/wp/core/trunk/wp-includes/js/jquery/jquery.min.js\`
+  CDN: \`https://cdn.staticdelivr.com/wp/core/tags/6.9/wp-includes/js/jquery/jquery.min.js\`
 
 #### Images
 
@@ -114,6 +114,14 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 
 == Changelog ==
 
+= 1.4.0 =
+* Fixed WordPress core files to use proper version instead of "trunk"
+* Core files CDN URLs now include WordPress version (e.g., /wp/core/tags/6.9/ instead of /wp/core/trunk/)
+* Added WordPress version detection with support for development/RC/beta versions
+* Cached WordPress version to avoid repeated calls
+* Updated settings page to display detected WordPress version
+* Prevents cache mismatches when WordPress is updated
+
 = 1.3.1 =
 * Fixed plugin/theme version detection to ensure CDN rewriting works correctly for all plugins
 * Introduced cached helper methods for theme/plugin versions to avoid repeated filesystem work per request
@@ -157,6 +165,9 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.4.0 =
+Important update! Core files now use versioned CDN URLs instead of "trunk" to prevent cache mismatches when WordPress is updated.
 
 = 1.3.1 =
 Fixes for version detection and CDN rewriting. Added security attributes to external links.
