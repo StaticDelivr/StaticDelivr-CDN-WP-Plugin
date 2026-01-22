@@ -1,19 +1,19 @@
 === StaticDelivr CDN ===
 Contributors: Coozywana
 Donate link: https://staticdelivr.com/become-a-sponsor
-Tags: CDN, performance, image optimization, webp, free
+Tags: CDN, performance, image optimization, google fonts, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your WordPress site's performance by rewriting URLs to use the StaticDelivr CDN. Includes automatic image optimization.
+Enhance your WordPress site's performance by rewriting URLs to use the StaticDelivr CDN. Includes automatic image optimization and privacy-first Google Fonts proxy.
 
 == Description ==
 
-**StaticDelivr CDN** is a lightweight and powerful plugin designed to improve your WordPress site's performance. By rewriting theme, plugin, core file resource URLs, and optimizing images to use the [StaticDelivr CDN](https://staticdelivr.com), the plugin ensures faster loading times, reduced server load, and a better user experience.
+**StaticDelivr CDN** is a lightweight and powerful plugin designed to improve your WordPress site's performance. By rewriting theme, plugin, core file resource URLs, optimizing images, and proxying Google Fonts through the [StaticDelivr CDN](https://staticdelivr.com), the plugin ensures faster loading times, reduced server load, better privacy, and an improved user experience.
 
 StaticDelivr is a global content delivery network (CDN) that supports delivering assets from various platforms like npm, GitHub, and WordPress. By leveraging geographically distributed servers, StaticDelivr optimizes the delivery of your static assets such as CSS, JavaScript, images, and fonts.
 
@@ -21,8 +21,9 @@ StaticDelivr is a global content delivery network (CDN) that supports delivering
 
 - **Automatic URL Rewriting**: Automatically rewrites URLs of enqueued styles, scripts, and core files for themes, plugins, and WordPress itself to use the StaticDelivr CDN.
 - **Image Optimization**: Automatically optimizes images with compression and modern format conversion (WebP, AVIF). Turn 2MB images into 20KB without quality loss!
+- **Google Fonts Privacy Proxy**: Serve Google Fonts without tracking — GDPR compliant. A drop-in replacement that strips all user-identifying data and tracking cookies.
 - **Automatic Fallback**: If a CDN asset fails to load, the plugin automatically falls back to your origin server, ensuring your site never breaks.
-- **Separate Controls**: Enable or disable assets (CSS/JS) and image optimization independently.
+- **Separate Controls**: Enable or disable assets (CSS/JS), image optimization, and Google Fonts proxy independently.
 - **Quality & Format Settings**: Customize image compression quality and output format.
 - **Compatibility**: Works seamlessly with all WordPress themes and plugins that correctly enqueue their assets.
 - **Improved Performance**: Delivers assets from the StaticDelivr CDN for lightning-fast loading and enhanced user experience.
@@ -31,7 +32,7 @@ StaticDelivr is a global content delivery network (CDN) that supports delivering
 
 ### Use of Third-Party Service
 
-This plugin relies on the [StaticDelivr CDN](https://staticdelivr.com) to deliver static assets, including WordPress themes, plugins, core files, and optimized images. The CDN uses the public WordPress SVN repository to fetch theme/plugin files and serves them through a globally distributed network for faster performance and reduced bandwidth costs.
+This plugin relies on the [StaticDelivr CDN](https://staticdelivr.com) to deliver static assets, including WordPress themes, plugins, core files, optimized images, and Google Fonts. The CDN uses the public WordPress SVN repository to fetch theme/plugin files and serves them through a globally distributed network for faster performance and reduced bandwidth costs.
 
 - **Service Terms of Use**: [StaticDelivr Terms](https://staticdelivr.com/legal/terms-of-service)
 - **Privacy Policy**: [StaticDelivr Privacy Policy](https://staticdelivr.com/legal/privacy-policy)
@@ -64,12 +65,21 @@ This process applies to themes, plugins, and core files:
 - **Original**: \`https://example.com/wp-content/uploads/2024/01/photo.jpg\` (2MB)
 - **Optimized CDN**: \`https://cdn.staticdelivr.com/img/images?url=https://example.com/wp-content/uploads/2024/01/photo.jpg&q=80&format=webp\` (~20KB)
 
-This ensures faster delivery through StaticDelivr's globally distributed network.
+#### Google Fonts
+
+- **Original CSS**: \`https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap\`
+- **Privacy Proxy**: \`https://cdn.staticdelivr.com/gfonts/css2?family=Inter:wght@400;500;600&display=swap\`
+
+- **Original Font Files**: \`https://fonts.gstatic.com/s/inter/v20/example.woff2\`
+- **Privacy Proxy**: \`https://cdn.staticdelivr.com/gstatic-fonts/s/inter/v20/example.woff2\`
+
+This ensures faster delivery through StaticDelivr's globally distributed network while protecting user privacy.
 
 ### Why Use StaticDelivr?
 
 - **Global Distribution**: StaticDelivr serves your assets from a globally distributed network, reducing latency and improving load times.
 - **Massive Bandwidth Savings**: Offload heavy image delivery to StaticDelivr. Optimized images can be 10-100x smaller!
+- **Privacy-First Google Fonts**: Serve Google Fonts without tracking cookies — GDPR compliant without additional cookie banners.
 - **Browser Caching Benefits**: As an open-source CDN used by many sites, assets served by StaticDelivr are likely already cached in users' browsers. This enables faster load times when visiting multiple sites using StaticDelivr.
 - **Significant Bandwidth Savings**: Reduces your site's bandwidth usage and number of requests significantly by offloading asset delivery to StaticDelivr.
 - **Optimized Performance**: Ensures assets are delivered quickly, no matter where your users are located.
@@ -86,18 +96,31 @@ This ensures faster delivery through StaticDelivr's globally distributed network
 == Frequently Asked Questions ==
 
 = What does this plugin do? =
-This plugin rewrites the URLs of your WordPress themes, plugins, core files, and images to use the StaticDelivr CDN for serving static assets. It also optimizes images by compressing them and converting to modern formats like WebP.
+This plugin rewrites the URLs of your WordPress themes, plugins, core files, images, and Google Fonts to use the StaticDelivr CDN for serving static assets. It also optimizes images by compressing them and converting to modern formats like WebP.
 
 = How do I enable or disable the CDN rewriting? =
 Go to \`Settings > StaticDelivr CDN\` in your WordPress admin dashboard. You can independently enable/disable:
 - Assets CDN (CSS & JavaScript)
 - Image Optimization
+- Google Fonts Privacy Proxy
 
 = How much can image optimization reduce file sizes? =
 Typically, unoptimized images can be reduced by 80-95%. A 2MB JPEG can become a 20-50KB WebP while maintaining visual quality.
 
 = What image formats are supported? =
 The plugin supports JPG, JPEG, PNG, GIF, WebP, AVIF, BMP, and TIFF. Images can be converted to WebP, AVIF, JPEG, or PNG.
+
+= How does the Google Fonts privacy proxy work? =
+The plugin automatically rewrites all Google Fonts URLs (from \`fonts.googleapis.com\` and \`fonts.gstatic.com\`) to use StaticDelivr's privacy-respecting proxy. StaticDelivr strips all user-identifying data and tracking cookies before fetching fonts from Google, making it GDPR compliant.
+
+= Does the Google Fonts proxy work with my theme/plugin? =
+Yes! The plugin uses multiple methods to catch and rewrite Google Fonts URLs:
+- Properly enqueued stylesheets via WordPress
+- Inline \`<link>\` tags added by themes and page builders
+- DNS prefetch and preconnect hints
+
+= Is the Google Fonts proxy GDPR compliant? =
+Yes. Because StaticDelivr acts as a privacy shield and strips all tracking data, you don't need to declare Google Fonts usage in your cookie banner or privacy policy as a third-party data processor.
 
 = Does this plugin support all themes and plugins? =
 Yes, the plugin works with all WordPress themes and plugins that enqueue their assets correctly using WordPress functions.
@@ -110,9 +133,22 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 
 == Screenshots ==
 
-1. **Settings Page**: Configure assets CDN and image optimization with quality and format settings.
+1. **Settings Page**: Configure assets CDN, image optimization, and Google Fonts privacy proxy.
 
 == Changelog ==
+
+= 1.5.0 =
+* Added Google Fonts privacy proxy - automatically rewrites Google Fonts URLs to use StaticDelivr
+* Google Fonts proxy strips all tracking cookies and user-identifying data - GDPR compliant
+* Works with fonts loaded by themes, plugins, page builders, and inline styles
+* Rewrites both fonts.googleapis.com and fonts.gstatic.com URLs
+* Font files proxied via cdn.staticdelivr.com/gstatic-fonts
+* Updates DNS prefetch and preconnect hints for Google Fonts
+* Added new setting to enable/disable Google Fonts proxy independently
+* Google Fonts proxy enabled by default for new installations
+* Updated status bar to show Google Fonts status
+* Added privacy and GDPR badges to settings page
+* Improved output buffering for catching hardcoded Google Fonts URLs
 
 = 1.4.0 =
 * Fixed WordPress core files to use proper version instead of "trunk"
@@ -165,6 +201,9 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.5.0 =
+New feature! Google Fonts privacy proxy - serve Google Fonts without tracking, GDPR compliant out of the box. Works automatically with all themes and plugins.
 
 = 1.4.0 =
 Important update! Core files now use versioned CDN URLs instead of "trunk" to prevent cache mismatches when WordPress is updated.

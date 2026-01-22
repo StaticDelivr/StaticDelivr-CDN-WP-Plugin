@@ -2,7 +2,7 @@
 /**
  * Plugin Name: StaticDelivr CDN
  * Description: Speed up your WordPress site with free CDN delivery and automatic image optimization. Reduces load times and bandwidth costs.
- * Version: 1.4.0
+ * Version: 1.5.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: Coozywana
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
 
 // Define plugin constants
 if (!defined('STATICDELIVR_VERSION')) {
-    define('STATICDELIVR_VERSION', '1.4.0');
+    define('STATICDELIVR_VERSION', '1.5.0');
 }
 if (!defined('STATICDELIVR_PLUGIN_FILE')) {
     define('STATICDELIVR_PLUGIN_FILE', __FILE__);
@@ -51,6 +51,9 @@ function staticdelivr_activate() {
     }
     if (get_option(STATICDELIVR_PREFIX . 'image_format') === false) {
         update_option(STATICDELIVR_PREFIX . 'image_format', 'webp');
+    }
+    if (get_option(STATICDELIVR_PREFIX . 'google_fonts_enabled') === false) {
+        update_option(STATICDELIVR_PREFIX . 'google_fonts_enabled', 1);
     }
 
     // Set flag to show welcome notice
@@ -112,6 +115,13 @@ class StaticDelivr {
      */
     private $wp_version_cache = null;
 
+    /**
+     * Flag to track if output buffering is active.
+     *
+     * @var bool
+     */
+    private $output_buffering_started = false;
+
     public function __construct() {
         // CSS/JS rewriting hooks
         add_filter('style_loader_src', [$this, 'rewrite_url'], 10, 2);
@@ -127,6 +137,14 @@ class StaticDelivr {
         add_filter('the_content', [$this, 'rewrite_content_images'], 99);
         add_filter('post_thumbnail_html', [$this, 'rewrite_thumbnail_html'], 10, 5);
         add_filter('wp_get_attachment_url', [$this, 'rewrite_attachment_url'], 10, 2);
+
+        // Google Fonts hooks - use style_loader_src for enqueued styles
+        add_filter('style_loader_src', [$this, 'rewrite_google_fonts_enqueued'], 1, 2);
+        add_filter('wp_resource_hints', [$this, 'filter_resource_hints'], 10, 2);
+        
+        // Output buffer for hardcoded Google Fonts in HTML
+        add_action('template_redirect', [$this, 'start_google_fonts_output_buffer'], -999);
+        add_action('shutdown', [$this, 'end_google_fonts_output_buffer'], 999);
 
         // Admin hooks
         add_action('admin_menu', [$this, 'add_settings_page']);
@@ -198,6 +216,36 @@ class StaticDelivr {
                 margin: 6px 0;
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
             }
+            .staticdelivr-badge {
+                display: inline-block;
+                padding: 3px 8px;
+                border-radius: 3px;
+                font-size: 11px;
+                font-weight: 600;
+                text-transform: uppercase;
+                margin-left: 8px;
+            }
+            .staticdelivr-badge-privacy {
+                background: #d4edda;
+                color: #155724;
+            }
+            .staticdelivr-badge-gdpr {
+                background: #cce5ff;
+                color: #004085;
+            }
+            .staticdelivr-info-box {
+                background: #f6f7f7;
+                padding: 15px;
+                margin: 15px 0;
+                border-left: 4px solid #2271b1;
+            }
+            .staticdelivr-info-box h4 {
+                margin-top: 0;
+                color: #1d2327;
+            }
+            .staticdelivr-info-box ul {
+                margin-bottom: 0;
+            }
         ';
     }
 
@@ -215,8 +263,8 @@ class StaticDelivr {
         ?>
         <div class="notice notice-success is-dismissible">
             <p>
-                <strong>🚀 StaticDelivr CDN is now active!</strong>
-                Your site is already optimized with CDN delivery and image optimization enabled by default.
+                <strong>StaticDelivr CDN is now active!</strong>
+                Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default.
                 <a href="<?php echo esc_url($settings_url); ?>">View Settings</a> to customize.
             </p>
         </div>
@@ -246,7 +294,7 @@ class StaticDelivr {
      * @return bool
      */
     private function is_image_optimization_enabled() {
-        return (bool) get_option(STATICDELIVR_PREFIX . 'images_enabled', false);
+        return (bool) get_option(STATICDELIVR_PREFIX . 'images_enabled', true);
     }
 
     /**
@@ -255,7 +303,16 @@ class StaticDelivr {
      * @return bool
      */
     private function is_assets_optimization_enabled() {
-        return (bool) get_option(STATICDELIVR_PREFIX . 'assets_enabled', false);
+        return (bool) get_option(STATICDELIVR_PREFIX . 'assets_enabled', true);
+    }
+
+    /**
+     * Check if Google Fonts rewriting is enabled.
+     *
+     * @return bool
+     */
+    private function is_google_fonts_enabled() {
+        return (bool) get_option(STATICDELIVR_PREFIX . 'google_fonts_enabled', true);
     }
 
     /**
@@ -299,6 +356,189 @@ class StaticDelivr {
         }
 
         return $this->wp_version_cache;
+    }
+
+    /**
+     * Check if a URL is a Google Fonts URL.
+     *
+     * @param string $url The URL to check.
+     * @return bool
+     */
+    private function is_google_fonts_url($url) {
+        if (empty($url)) {
+            return false;
+        }
+        return (strpos($url, 'fonts.googleapis.com') !== false || strpos($url, 'fonts.gstatic.com') !== false);
+    }
+
+    /**
+     * Rewrite Google Fonts URL to use StaticDelivr proxy.
+     *
+     * @param string $url The original URL.
+     * @return string The rewritten URL or original.
+     */
+    private function rewrite_google_fonts_url($url) {
+        if (empty($url)) {
+            return $url;
+        }
+
+        // Don't rewrite if already a StaticDelivr URL
+        if (strpos($url, 'cdn.staticdelivr.com') !== false) {
+            return $url;
+        }
+
+        // Rewrite fonts.googleapis.com to StaticDelivr
+        if (strpos($url, 'fonts.googleapis.com') !== false) {
+            return str_replace('fonts.googleapis.com', 'cdn.staticdelivr.com/gfonts', $url);
+        }
+
+        // Rewrite fonts.gstatic.com to StaticDelivr (font files)
+        if (strpos($url, 'fonts.gstatic.com') !== false) {
+            return str_replace('fonts.gstatic.com', 'cdn.staticdelivr.com/gstatic-fonts', $url);
+        }
+
+        return $url;
+    }
+
+    /**
+     * Rewrite enqueued Google Fonts stylesheets.
+     *
+     * @param string $src The stylesheet source URL.
+     * @param string $handle The stylesheet handle.
+     * @return string
+     */
+    public function rewrite_google_fonts_enqueued($src, $handle) {
+        if (!$this->is_google_fonts_enabled()) {
+            return $src;
+        }
+
+        if ($this->is_google_fonts_url($src)) {
+            return $this->rewrite_google_fonts_url($src);
+        }
+
+        return $src;
+    }
+
+    /**
+     * Filter resource hints to update Google Fonts preconnect/prefetch.
+     *
+     * @param array $urls Array of URLs.
+     * @param string $relation_type The relation type (dns-prefetch, preconnect, etc.).
+     * @return array
+     */
+    public function filter_resource_hints($urls, $relation_type) {
+        if (!$this->is_google_fonts_enabled()) {
+            return $urls;
+        }
+
+        if ($relation_type !== 'dns-prefetch' && $relation_type !== 'preconnect') {
+            return $urls;
+        }
+
+        $staticdelivr_added = false;
+
+        foreach ($urls as $key => $url) {
+            $href = '';
+
+            if (is_array($url)) {
+                $href = isset($url['href']) ? $url['href'] : '';
+            } else {
+                $href = $url;
+            }
+
+            // Check if it's a Google Fonts URL
+            if (strpos($href, 'fonts.googleapis.com') !== false ||
+                strpos($href, 'fonts.gstatic.com') !== false) {
+                // Remove the Google Fonts hint
+                unset($urls[$key]);
+                $staticdelivr_added = true;
+            }
+        }
+
+        // Add StaticDelivr preconnect if we removed Google Fonts hints
+        if ($staticdelivr_added && $relation_type === 'preconnect') {
+            $urls[] = array(
+                'href'        => 'https://cdn.staticdelivr.com',
+                'crossorigin' => 'anonymous',
+            );
+        } elseif ($staticdelivr_added && $relation_type === 'dns-prefetch') {
+            $urls[] = 'https://cdn.staticdelivr.com';
+        }
+
+        return array_values($urls);
+    }
+
+    /**
+     * Start output buffering to catch Google Fonts in HTML output.
+     */
+    public function start_google_fonts_output_buffer() {
+        if (!$this->is_google_fonts_enabled()) {
+            return;
+        }
+
+        // Don't buffer admin pages, AJAX, REST API, or cron
+        if (is_admin() || wp_doing_ajax() || wp_doing_cron()) {
+            return;
+        }
+
+        if (defined('REST_REQUEST') && REST_REQUEST) {
+            return;
+        }
+
+        if (defined('XMLRPC_REQUEST') && XMLRPC_REQUEST) {
+            return;
+        }
+
+        // Don't buffer feeds
+        if (is_feed()) {
+            return;
+        }
+
+        $this->output_buffering_started = true;
+        ob_start();
+    }
+
+    /**
+     * End output buffering and process Google Fonts URLs.
+     */
+    public function end_google_fonts_output_buffer() {
+        if (!$this->output_buffering_started) {
+            return;
+        }
+
+        $html = ob_get_clean();
+
+        if (!empty($html)) {
+            echo $this->process_google_fonts_buffer($html);
+        }
+    }
+
+    /**
+     * Process the output buffer to rewrite Google Fonts URLs.
+     *
+     * @param string $html The HTML output.
+     * @return string
+     */
+    public function process_google_fonts_buffer($html) {
+        if (empty($html)) {
+            return $html;
+        }
+
+        // Replace Google Fonts CSS URLs
+        $html = str_replace(
+            'fonts.googleapis.com',
+            'cdn.staticdelivr.com/gfonts',
+            $html
+        );
+
+        // Replace Google Fonts static files URLs
+        $html = str_replace(
+            'fonts.gstatic.com',
+            'cdn.staticdelivr.com/gstatic-fonts',
+            $html
+        );
+
+        return $html;
     }
 
     /**
@@ -929,6 +1169,17 @@ class StaticDelivr {
                 'default'           => 'webp',
             )
         );
+
+        // Google Fonts setting
+        register_setting(
+            STATICDELIVR_PREFIX . 'cdn_settings',
+            STATICDELIVR_PREFIX . 'google_fonts_enabled',
+            array(
+                'type'              => 'boolean',
+                'sanitize_callback' => 'absint',
+                'default'           => true,
+            )
+        );
     }
 
     /**
@@ -970,6 +1221,7 @@ class StaticDelivr {
         $images_enabled = get_option(STATICDELIVR_PREFIX . 'images_enabled', true);
         $image_quality = get_option(STATICDELIVR_PREFIX . 'image_quality', 80);
         $image_format = get_option(STATICDELIVR_PREFIX . 'image_format', 'webp');
+        $google_fonts_enabled = get_option(STATICDELIVR_PREFIX . 'google_fonts_enabled', true);
         $site_url = home_url();
         $wp_version = $this->get_wp_version();
         ?>
@@ -993,6 +1245,12 @@ class StaticDelivr {
                     <span class="label">Image Optimization:</span>
                     <span class="value <?php echo $images_enabled ? 'active' : 'inactive'; ?>">
                         <?php echo $images_enabled ? '● Enabled' : '○ Disabled'; ?>
+                    </span>
+                </div>
+                <div class="staticdelivr-status-item">
+                    <span class="label">Google Fonts:</span>
+                    <span class="value <?php echo $google_fonts_enabled ? 'active' : 'inactive'; ?>">
+                        <?php echo $google_fonts_enabled ? '● Enabled' : '○ Disabled'; ?>
                     </span>
                 </div>
                 <?php if ($images_enabled): ?>
@@ -1074,6 +1332,48 @@ class StaticDelivr {
                     </tr>
                 </table>
 
+                <h2 class="title">
+                    Google Fonts (Privacy-First)
+                    <span class="staticdelivr-badge staticdelivr-badge-privacy">Privacy</span>
+                    <span class="staticdelivr-badge staticdelivr-badge-gdpr">GDPR Compliant</span>
+                </h2>
+                <p class="description">Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy. A drop-in replacement that maintains 100% API compatibility.</p>
+                <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row">Enable Google Fonts Proxy</th>
+                        <td>
+                            <label>
+                                <input type="checkbox" name="<?php echo esc_attr(STATICDELIVR_PREFIX . 'google_fonts_enabled'); ?>" value="1" <?php checked(1, $google_fonts_enabled); ?> />
+                                Proxy Google Fonts through StaticDelivr
+                            </label>
+                            <p class="description">
+                                Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy.<br>
+                                This works with fonts loaded by themes, plugins, and page builders — no configuration needed.
+                            </p>
+                            <div class="staticdelivr-example">
+                                <code>https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap</code>
+                                <span class="becomes">→</span>
+                                <code>https://cdn.staticdelivr.com/gfonts/css2?family=Inter:wght@400;500;600&amp;display=swap</code>
+                            </div>
+                            <div class="staticdelivr-example" style="margin-top: 10px;">
+                                <code>https://fonts.gstatic.com/s/inter/v20/example.woff2</code>
+                                <span class="becomes">→</span>
+                                <code>https://cdn.staticdelivr.com/gstatic-fonts/s/inter/v20/example.woff2</code>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="staticdelivr-info-box">
+                    <h4>Why Proxy Google Fonts?</h4>
+                    <ul>
+                        <li><strong>Privacy First</strong>: We strip all user-identifying data and tracking cookies before the request reaches Google.</li>
+                        <li><strong>GDPR Compliant</strong>: No need to declare Google Fonts usage in your cookie banner since we act as a privacy shield.</li>
+                        <li><strong>HTTP/3 &amp; Brotli</strong>: Files are served over HTTP/3 and compressed with Brotli for faster loading.</li>
+                        <li><strong>No Configuration</strong>: Works automatically with all themes and plugins that use Google Fonts.</li>
+                    </ul>
+                </div>
+
                 <h2 class="title">How It Works</h2>
                 <div style="background: #f0f0f1; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
                     <h4 style="margin-top: 0;">Assets (CSS &amp; JS)</h4>
@@ -1082,7 +1382,11 @@ class StaticDelivr {
 
                     <h4>Images</h4>
                     <p style="margin-bottom: 5px;"><code><?php echo esc_html($site_url); ?>/wp-content/uploads/photo.jpg</code> (2MB)</p>
-                    <p style="margin-bottom: 0;">→ <code>https://cdn.staticdelivr.com/img/images?url=...&amp;q=80&amp;format=webp</code> (~20KB)</p>
+                    <p style="margin-bottom: 15px;">→ <code>https://cdn.staticdelivr.com/img/images?url=...&amp;q=80&amp;format=webp</code> (~20KB)</p>
+
+                    <h4>Google Fonts</h4>
+                    <p style="margin-bottom: 5px;"><code>https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap</code></p>
+                    <p style="margin-bottom: 0;">→ <code>https://cdn.staticdelivr.com/gfonts/css2?family=Roboto&amp;display=swap</code></p>
                 </div>
 
                 <h2 class="title">Benefits</h2>
@@ -1090,6 +1394,7 @@ class StaticDelivr {
                     <li><strong>Faster Loading</strong>: Assets served from global CDN edge servers closest to your visitors.</li>
                     <li><strong>Bandwidth Savings</strong>: Reduce your server's bandwidth usage significantly.</li>
                     <li><strong>Image Optimization</strong>: Automatically compress and convert images to modern formats.</li>
+                    <li><strong>Privacy Protection</strong>: Google Fonts served without tracking — GDPR compliant out of the box.</li>
                     <li><strong>Automatic Fallback</strong>: If CDN fails, assets automatically load from your server.</li>
                 </ul>
 
