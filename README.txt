@@ -5,11 +5,11 @@ Tags: CDN, performance, image optimization, google fonts, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.5.0
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your WordPress site's performance by rewriting URLs to use the StaticDelivr CDN. Includes automatic image optimization and privacy-first Google Fonts proxy.
+Enhance your WordPress site's performance by rewriting URLs to use the StaticDelivr CDN. Includes automatic image optimization, smart asset detection, and privacy-first Google Fonts proxy.
 
 == Description ==
 
@@ -19,13 +19,17 @@ StaticDelivr is a global content delivery network (CDN) that supports delivering
 
 ### Key Features
 
+- **Smart Asset Detection**: Automatically detects which themes and plugins are from wordpress.org and only serves those via CDN. Custom themes and plugins are served locally — no configuration needed!
 - **Automatic URL Rewriting**: Automatically rewrites URLs of enqueued styles, scripts, and core files for themes, plugins, and WordPress itself to use the StaticDelivr CDN.
 - **Image Optimization**: Automatically optimizes images with compression and modern format conversion (WebP, AVIF). Turn 2MB images into 20KB without quality loss!
 - **Google Fonts Privacy Proxy**: Serve Google Fonts without tracking — GDPR compliant. A drop-in replacement that strips all user-identifying data and tracking cookies.
 - **Automatic Fallback**: If a CDN asset fails to load, the plugin automatically falls back to your origin server, ensuring your site never breaks.
+- **Localhost Detection**: Automatically detects development environments and serves images locally when CDN cannot reach them.
+- **Child Theme Support**: Intelligently handles child themes by checking parent theme availability on wordpress.org.
 - **Separate Controls**: Enable or disable assets (CSS/JS), image optimization, and Google Fonts proxy independently.
 - **Quality & Format Settings**: Customize image compression quality and output format.
-- **Compatibility**: Works seamlessly with all WordPress themes and plugins that correctly enqueue their assets.
+- **Verification Dashboard**: See exactly which assets are served via CDN vs locally in the admin panel.
+- **Compatibility**: Works seamlessly with all WordPress themes and plugins — both from wordpress.org and custom/premium sources.
 - **Improved Performance**: Delivers assets from the StaticDelivr CDN for lightning-fast loading and enhanced user experience.
 - **Multi-CDN Support**: Leverages multiple CDNs to ensure optimal availability and performance.
 - **Free and Open Source**: Supports the open-source community by offering free access to a high-performance CDN.
@@ -40,6 +44,16 @@ This plugin relies on the [StaticDelivr CDN](https://staticdelivr.com) to delive
 ### How It Works
 
 **StaticDelivr CDN** rewrites your WordPress asset URLs to deliver them through its high-performance network:
+
+#### Smart Asset Detection (New in 1.6.0!)
+
+The plugin automatically verifies which themes and plugins exist on wordpress.org:
+
+- **WordPress.org Assets**: Served via StaticDelivr CDN for maximum performance
+- **Custom/Premium Assets**: Automatically detected and served from your server
+- **Child Themes**: Parent theme is checked — if parent is on wordpress.org, assets load via CDN
+
+This means the plugin "just works" with any combination of wordpress.org and custom themes/plugins!
 
 #### Assets (CSS & JavaScript)
 
@@ -77,21 +91,26 @@ This ensures faster delivery through StaticDelivr's globally distributed network
 
 ### Why Use StaticDelivr?
 
+- **Zero Configuration**: Smart detection means it works out of the box with any theme/plugin combination.
 - **Global Distribution**: StaticDelivr serves your assets from a globally distributed network, reducing latency and improving load times.
 - **Massive Bandwidth Savings**: Offload heavy image delivery to StaticDelivr. Optimized images can be 10-100x smaller!
 - **Privacy-First Google Fonts**: Serve Google Fonts without tracking cookies — GDPR compliant without additional cookie banners.
+- **Works with Custom Themes**: Unlike other CDN plugins, StaticDelivr automatically detects custom themes/plugins and serves them locally.
 - **Browser Caching Benefits**: As an open-source CDN used by many sites, assets served by StaticDelivr are likely already cached in users' browsers. This enables faster load times when visiting multiple sites using StaticDelivr.
 - **Significant Bandwidth Savings**: Reduces your site's bandwidth usage and number of requests significantly by offloading asset delivery to StaticDelivr.
 - **Optimized Performance**: Ensures assets are delivered quickly, no matter where your users are located.
 - **Comprehensive WordPress Support**: Includes support for delivering core WordPress files (e.g., those in the \`wp-includes\` directory) to enhance site speed and reliability.
 - **Support for Popular Platforms**: Easily integrates with npm, GitHub, WordPress, and Google Fonts.
 - **Minimal Configuration**: Just enable the features you want and the plugin handles the rest.
+- **Development Friendly**: Automatically detects localhost and development environments.
 
 == Installation ==
 
 1. Upload the plugin files to the \`/wp-content/plugins/staticdelivr\` directory, or install the plugin through the WordPress plugins screen directly.
 2. Activate the plugin through the 'Plugins' screen in WordPress.
-3. Navigate to \`Settings > StaticDelivr CDN\` to enable the CDN functionality and configure image optimization.
+3. Navigate to \`Settings > StaticDelivr CDN\` to view status and configure options.
+
+That's it! The plugin automatically detects which assets can be served via CDN and handles everything else.
 
 == Frequently Asked Questions ==
 
@@ -103,6 +122,18 @@ Go to \`Settings > StaticDelivr CDN\` in your WordPress admin dashboard. You can
 - Assets CDN (CSS & JavaScript)
 - Image Optimization
 - Google Fonts Privacy Proxy
+
+= I have a custom theme — will this break my site? =
+No! Version 1.6.0 introduced Smart Detection which automatically identifies custom themes and plugins. Assets from custom/premium sources are served from your server, while wordpress.org assets are served via CDN. No configuration needed.
+
+= How does Smart Detection work? =
+The plugin checks WordPress's update system to determine if each theme/plugin exists on wordpress.org. Results are cached for 7 days. If a theme/plugin isn't found, it's served locally. This happens automatically — you don't need to configure anything.
+
+= What about child themes? =
+Child themes are handled intelligently. The plugin checks if the parent theme exists on wordpress.org. If it does, parent theme assets are served via CDN. Child theme files are always served locally since they don't exist on wordpress.org.
+
+= Will this work on localhost? =
+Yes! The plugin automatically detects localhost, private IPs, and development domains (.local, .test, .dev). Images from non-routable URLs are served locally since the CDN cannot fetch them. Assets CDN still works for themes/plugins since those are fetched from wordpress.org, not your server.
 
 = How much can image optimization reduce file sizes? =
 Typically, unoptimized images can be reduced by 80-95%. A 2MB JPEG can become a 20-50KB WebP while maintaining visual quality.
@@ -123,19 +154,49 @@ Yes! The plugin uses multiple methods to catch and rewrite Google Fonts URLs:
 Yes. Because StaticDelivr acts as a privacy shield and strips all tracking data, you don't need to declare Google Fonts usage in your cookie banner or privacy policy as a third-party data processor.
 
 = Does this plugin support all themes and plugins? =
-Yes, the plugin works with all WordPress themes and plugins that enqueue their assets correctly using WordPress functions.
+Yes! The plugin works with all WordPress themes and plugins:
+- **WordPress.org themes/plugins**: Served via CDN
+- **Custom/premium themes/plugins**: Served locally from your server
+- **Child themes**: Parent theme assets via CDN if available
 
 = Will this plugin affect my site's functionality? =
 No, the plugin only changes the source URLs of static assets. It does not affect any functionality of your site. Additionally, the plugin includes an automatic fallback mechanism that loads assets from your origin server if the CDN fails, ensuring your site always works.
 
+= How can I see which assets are served via CDN? =
+Go to \`Settings > StaticDelivr CDN\`. When Assets CDN is enabled, you'll see a complete list of all themes and plugins showing whether each is served via CDN or locally.
+
 = Is StaticDelivr free to use? =
 Yes, StaticDelivr is a free, open-source CDN designed to support the open-source community.
+
+= How long are verification results cached? =
+Verification results are cached for 7 days. The cache is automatically cleaned up daily to remove entries for uninstalled themes/plugins.
 
 == Screenshots ==
 
 1. **Settings Page**: Configure assets CDN, image optimization, and Google Fonts privacy proxy.
+2. **Asset Verification**: See which themes and plugins are served via CDN vs locally.
+3. **Smart Detection**: Automatic detection of wordpress.org vs custom assets.
 
 == Changelog ==
+
+= 1.6.0 =
+* **New: Smart Asset Detection** - Automatically detects if themes/plugins exist on wordpress.org
+* Only wordpress.org assets are served via CDN - custom/premium assets served locally
+* Zero configuration needed - works with any theme/plugin combination
+* Added verification dashboard showing CDN vs local status for all assets
+* Child theme support - checks parent theme availability on wordpress.org
+* Multi-layer caching: in-memory, database, and WordPress transients
+* Verification results cached for 7 days with automatic cleanup
+* Added localhost/development environment detection for images
+* Private IP ranges and .local/.test/.dev domains automatically detected
+* Images from non-routable URLs served locally (CDN can't fetch localhost)
+* Added daily cron job for cache cleanup
+* Theme/plugin activation hooks for immediate verification
+* Cache invalidation on theme switch and plugin deletion
+* Improved fallback script with better error handling
+* Admin UI shows complete asset breakdown with visual indicators
+* Added "Smart Detection" badge and info box explaining the system
+* Performance optimized: lazy loading and batched database writes
 
 = 1.5.0 =
 * Added Google Fonts privacy proxy - automatically rewrites Google Fonts URLs to use StaticDelivr
@@ -201,6 +262,9 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.6.0 =
+Major update! Smart Asset Detection automatically identifies custom themes/plugins and serves them locally while wordpress.org assets go through CDN. No more broken CSS from custom themes! Also includes localhost detection for images and a new verification dashboard.
 
 = 1.5.0 =
 New feature! Google Fonts privacy proxy - serve Google Fonts without tracking, GDPR compliant out of the box. Works automatically with all themes and plugins.
