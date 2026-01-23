@@ -29,7 +29,7 @@ jobs:
             readme = fs.readFileSync('README.txt', 'utf8');
           }
           
-          const version = context.ref.replace('refs/tags/', '');
+          const version = context.ref.replace('refs/tags/', '').replace(/^v/, '');
           
           function extractSection(content, sectionHeader, version) {
             const lines = content.split('\n');
