@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  
 jobs:
   tag:
     name: New tag
@@ -19,39 +20,55 @@ jobs:
       with:
         script: |
           const fs = require('fs');
-          const readme = fs.readFileSync('readme.txt', 'utf8');
+          
+          // Handle both readme.txt and README.txt
+          let readme;
+          try {
+            readme = fs.readFileSync('readme.txt', 'utf8');
+          } catch {
+            readme = fs.readFileSync('README.txt', 'utf8');
+          }
+          
           const version = context.ref.replace('refs/tags/', '');
           
-          // Extract upgrade notice
-          const upgradeRegex = new RegExp(`== Upgrade Notice ==.*?^= ${version} =(.*?)(^= |$)`, 'ms');
-          const upgradeMatch = readme.match(upgradeRegex);
-          let upgradeNotice = '';
-          if (upgradeMatch && upgradeMatch[1]) {
-            upgradeNotice = upgradeMatch[1].trim();
+          function extractSection(content, sectionHeader, version) {
+            const lines = content.split('\n');
+            let inSection = false;
+            let inVersion = false;
+            let result = [];
+            
+            for (const line of lines) {
+              if (line.includes(sectionHeader)) {
+                inSection = true;
+                continue;
+              }
+              if (inSection && line.trim() === `= ${version} =`) {
+                inVersion = true;
+                continue;
+              }
+              if (inVersion) {
+                // Stop at next version header or next major section
+                if (line.match(/^= .+ =$/) || line.match(/^== .+ ==$/)) {
+                  break;
+                }
+                result.push(line);
+              }
+            }
+            return result.join('\n').trim();
           }
           
-          // Extract changelog
-          const changelogRegex = new RegExp(`== Changelog ==.*?^= ${version} =(.*?)(^= |$)`, 'ms');
-          const changelogMatch = readme.match(changelogRegex);
-          let changelog = '';
-          if (changelogMatch && changelogMatch[1]) {
-            changelog = changelogMatch[1].trim();
-          }
+          const upgradeNotice = extractSection(readme, '== Upgrade Notice ==', version);
+          const changelog = extractSection(readme, '== Changelog ==', version);
           
-          // Combine: upgrade notice first, then changelog
           let body = '';
           if (upgradeNotice) {
             body += upgradeNotice + '\n\n';
           }
           if (changelog) {
-            body += changelog;
+            body += '### Changelog\n\n' + changelog;
           }
           
-          if (body.trim()) {
-            core.setOutput('body', body.trim());
-          } else {
-            core.setOutput('body', 'No changelog found for this version.');
-          }
+          core.setOutput('body', body.trim() || 'No changelog found for this version.');
 
     - name: WordPress Plugin Deploy
       id: deploy
@@ -64,7 +81,7 @@ jobs:
         generate-zip: true
 
     - name: Create GitHub Release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       with:
         files: ${{ steps.deploy.outputs.zip-path }}
         body: ${{ steps.changelog.outputs.body }}
