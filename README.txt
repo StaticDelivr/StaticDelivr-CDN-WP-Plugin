@@ -5,11 +5,11 @@ Tags: CDN, performance, image optimization, google fonts, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.6.0
+Stable tag: 1.7.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your WordPress site's performance by rewriting URLs to use the StaticDelivr CDN. Includes automatic image optimization, smart asset detection, and privacy-first Google Fonts proxy.
+Enhance your WordPress site's performance by rewriting URLs to use the StaticDelivr CDN. Includes automatic image optimization, smart asset detection, failure recovery, and privacy-first Google Fonts proxy.
 
 == Description ==
 
@@ -20,6 +20,7 @@ StaticDelivr is a global content delivery network (CDN) that supports delivering
 ### Key Features
 
 - **Smart Asset Detection**: Automatically detects which themes and plugins are from wordpress.org and only serves those via CDN. Custom themes and plugins are served locally — no configuration needed!
+- **Failure Memory System**: If a CDN resource fails to load, the plugin remembers and automatically serves it locally for 24 hours. No more repeated failures!
 - **Automatic URL Rewriting**: Automatically rewrites URLs of enqueued styles, scripts, and core files for themes, plugins, and WordPress itself to use the StaticDelivr CDN.
 - **Image Optimization**: Automatically optimizes images with compression and modern format conversion (WebP, AVIF). Turn 2MB images into 20KB without quality loss!
 - **Google Fonts Privacy Proxy**: Serve Google Fonts without tracking — GDPR compliant. A drop-in replacement that strips all user-identifying data and tracking cookies.
@@ -29,6 +30,7 @@ StaticDelivr is a global content delivery network (CDN) that supports delivering
 - **Separate Controls**: Enable or disable assets (CSS/JS), image optimization, and Google Fonts proxy independently.
 - **Quality & Format Settings**: Customize image compression quality and output format.
 - **Verification Dashboard**: See exactly which assets are served via CDN vs locally in the admin panel.
+- **Failure Statistics**: View which resources have failed and are being served locally, with option to clear cache.
 - **Compatibility**: Works seamlessly with all WordPress themes and plugins — both from wordpress.org and custom/premium sources.
 - **Improved Performance**: Delivers assets from the StaticDelivr CDN for lightning-fast loading and enhanced user experience.
 - **Multi-CDN Support**: Leverages multiple CDNs to ensure optimal availability and performance.
@@ -45,7 +47,7 @@ This plugin relies on the [StaticDelivr CDN](https://staticdelivr.com) to delive
 
 **StaticDelivr CDN** rewrites your WordPress asset URLs to deliver them through its high-performance network:
 
-#### Smart Asset Detection (New in 1.6.0!)
+#### Smart Asset Detection
 
 The plugin automatically verifies which themes and plugins exist on wordpress.org:
 
@@ -54,6 +56,17 @@ The plugin automatically verifies which themes and plugins exist on wordpress.or
 - **Child Themes**: Parent theme is checked — if parent is on wordpress.org, assets load via CDN
 
 This means the plugin "just works" with any combination of wordpress.org and custom themes/plugins!
+
+#### Failure Memory System (New in 1.7.0!)
+
+The plugin learns from CDN failures and automatically adapts:
+
+- **First failure**: Fallback fires, failure is recorded
+- **Second failure**: Resource is blocked from CDN for 24 hours
+- **Auto-recovery**: After 24 hours, resources are retried automatically
+- **Manual reset**: Clear the failure cache anytime from settings
+
+This ensures that problematic resources (Cloudflare-protected images, auth-gated content, etc.) are handled gracefully without repeated failures.
 
 #### Assets (CSS & JavaScript)
 
@@ -92,6 +105,7 @@ This ensures faster delivery through StaticDelivr's globally distributed network
 ### Why Use StaticDelivr?
 
 - **Zero Configuration**: Smart detection means it works out of the box with any theme/plugin combination.
+- **Self-Healing**: Failure memory system automatically adapts to problematic resources.
 - **Global Distribution**: StaticDelivr serves your assets from a globally distributed network, reducing latency and improving load times.
 - **Massive Bandwidth Savings**: Offload heavy image delivery to StaticDelivr. Optimized images can be 10-100x smaller!
 - **Privacy-First Google Fonts**: Serve Google Fonts without tracking cookies — GDPR compliant without additional cookie banners.
@@ -124,10 +138,16 @@ Go to \`Settings > StaticDelivr CDN\` in your WordPress admin dashboard. You can
 - Google Fonts Privacy Proxy
 
 = I have a custom theme — will this break my site? =
-No! Version 1.6.0 introduced Smart Detection which automatically identifies custom themes and plugins. Assets from custom/premium sources are served from your server, while wordpress.org assets are served via CDN. No configuration needed.
+No! The plugin uses Smart Detection to automatically identify custom themes and plugins. Assets from custom/premium sources are served from your server, while wordpress.org assets are served via CDN. No configuration needed.
 
 = How does Smart Detection work? =
-The plugin checks WordPress's update system to determine if each theme/plugin exists on wordpress.org. Results are cached for 7 days. If a theme/plugin isn't found, it's served locally. This happens automatically — you don't need to configure anything.
+The plugin checks WordPress's update system to determine if each theme/plugin exists on wordpress.org. Results are cached for 7 days. If a theme/plugin isn't found, it's served locally. This happens automatically.
+
+= What is the Failure Memory System? =
+New in version 1.7.0, the plugin tracks when CDN resources fail to load. After 2 failures, the resource is automatically served locally for 24 hours. This prevents repeated failures for resources that can't be served via CDN (like Cloudflare-protected images or authenticated content).
+
+= Can I see which resources have failed? =
+Yes! Go to `Settings > StaticDelivr CDN` and scroll down. If any resources have failed, you'll see a "CDN Failure Statistics" section showing the count of failed images and assets. You can also clear this cache to retry all resources.
 
 = What about child themes? =
 Child themes are handled intelligently. The plugin checks if the parent theme exists on wordpress.org. If it does, parent theme assets are served via CDN. Child theme files are always served locally since they don't exist on wordpress.org.
@@ -171,13 +191,33 @@ Yes, StaticDelivr is a free, open-source CDN designed to support the open-source
 = How long are verification results cached? =
 Verification results are cached for 7 days. The cache is automatically cleaned up daily to remove entries for uninstalled themes/plugins.
 
+= How long are failure results cached? =
+Failure results are cached for 24 hours. After this period, the plugin will retry serving the resource from CDN. You can also manually clear the failure cache from the settings page.
+
 == Screenshots ==
 
 1. **Settings Page**: Configure assets CDN, image optimization, and Google Fonts privacy proxy.
 2. **Asset Verification**: See which themes and plugins are served via CDN vs locally.
 3. **Smart Detection**: Automatic detection of wordpress.org vs custom assets.
+4. **Failure Statistics**: View and manage CDN failures with one-click cache clearing.
 
 == Changelog ==
+
+= 1.7.0 =
+* **New: Failure Memory System** - Plugin now remembers CDN failures and serves resources locally
+* Client-side failure detection using non-blocking beacon API
+* Server-side failure tracking with threshold-based blocking
+* After 2 failures, resources are served locally for 24 hours
+* Automatic cache expiry - resources retry after 24 hours
+* Failure statistics visible in admin settings when failures exist
+* One-click "Clear Failure Cache" button to retry all resources
+* Images blocked based on URL hash for precise tracking
+* Assets blocked based on theme/plugin slug for efficient grouping
+* Improved fallback script with failure reporting
+* Added AJAX endpoint for secure failure reporting with nonce verification
+* Daily cleanup of expired failure entries via cron
+* Updated admin UI to show failure counts and blocked resources
+* Added info box explaining failure memory feature
 
 = 1.6.0 =
 * **New: Smart Asset Detection** - Automatically detects if themes/plugins exist on wordpress.org
@@ -262,6 +302,9 @@ Verification results are cached for 7 days. The cache is automatically cleaned u
 * Initial release.
 
 == Upgrade Notice ==
+
+= 1.7.0 =
+New Failure Memory System! The plugin now remembers when CDN resources fail and automatically serves them locally for 24 hours. No more repeated failures for problematic resources. Includes admin UI for viewing and clearing failure cache.
 
 = 1.6.0 =
 Major update! Smart Asset Detection automatically identifies custom themes/plugins and serves them locally while wordpress.org assets go through CDN. No more broken CSS from custom themes! Also includes localhost detection for images and a new verification dashboard.

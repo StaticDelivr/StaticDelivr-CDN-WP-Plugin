@@ -2,7 +2,7 @@
 /**
  * Plugin Name: StaticDelivr CDN
  * Description: Speed up your WordPress site with free CDN delivery and automatic image optimization. Reduces load times and bandwidth costs.
- * Version: 1.6.0
+ * Version: 1.7.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: Coozywana
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Define plugin constants.
 if ( ! defined( 'STATICDELIVR_VERSION' ) ) {
-    define( 'STATICDELIVR_VERSION', '1.6.0' );
+    define( 'STATICDELIVR_VERSION', '1.7.0' );
 }
 if ( ! defined( 'STATICDELIVR_PLUGIN_FILE' ) ) {
     define( 'STATICDELIVR_PLUGIN_FILE', __FILE__ );
@@ -45,6 +45,12 @@ if ( ! defined( 'STATICDELIVR_CACHE_DURATION' ) ) {
 }
 if ( ! defined( 'STATICDELIVR_API_TIMEOUT' ) ) {
     define( 'STATICDELIVR_API_TIMEOUT', 3 ); // 3 seconds.
+}
+if ( ! defined( 'STATICDELIVR_FAILURE_CACHE_DURATION' ) ) {
+    define( 'STATICDELIVR_FAILURE_CACHE_DURATION', DAY_IN_SECONDS ); // 24 hours.
+}
+if ( ! defined( 'STATICDELIVR_FAILURE_THRESHOLD' ) ) {
+    define( 'STATICDELIVR_FAILURE_THRESHOLD', 2 ); // Block after 2 failures.
 }
 
 // Activation hook - set default options.
@@ -200,6 +206,20 @@ class StaticDelivr {
     private $verification_cache_dirty = false;
 
     /**
+     * In-memory cache for failed resources.
+     *
+     * @var array|null
+     */
+    private $failure_cache = null;
+
+    /**
+     * Flag to track if failure cache was modified.
+     *
+     * @var bool
+     */
+    private $failure_cache_dirty = false;
+
+    /**
      * Constructor.
      *
      * Sets up all hooks and filters for the plugin.
@@ -243,8 +263,251 @@ class StaticDelivr {
         // Cron hook for daily cleanup.
         add_action( STATICDELIVR_PREFIX . 'daily_cleanup', array( $this, 'daily_cleanup_task' ) );
 
-        // Save verification cache on shutdown if modified.
+        // Save caches on shutdown if modified.
         add_action( 'shutdown', array( $this, 'maybe_save_verification_cache' ), 0 );
+        add_action( 'shutdown', array( $this, 'maybe_save_failure_cache' ), 0 );
+
+        // AJAX endpoint for failure reporting.
+        add_action( 'wp_ajax_staticdelivr_report_failure', array( $this, 'ajax_report_failure' ) );
+        add_action( 'wp_ajax_nopriv_staticdelivr_report_failure', array( $this, 'ajax_report_failure' ) );
+    }
+
+    // =========================================================================
+    // FAILURE TRACKING SYSTEM
+    // =========================================================================
+
+    /**
+     * Load failure cache from database.
+     *
+     * @return void
+     */
+    private function load_failure_cache() {
+        if ( null !== $this->failure_cache ) {
+            return;
+        }
+
+        $cache = get_transient( STATICDELIVR_PREFIX . 'failed_resources' );
+
+        if ( ! is_array( $cache ) ) {
+            $cache = array();
+        }
+
+        $this->failure_cache = wp_parse_args(
+            $cache,
+            array(
+                'images' => array(),
+                'assets' => array(),
+            )
+        );
+    }
+
+    /**
+     * Save failure cache if modified.
+     *
+     * @return void
+     */
+    public function maybe_save_failure_cache() {
+        if ( $this->failure_cache_dirty && null !== $this->failure_cache ) {
+            set_transient(
+                STATICDELIVR_PREFIX . 'failed_resources',
+                $this->failure_cache,
+                STATICDELIVR_FAILURE_CACHE_DURATION
+            );
+            $this->failure_cache_dirty = false;
+        }
+    }
+
+    /**
+     * Generate a short hash for a URL.
+     *
+     * @param string $url The URL to hash.
+     * @return string 16-character hash.
+     */
+    private function hash_url( $url ) {
+        return substr( md5( $url ), 0, 16 );
+    }
+
+    /**
+     * Check if a resource has exceeded the failure threshold.
+     *
+     * @param string $type Resource type: 'image' or 'asset'.
+     * @param string $key  Resource identifier (URL hash or slug).
+     * @return bool True if should be blocked.
+     */
+    private function is_resource_blocked( $type, $key ) {
+        $this->load_failure_cache();
+
+        $cache_key = ( 'image' === $type ) ? 'images' : 'assets';
+
+        if ( ! isset( $this->failure_cache[ $cache_key ][ $key ] ) ) {
+            return false;
+        }
+
+        $entry = $this->failure_cache[ $cache_key ][ $key ];
+
+        // Check if entry has expired (shouldn't happen with transient, but safety check).
+        if ( isset( $entry['last'] ) ) {
+            $age = time() - (int) $entry['last'];
+            if ( $age > STATICDELIVR_FAILURE_CACHE_DURATION ) {
+                unset( $this->failure_cache[ $cache_key ][ $key ] );
+                $this->failure_cache_dirty = true;
+                return false;
+            }
+        }
+
+        // Check threshold.
+        $count = isset( $entry['count'] ) ? (int) $entry['count'] : 0;
+        return $count >= STATICDELIVR_FAILURE_THRESHOLD;
+    }
+
+    /**
+     * Record a resource failure.
+     *
+     * @param string $type     Resource type: 'image' or 'asset'.
+     * @param string $key      Resource identifier.
+     * @param string $original Original URL for reference.
+     * @return void
+     */
+    private function record_failure( $type, $key, $original = '' ) {
+        $this->load_failure_cache();
+
+        $cache_key = ( 'image' === $type ) ? 'images' : 'assets';
+        $now       = time();
+
+        if ( isset( $this->failure_cache[ $cache_key ][ $key ] ) ) {
+            $this->failure_cache[ $cache_key ][ $key ]['count']++;
+            $this->failure_cache[ $cache_key ][ $key ]['last'] = $now;
+        } else {
+            $this->failure_cache[ $cache_key ][ $key ] = array(
+                'count'    => 1,
+                'first'    => $now,
+                'last'     => $now,
+                'original' => $original,
+            );
+        }
+
+        $this->failure_cache_dirty = true;
+    }
+
+    /**
+     * AJAX handler for failure reporting from client.
+     *
+     * @return void
+     */
+    public function ajax_report_failure() {
+        // Verify nonce.
+        if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'staticdelivr_failure_report' ) ) {
+            wp_send_json_error( 'Invalid nonce', 403 );
+        }
+
+        $type     = isset( $_POST['type'] ) ? sanitize_key( $_POST['type'] ) : '';
+        $url      = isset( $_POST['url'] ) ? esc_url_raw( wp_unslash( $_POST['url'] ) ) : '';
+        $original = isset( $_POST['original'] ) ? esc_url_raw( wp_unslash( $_POST['original'] ) ) : '';
+
+        if ( empty( $type ) || empty( $url ) ) {
+            wp_send_json_error( 'Missing parameters', 400 );
+        }
+
+        // Validate type.
+        if ( ! in_array( $type, array( 'image', 'asset' ), true ) ) {
+            wp_send_json_error( 'Invalid type', 400 );
+        }
+
+        // Generate key based on type.
+        if ( 'image' === $type ) {
+            $key = $this->hash_url( $original ? $original : $url );
+        } else {
+            // For assets, try to extract theme/plugin slug.
+            $key = $this->extract_asset_key_from_url( $url );
+            if ( empty( $key ) ) {
+                $key = $this->hash_url( $url );
+            }
+        }
+
+        $this->record_failure( $type, $key, $original ? $original : $url );
+        $this->maybe_save_failure_cache();
+
+        wp_send_json_success( array( 'recorded' => true ) );
+    }
+
+    /**
+     * Extract asset key (theme/plugin slug) from CDN URL.
+     *
+     * @param string $url CDN URL.
+     * @return string|null Asset key or null.
+     */
+    private function extract_asset_key_from_url( $url ) {
+        // Pattern: /wp/themes/{slug}/ or /wp/plugins/{slug}/
+        if ( preg_match( '#/wp/(themes|plugins)/([^/]+)/#', $url, $matches ) ) {
+            return $matches[1] . ':' . $matches[2];
+        }
+        return null;
+    }
+
+    /**
+     * Check if an image URL is blocked due to previous failures.
+     *
+     * @param string $url Original image URL.
+     * @return bool True if blocked.
+     */
+    private function is_image_blocked( $url ) {
+        $key = $this->hash_url( $url );
+        return $this->is_resource_blocked( 'image', $key );
+    }
+
+    /**
+     * Get failure statistics for admin display.
+     *
+     * @return array Failure statistics.
+     */
+    public function get_failure_stats() {
+        $this->load_failure_cache();
+
+        $stats = array(
+            'images' => array(
+                'total'   => 0,
+                'blocked' => 0,
+                'items'   => array(),
+            ),
+            'assets' => array(
+                'total'   => 0,
+                'blocked' => 0,
+                'items'   => array(),
+            ),
+        );
+
+        foreach ( array( 'images', 'assets' ) as $type ) {
+            if ( ! empty( $this->failure_cache[ $type ] ) ) {
+                foreach ( $this->failure_cache[ $type ] as $key => $entry ) {
+                    $stats[ $type ]['total']++;
+                    $count = isset( $entry['count'] ) ? (int) $entry['count'] : 0;
+
+                    if ( $count >= STATICDELIVR_FAILURE_THRESHOLD ) {
+                        $stats[ $type ]['blocked']++;
+                    }
+
+                    $stats[ $type ]['items'][ $key ] = array(
+                        'count'    => $count,
+                        'blocked'  => $count >= STATICDELIVR_FAILURE_THRESHOLD,
+                        'original' => isset( $entry['original'] ) ? $entry['original'] : '',
+                        'last'     => isset( $entry['last'] ) ? $entry['last'] : 0,
+                    );
+                }
+            }
+        }
+
+        return $stats;
+    }
+
+    /**
+     * Clear the failure cache.
+     *
+     * @return void
+     */
+    public function clear_failure_cache() {
+        delete_transient( STATICDELIVR_PREFIX . 'failed_resources' );
+        $this->failure_cache       = null;
+        $this->failure_cache_dirty = false;
     }
 
     // =========================================================================
@@ -636,6 +899,9 @@ class StaticDelivr {
         $this->load_verification_cache();
         $this->cleanup_verification_cache();
         $this->maybe_save_verification_cache();
+
+        // Failure cache auto-expires via transient, but clean up old entries.
+        $this->cleanup_failure_cache();
     }
 
     /**
@@ -706,6 +972,37 @@ class StaticDelivr {
 
         $this->verification_cache['last_cleanup'] = $now;
         $this->verification_cache_dirty           = true;
+    }
+
+    /**
+     * Clean up old failure cache entries.
+     *
+     * @return void
+     */
+    private function cleanup_failure_cache() {
+        $this->load_failure_cache();
+
+        $now     = time();
+        $changed = false;
+
+        foreach ( array( 'images', 'assets' ) as $type ) {
+            if ( ! empty( $this->failure_cache[ $type ] ) ) {
+                foreach ( $this->failure_cache[ $type ] as $key => $entry ) {
+                    if ( isset( $entry['last'] ) ) {
+                        $age = $now - (int) $entry['last'];
+                        if ( $age > STATICDELIVR_FAILURE_CACHE_DURATION ) {
+                            unset( $this->failure_cache[ $type ][ $key ] );
+                            $changed = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        if ( $changed ) {
+            $this->failure_cache_dirty = true;
+            $this->maybe_save_failure_cache();
+        }
     }
 
     /**
@@ -1081,6 +1378,28 @@ class StaticDelivr {
                 text-align: center;
                 color: #646970;
                 font-style: italic;
+            }
+            .staticdelivr-failure-stats {
+                background: #fff;
+                border: 1px solid #dcdcde;
+                padding: 15px;
+                margin: 15px 0;
+                border-radius: 4px;
+            }
+            .staticdelivr-failure-stats h4 {
+                margin-top: 0;
+            }
+            .staticdelivr-failure-stats .stat-row {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px 0;
+                border-bottom: 1px solid #f0f0f1;
+            }
+            .staticdelivr-failure-stats .stat-row:last-child {
+                border-bottom: none;
+            }
+            .staticdelivr-clear-cache-btn {
+                margin-top: 10px;
             }
         ';
     }
@@ -1518,6 +1837,11 @@ class StaticDelivr {
             return $original_url;
         }
 
+        // Check failure cache.
+        if ( $this->is_image_blocked( $original_url ) ) {
+            return $original_url;
+        }
+
         // Validate it's an image URL.
         $extension = strtolower( pathinfo( wp_parse_url( $original_url, PHP_URL_PATH ), PATHINFO_EXTENSION ) );
         if ( ! in_array( $extension, $this->image_extensions, true ) ) {
@@ -1696,7 +2020,6 @@ class StaticDelivr {
                 $srcset      = $srcset_match[1];
                 $sources     = explode( ',', $srcset );
                 $new_sources = array();
-                $was_changed = false;
 
                 foreach ( $sources as $source ) {
                     $source = trim( $source );
@@ -1709,10 +2032,7 @@ class StaticDelivr {
                             $width = (int) $w_match[1];
                         }
 
-                        $cdn_url = $this->build_image_cdn_url( $url, $width );
-                        if ( $cdn_url !== $url ) {
-                            $was_changed = true;
-                        }
+                        $cdn_url       = $this->build_image_cdn_url( $url, $width );
                         $new_sources[] = $cdn_url . ' ' . $descriptor;
                     } else {
                         $new_sources[] = $source;
@@ -1970,13 +2290,40 @@ class StaticDelivr {
      * @return string
      */
     private function get_fallback_inline_script() {
-        $script = <<<'JS'
+        $ajax_url = admin_url( 'admin-ajax.php' );
+        $nonce    = wp_create_nonce( 'staticdelivr_failure_report' );
+
+        $script = <<<JS
 (function(){
     var SD_DEBUG = false;
+    var SD_AJAX_URL = '%s';
+    var SD_NONCE = '%s';
 
     function log() {
         if (SD_DEBUG && console && console.log) {
             console.log.apply(console, ['[StaticDelivr]'].concat(Array.prototype.slice.call(arguments)));
+        }
+    }
+
+    function reportFailure(type, url, original) {
+        try {
+            var data = new FormData();
+            data.append('action', 'staticdelivr_report_failure');
+            data.append('nonce', SD_NONCE);
+            data.append('type', type);
+            data.append('url', url);
+            data.append('original', original || '');
+
+            if (navigator.sendBeacon) {
+                navigator.sendBeacon(SD_AJAX_URL, data);
+            } else {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', SD_AJAX_URL, true);
+                xhr.send(data);
+            }
+            log('Reported failure:', type, url);
+        } catch(e) {
+            log('Failed to report:', e);
         }
     }
 
@@ -2044,6 +2391,10 @@ class StaticDelivr {
         el.setAttribute('data-sd-fallback', 'done');
         log('Falling back to origin:', tagName, original);
 
+        // Report the failure
+        var reportType = (tagName === 'IMG') ? 'image' : 'asset';
+        reportFailure(reportType, failedUrl, original);
+
         if (tagName === 'SCRIPT') {
             var newScript = document.createElement('script');
             newScript.src = original;
@@ -2084,11 +2435,11 @@ class StaticDelivr {
     // Capture errors in capture phase
     window.addEventListener('error', handleError, true);
 
-    log('Fallback script initialized (v' + '%s' + ')');
+    log('Fallback script initialized (v%s)');
 })();
 JS;
 
-        return sprintf( $script, STATICDELIVR_VERSION );
+        return sprintf( $script, esc_js( $ajax_url ), esc_js( $nonce ), STATICDELIVR_VERSION );
     }
 
     // =========================================================================
@@ -2190,11 +2541,33 @@ JS;
     }
 
     /**
+     * Handle clear failure cache action.
+     *
+     * @return void
+     */
+    private function handle_clear_failure_cache() {
+        if ( isset( $_POST['staticdelivr_clear_failure_cache'] ) &&
+            isset( $_POST['_wpnonce'] ) &&
+            wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['_wpnonce'] ) ), 'staticdelivr_clear_failure_cache' ) ) {
+            $this->clear_failure_cache();
+            add_settings_error(
+                STATICDELIVR_PREFIX . 'cdn_settings',
+                'cache_cleared',
+                __( 'Failure cache cleared successfully.', 'staticdelivr' ),
+                'success'
+            );
+        }
+    }
+
+    /**
      * Render the settings page.
      *
      * @return void
      */
     public function render_settings_page() {
+        // Handle cache clear action.
+        $this->handle_clear_failure_cache();
+
         $assets_enabled       = get_option( STATICDELIVR_PREFIX . 'assets_enabled', true );
         $images_enabled       = get_option( STATICDELIVR_PREFIX . 'images_enabled', true );
         $image_quality        = get_option( STATICDELIVR_PREFIX . 'image_quality', 80 );
@@ -2203,12 +2576,15 @@ JS;
         $site_url             = home_url();
         $wp_version           = $this->get_wp_version();
         $verification_summary = $this->get_verification_summary();
+        $failure_stats        = $this->get_failure_stats();
         ?>
         <div class="wrap staticdelivr-wrap">
             <h1><?php esc_html_e( 'StaticDelivr CDN', 'staticdelivr' ); ?></h1>
             <p><?php esc_html_e( 'Optimize your WordPress site by delivering assets through the', 'staticdelivr' ); ?>
                 <a href="https://staticdelivr.com" target="_blank" rel="noopener noreferrer">StaticDelivr CDN</a>.
             </p>
+
+            <?php settings_errors(); ?>
 
             <!-- Status Bar -->
             <div class="staticdelivr-status-bar">
@@ -2374,6 +2750,7 @@ JS;
                         <li><strong><?php esc_html_e( 'Custom Themes/Plugins', 'staticdelivr' ); ?>:</strong> <?php esc_html_e( 'Assets from custom or premium themes/plugins are automatically served from your server.', 'staticdelivr' ); ?></li>
                         <li><strong><?php esc_html_e( 'Child Themes', 'staticdelivr' ); ?>:</strong> <?php esc_html_e( 'Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN.', 'staticdelivr' ); ?></li>
                         <li><strong><?php esc_html_e( 'Cached Results', 'staticdelivr' ); ?>:</strong> <?php esc_html_e( 'Verification results are cached for 7 days to ensure fast page loads.', 'staticdelivr' ); ?></li>
+                        <li><strong><?php esc_html_e( 'Failure Memory', 'staticdelivr' ); ?>:</strong> <?php esc_html_e( 'If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours.', 'staticdelivr' ); ?></li>
                     </ul>
                 </div>
                 <?php endif; ?>
@@ -2459,6 +2836,50 @@ JS;
 
                 <?php submit_button(); ?>
             </form>
+
+            <!-- Failure Statistics -->
+            <?php if ( $failure_stats['images']['total'] > 0 || $failure_stats['assets']['total'] > 0 ) : ?>
+            <h2 class="title"><?php esc_html_e( 'CDN Failure Statistics', 'staticdelivr' ); ?></h2>
+            <p class="description"><?php esc_html_e( 'Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours.', 'staticdelivr' ); ?></p>
+
+            <div class="staticdelivr-failure-stats">
+                <h4><?php esc_html_e( 'Failed Resources', 'staticdelivr' ); ?></h4>
+                <div class="stat-row">
+                    <span><?php esc_html_e( 'Images:', 'staticdelivr' ); ?></span>
+                    <span>
+                        <?php
+                        printf(
+                            /* translators: 1: total failures, 2: blocked count */
+                            esc_html__( '%1$d failures (%2$d blocked)', 'staticdelivr' ),
+                            $failure_stats['images']['total'],
+                            $failure_stats['images']['blocked']
+                        );
+                        ?>
+                    </span>
+                </div>
+                <div class="stat-row">
+                    <span><?php esc_html_e( 'Assets:', 'staticdelivr' ); ?></span>
+                    <span>
+                        <?php
+                        printf(
+                            /* translators: 1: total failures, 2: blocked count */
+                            esc_html__( '%1$d failures (%2$d blocked)', 'staticdelivr' ),
+                            $failure_stats['assets']['total'],
+                            $failure_stats['assets']['blocked']
+                        );
+                        ?>
+                    </span>
+                </div>
+
+                <form method="post" class="staticdelivr-clear-cache-btn">
+                    <?php wp_nonce_field( 'staticdelivr_clear_failure_cache' ); ?>
+                    <button type="submit" name="staticdelivr_clear_failure_cache" class="button button-secondary">
+                        <?php esc_html_e( 'Clear Failure Cache', 'staticdelivr' ); ?>
+                    </button>
+                    <p class="description"><?php esc_html_e( 'This will retry all previously failed resources on next page load.', 'staticdelivr' ); ?></p>
+                </form>
+            </div>
+            <?php endif; ?>
 
             <script>
             (function() {
