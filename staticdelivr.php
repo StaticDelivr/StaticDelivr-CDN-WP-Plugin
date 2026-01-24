@@ -2,7 +2,7 @@
 /**
  * Plugin Name: StaticDelivr CDN
  * Description: Speed up your WordPress site with free CDN delivery and automatic image optimization. Reduces load times and bandwidth costs.
- * Version: 1.7.0
+ * Version: 1.7.1
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: Coozywana
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Define plugin constants.
 if ( ! defined( 'STATICDELIVR_VERSION' ) ) {
-    define( 'STATICDELIVR_VERSION', '1.7.0' );
+    define( 'STATICDELIVR_VERSION', '1.7.1' );
 }
 if ( ! defined( 'STATICDELIVR_PLUGIN_FILE' ) ) {
     define( 'STATICDELIVR_PLUGIN_FILE', __FILE__ );
@@ -2293,151 +2293,149 @@ class StaticDelivr {
         $ajax_url = admin_url( 'admin-ajax.php' );
         $nonce    = wp_create_nonce( 'staticdelivr_failure_report' );
 
-        $script = <<<JS
-(function(){
-    var SD_DEBUG = false;
-    var SD_AJAX_URL = '%s';
-    var SD_NONCE = '%s';
-
-    function log() {
-        if (SD_DEBUG && console && console.log) {
-            console.log.apply(console, ['[StaticDelivr]'].concat(Array.prototype.slice.call(arguments)));
-        }
-    }
-
-    function reportFailure(type, url, original) {
-        try {
-            var data = new FormData();
-            data.append('action', 'staticdelivr_report_failure');
-            data.append('nonce', SD_NONCE);
-            data.append('type', type);
-            data.append('url', url);
-            data.append('original', original || '');
-
-            if (navigator.sendBeacon) {
-                navigator.sendBeacon(SD_AJAX_URL, data);
-            } else {
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', SD_AJAX_URL, true);
-                xhr.send(data);
-            }
-            log('Reported failure:', type, url);
-        } catch(e) {
-            log('Failed to report:', e);
-        }
-    }
-
-    function copyAttributes(from, to) {
-        if (!from || !to || !from.attributes) return;
-        for (var i = 0; i < from.attributes.length; i++) {
-            var attr = from.attributes[i];
-            if (!attr || !attr.name) continue;
-            if (attr.name === 'src' || attr.name === 'href' || attr.name === 'data-original-src' || attr.name === 'data-original-href') continue;
-            try {
-                to.setAttribute(attr.name, attr.value);
-            } catch(e) {}
-        }
-    }
-
-    function extractOriginalFromCdnUrl(cdnUrl) {
-        if (!cdnUrl) return null;
-        if (cdnUrl.indexOf('cdn.staticdelivr.com') === -1) return null;
-        try {
-            var urlObj = new URL(cdnUrl);
-            var originalUrl = urlObj.searchParams.get('url');
-            if (originalUrl) {
-                log('Extracted original URL from query param:', originalUrl);
-                return originalUrl;
-            }
-        } catch(e) {
-            log('Failed to parse CDN URL:', cdnUrl, e);
-        }
-        return null;
-    }
-
-    function handleError(event) {
-        var el = event.target || event.srcElement;
-        if (!el) return;
-
-        var tagName = el.tagName ? el.tagName.toUpperCase() : '';
-        if (!tagName) return;
-
-        // Only handle elements we care about
-        if (tagName !== 'SCRIPT' && tagName !== 'LINK' && tagName !== 'IMG') return;
-
-        // Get the failed URL
-        var failedUrl = '';
-        if (tagName === 'IMG') failedUrl = el.src || el.currentSrc || '';
-        else if (tagName === 'SCRIPT') failedUrl = el.src || '';
-        else if (tagName === 'LINK') failedUrl = el.href || '';
-
-        // Only handle StaticDelivr URLs
-        if (failedUrl.indexOf('cdn.staticdelivr.com') === -1) return;
-
-        log('Caught error on:', tagName, failedUrl);
-
-        // Prevent double-processing
-        if (el.getAttribute && el.getAttribute('data-sd-fallback') === 'done') return;
-
-        // Get original URL
-        var original = el.getAttribute('data-original-src') || el.getAttribute('data-original-href');
-        if (!original) original = extractOriginalFromCdnUrl(failedUrl);
-
-        if (!original) {
-            log('Could not determine original URL for:', failedUrl);
-            return;
-        }
-
-        el.setAttribute('data-sd-fallback', 'done');
-        log('Falling back to origin:', tagName, original);
-
-        // Report the failure
-        var reportType = (tagName === 'IMG') ? 'image' : 'asset';
-        reportFailure(reportType, failedUrl, original);
-
-        if (tagName === 'SCRIPT') {
-            var newScript = document.createElement('script');
-            newScript.src = original;
-            newScript.async = el.async;
-            newScript.defer = el.defer;
-            if (el.type) newScript.type = el.type;
-            if (el.noModule) newScript.noModule = true;
-            if (el.crossOrigin) newScript.crossOrigin = el.crossOrigin;
-            copyAttributes(el, newScript);
-            if (el.parentNode) {
-                el.parentNode.insertBefore(newScript, el.nextSibling);
-                el.parentNode.removeChild(el);
-            }
-            log('Script fallback complete:', original);
-
-        } else if (tagName === 'LINK') {
-            el.href = original;
-            log('Stylesheet fallback complete:', original);
-
-        } else if (tagName === 'IMG') {
-            // Handle srcset first
-            if (el.srcset) {
-                var newSrcset = el.srcset.split(',').map(function(entry) {
-                    var parts = entry.trim().split(/\s+/);
-                    var url = parts[0];
-                    var descriptor = parts.slice(1).join(' ');
-                    var extracted = extractOriginalFromCdnUrl(url);
-                    if (extracted) url = extracted;
-                    return descriptor ? url + ' ' + descriptor : url;
-                }).join(', ');
-                el.srcset = newSrcset;
-            }
-            el.src = original;
-            log('Image fallback complete:', original);
-        }
-    }
-
-    // Capture errors in capture phase
-    window.addEventListener('error', handleError, true);
-
-    log('Fallback script initialized (v%s)');
-})();
-JS;
+        $script = '(function(){' . "\n";
+        $script .= "    var SD_DEBUG = false;\n";
+        $script .= "    var SD_AJAX_URL = '%s';\n";
+        $script .= "    var SD_NONCE = '%s';\n";
+        $script .= "\n";
+        $script .= "    function log() {\n";
+        $script .= "        if (SD_DEBUG && console && console.log) {\n";
+        $script .= "            console.log.apply(console, ['[StaticDelivr]'].concat(Array.prototype.slice.call(arguments)));\n";
+        $script .= "        }\n";
+        $script .= "    }\n";
+        $script .= "\n";
+        $script .= "    function reportFailure(type, url, original) {\n";
+        $script .= "        try {\n";
+        $script .= "            var data = new FormData();\n";
+        $script .= "            data.append('action', 'staticdelivr_report_failure');\n";
+        $script .= "            data.append('nonce', SD_NONCE);\n";
+        $script .= "            data.append('type', type);\n";
+        $script .= "            data.append('url', url);\n";
+        $script .= "            data.append('original', original || '');\n";
+        $script .= "\n";
+        $script .= "            if (navigator.sendBeacon) {\n";
+        $script .= "                navigator.sendBeacon(SD_AJAX_URL, data);\n";
+        $script .= "            } else {\n";
+        $script .= "                var xhr = new XMLHttpRequest();\n";
+        $script .= "                xhr.open('POST', SD_AJAX_URL, true);\n";
+        $script .= "                xhr.send(data);\n";
+        $script .= "            }\n";
+        $script .= "            log('Reported failure:', type, url);\n";
+        $script .= "        } catch(e) {\n";
+        $script .= "            log('Failed to report:', e);\n";
+        $script .= "        }\n";
+        $script .= "    }\n";
+        $script .= "\n";
+        $script .= "    function copyAttributes(from, to) {\n";
+        $script .= "        if (!from || !to || !from.attributes) return;\n";
+        $script .= "        for (var i = 0; i < from.attributes.length; i++) {\n";
+        $script .= "            var attr = from.attributes[i];\n";
+        $script .= "            if (!attr || !attr.name) continue;\n";
+        $script .= "            if (attr.name === 'src' || attr.name === 'href' || attr.name === 'data-original-src' || attr.name === 'data-original-href') continue;\n";
+        $script .= "            try {\n";
+        $script .= "                to.setAttribute(attr.name, attr.value);\n";
+        $script .= "            } catch(e) {}\n";
+        $script .= "        }\n";
+        $script .= "    }\n";
+        $script .= "\n";
+        $script .= "    function extractOriginalFromCdnUrl(cdnUrl) {\n";
+        $script .= "        if (!cdnUrl) return null;\n";
+        $script .= "        if (cdnUrl.indexOf('cdn.staticdelivr.com') === -1) return null;\n";
+        $script .= "        try {\n";
+        $script .= "            var urlObj = new URL(cdnUrl);\n";
+        $script .= "            var originalUrl = urlObj.searchParams.get('url');\n";
+        $script .= "            if (originalUrl) {\n";
+        $script .= "                log('Extracted original URL from query param:', originalUrl);\n";
+        $script .= "                return originalUrl;\n";
+        $script .= "            }\n";
+        $script .= "        } catch(e) {\n";
+        $script .= "            log('Failed to parse CDN URL:', cdnUrl, e);\n";
+        $script .= "        }\n";
+        $script .= "        return null;\n";
+        $script .= "    }\n";
+        $script .= "\n";
+        $script .= "    function handleError(event) {\n";
+        $script .= "        var el = event.target || event.srcElement;\n";
+        $script .= "        if (!el) return;\n";
+        $script .= "\n";
+        $script .= "        var tagName = el.tagName ? el.tagName.toUpperCase() : '';\n";
+        $script .= "        if (!tagName) return;\n";
+        $script .= "\n";
+        $script .= "        // Only handle elements we care about\n";
+        $script .= "        if (tagName !== 'SCRIPT' && tagName !== 'LINK' && tagName !== 'IMG') return;\n";
+        $script .= "\n";
+        $script .= "        // Get the failed URL\n";
+        $script .= "        var failedUrl = '';\n";
+        $script .= "        if (tagName === 'IMG') failedUrl = el.src || el.currentSrc || '';\n";
+        $script .= "        else if (tagName === 'SCRIPT') failedUrl = el.src || '';\n";
+        $script .= "        else if (tagName === 'LINK') failedUrl = el.href || '';\n";
+        $script .= "\n";
+        $script .= "        // Only handle StaticDelivr URLs\n";
+        $script .= "        if (failedUrl.indexOf('cdn.staticdelivr.com') === -1) return;\n";
+        $script .= "\n";
+        $script .= "        log('Caught error on:', tagName, failedUrl);\n";
+        $script .= "\n";
+        $script .= "        // Prevent double-processing\n";
+        $script .= "        if (el.getAttribute && el.getAttribute('data-sd-fallback') === 'done') return;\n";
+        $script .= "\n";
+        $script .= "        // Get original URL\n";
+        $script .= "        var original = el.getAttribute('data-original-src') || el.getAttribute('data-original-href');\n";
+        $script .= "        if (!original) original = extractOriginalFromCdnUrl(failedUrl);\n";
+        $script .= "\n";
+        $script .= "        if (!original) {\n";
+        $script .= "            log('Could not determine original URL for:', failedUrl);\n";
+        $script .= "            return;\n";
+        $script .= "        }\n";
+        $script .= "\n";
+        $script .= "        el.setAttribute('data-sd-fallback', 'done');\n";
+        $script .= "        log('Falling back to origin:', tagName, original);\n";
+        $script .= "\n";
+        $script .= "        // Report the failure\n";
+        $script .= "        var reportType = (tagName === 'IMG') ? 'image' : 'asset';\n";
+        $script .= "        reportFailure(reportType, failedUrl, original);\n";
+        $script .= "\n";
+        $script .= "        if (tagName === 'SCRIPT') {\n";
+        $script .= "            var newScript = document.createElement('script');\n";
+        $script .= "            newScript.src = original;\n";
+        $script .= "            newScript.async = el.async;\n";
+        $script .= "            newScript.defer = el.defer;\n";
+        $script .= "            if (el.type) newScript.type = el.type;\n";
+        $script .= "            if (el.noModule) newScript.noModule = true;\n";
+        $script .= "            if (el.crossOrigin) newScript.crossOrigin = el.crossOrigin;\n";
+        $script .= "            copyAttributes(el, newScript);\n";
+        $script .= "            if (el.parentNode) {\n";
+        $script .= "                el.parentNode.insertBefore(newScript, el.nextSibling);\n";
+        $script .= "                el.parentNode.removeChild(el);\n";
+        $script .= "            }\n";
+        $script .= "            log('Script fallback complete:', original);\n";
+        $script .= "\n";
+        $script .= "        } else if (tagName === 'LINK') {\n";
+        $script .= "            el.href = original;\n";
+        $script .= "            log('Stylesheet fallback complete:', original);\n";
+        $script .= "\n";
+        $script .= "        } else if (tagName === 'IMG') {\n";
+        $script .= "            // Handle srcset first\n";
+        $script .= "            if (el.srcset) {\n";
+        $script .= "                var newSrcset = el.srcset.split(',').map(function(entry) {\n";
+        $script .= "                    var parts = entry.trim().split(/\\s+/);\n";
+        $script .= "                    var url = parts[0];\n";
+        $script .= "                    var descriptor = parts.slice(1).join(' ');\n";
+        $script .= "                    var extracted = extractOriginalFromCdnUrl(url);\n";
+        $script .= "                    if (extracted) url = extracted;\n";
+        $script .= "                    return descriptor ? url + ' ' + descriptor : url;\n";
+        $script .= "                }).join(', ');\n";
+        $script .= "                el.srcset = newSrcset;\n";
+        $script .= "            }\n";
+        $script .= "            el.src = original;\n";
+        $script .= "            log('Image fallback complete:', original);\n";
+        $script .= "        }\n";
+        $script .= "    }\n";
+        $script .= "\n";
+        $script .= "    // Capture errors in capture phase\n";
+        $script .= "    window.addEventListener('error', handleError, true);\n";
+        $script .= "\n";
+        $script .= "    log('Fallback script initialized (v%s)');\n";
+        $script .= '})();';
 
         return sprintf( $script, esc_js( $ajax_url ), esc_js( $nonce ), STATICDELIVR_VERSION );
     }
@@ -2851,8 +2849,8 @@ JS;
                         printf(
                             /* translators: 1: total failures, 2: blocked count */
                             esc_html__( '%1$d failures (%2$d blocked)', 'staticdelivr' ),
-                            $failure_stats['images']['total'],
-                            $failure_stats['images']['blocked']
+                            intval( $failure_stats['images']['total'] ),
+                            intval( $failure_stats['images']['blocked'] )
                         );
                         ?>
                     </span>
@@ -2864,8 +2862,8 @@ JS;
                         printf(
                             /* translators: 1: total failures, 2: blocked count */
                             esc_html__( '%1$d failures (%2$d blocked)', 'staticdelivr' ),
-                            $failure_stats['assets']['total'],
-                            $failure_stats['assets']['blocked']
+                            intval( $failure_stats['assets']['total'] ),
+                            intval( $failure_stats['assets']['blocked'] )
                         );
                         ?>
                     </span>

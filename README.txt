@@ -5,11 +5,11 @@ Tags: CDN, performance, image optimization, google fonts, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.7.0
+Stable tag: 1.7.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your WordPress site's performance by rewriting URLs to use the StaticDelivr CDN. Includes automatic image optimization, smart asset detection, failure recovery, and privacy-first Google Fonts proxy.
+Speed up WordPress with free CDN delivery, image optimization, smart asset detection, failure recovery, and privacy-first Google Fonts proxy.
 
 == Description ==
 
@@ -202,6 +202,12 @@ Failure results are cached for 24 hours. After this period, the plugin will retr
 4. **Failure Statistics**: View and manage CDN failures with one-click cache clearing.
 
 == Changelog ==
+
+= 1.7.1 =
+* Fixed heredoc syntax to comply with WordPress coding standards
+* Fixed output escaping for failure statistics
+* Shortened plugin description to meet 150 character limit
+* Code quality improvements for WordPress.org submission
 
 = 1.7.0 =
 * **New: Failure Memory System** - Plugin now remembers CDN failures and serves resources locally
