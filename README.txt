@@ -1,7 +1,7 @@
-=== StaticDelivr CDN ===
+=== StaticDelivr: Free CDN, Image Optimization & Speed ===
 Contributors: Coozywana
 Donate link: https://staticdelivr.com/become-a-sponsor
-Tags: CDN, performance, image optimization, google fonts, gdpr
+Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
