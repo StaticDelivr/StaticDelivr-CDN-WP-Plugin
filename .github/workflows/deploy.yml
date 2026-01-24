@@ -14,6 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v6
 
+    - name: Get version from tag
+      id: tag
+      run: |
+        TAG=${GITHUB_REF#refs/tags/}
+        echo "tag=$TAG" >> $GITHUB_OUTPUT
+        # Strip 'v' prefix for changelog lookup (v1.x.x → 1.x.x)
+        VERSION=${TAG#v}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+
     - name: Get Changelog Entry
       id: changelog
       uses: actions/github-script@v8
@@ -29,7 +38,7 @@ jobs:
             readme = fs.readFileSync('README.txt', 'utf8');
           }
           
-          const version = context.ref.replace('refs/tags/', '').replace(/^v/, '');
+          const version = '${{ steps.tag.outputs.version }}';
           
           function extractSection(content, sectionHeader, version) {
             const lines = content.split('\n');
@@ -80,8 +89,24 @@ jobs:
       with:
         generate-zip: true
 
+    - name: Rename zip with version
+      id: rename
+      run: |
+        # Get the original zip path from deploy step
+        ORIGINAL_ZIP="${{ steps.deploy.outputs.zip-path }}"
+        
+        # Create new filename with version (staticdelivr-v1.7.0.zip)
+        NEW_ZIP="staticdelivr-${{ steps.tag.outputs.tag }}.zip"
+        NEW_PATH="$(dirname "$ORIGINAL_ZIP")/$NEW_ZIP"
+        
+        # Rename the file
+        mv "$ORIGINAL_ZIP" "$NEW_PATH"
+        
+        echo "zip-path=$NEW_PATH" >> $GITHUB_OUTPUT
+        echo "✅ Renamed zip to: $NEW_ZIP"
+
     - name: Create GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        files: ${{ steps.deploy.outputs.zip-path }}
+        files: ${{ steps.rename.outputs.zip-path }}
         body: ${{ steps.changelog.outputs.body }}
