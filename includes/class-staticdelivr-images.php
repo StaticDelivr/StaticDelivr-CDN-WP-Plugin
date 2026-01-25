@@ -506,7 +506,7 @@ class StaticDelivr_Images
             return $html;
         }
 
-        return $this->rewrite_img_tag(array($html));
+        return $this->rewrite_content_images($html);
     }
 
     /**
