@@ -108,8 +108,10 @@ class StaticDelivr_Fallback {
         $ajax_url = admin_url( 'admin-ajax.php' );
         $nonce    = wp_create_nonce( 'staticdelivr_failure_report' );
 
+        $debug_enabled = get_option( STATICDELIVR_PREFIX . 'debug_mode', false ) ? 'true' : 'false';
+
         $script = '(function(){' . "\n";
-        $script .= "    var SD_DEBUG = false;\n";
+        $script .= "    var SD_DEBUG = {$debug_enabled};\n";
         $script .= "    var SD_AJAX_URL = '%s';\n";
         $script .= "    var SD_NONCE = '%s';\n";
         $script .= "\n";
