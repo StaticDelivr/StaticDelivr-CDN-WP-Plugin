@@ -170,10 +170,31 @@ class StaticDelivr_Images {
         $this->debug_log( '=== Processing Image URL ===' );
         $this->debug_log( 'Original URL: ' . $original_url );
 
-        // Don't rewrite if already a StaticDelivr URL.
+        // Check if it's a StaticDelivr URL.
         if ( strpos( $original_url, 'cdn.staticdelivr.com' ) !== false ) {
-            $this->debug_log( 'Skipped: Already a StaticDelivr URL' );
-            return $original_url;
+            // Check if it's a properly formed CDN URL with query parameters.
+            if ( strpos( $original_url, '/img/images?' ) !== false && strpos( $original_url, 'url=' ) !== false ) {
+                // This is a valid, properly formed CDN URL - skip it.
+                $this->debug_log( 'Skipped: Already a valid StaticDelivr CDN URL' );
+                return $original_url;
+            } else {
+                // This is a malformed/old CDN URL - extract the original image path and reprocess.
+                $this->debug_log( 'WARNING: Detected malformed CDN URL, attempting to extract original path' );
+                
+                // Try to extract the original filename from the malformed CDN URL.
+                // Pattern: https://cdn.staticdelivr.com/img/filename.ext
+                if ( preg_match( '#cdn\.staticdelivr\.com/img/(.+)$#', $original_url, $matches ) ) {
+                    $filename = $matches[1];
+                    // Reconstruct the original URL using the current site's upload path.
+                    $upload_dir = wp_upload_dir();
+                    $original_url = $upload_dir['baseurl'] . '/' . date( 'Y/m' ) . '/' . $filename;
+                    $this->debug_log( 'Extracted and reconstructed original URL: ' . $original_url );
+                    // Continue processing with the reconstructed URL.
+                } else {
+                    $this->debug_log( 'ERROR: Could not extract original path from malformed CDN URL' );
+                    return $original_url;
+                }
+            }
         }
 
         // Ensure absolute URL.
