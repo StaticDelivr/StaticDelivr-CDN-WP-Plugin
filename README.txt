@@ -5,7 +5,7 @@ Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,11 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.2.2 =
+* Fixed infinite recursion in image URL filters by removing database lookups for malformed CDN URLs
+* Improved image handling by simplifying thumbnail HTML rewriting to avoid redundant processing
+* Removed unnecessary parent theme slug handling in verification for better performance
+
 = 2.2.1 =
 * Fixed an issue with infinite recursion in the `rewrite_attachment_image_src` and `rewrite_attachment_url` filters.
 * Improved handling of image URLs to prevent errors when retrieving attachment URLs.
@@ -382,6 +387,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.2.2 =
+Performance improvements and bug fixes for image handling and verification.
 
 = 2.2.1 =
 Fixes infinite recursion in image URL filters and improves handling of attachment URLs.
