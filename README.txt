@@ -19,11 +19,11 @@ StaticDelivr is a global content delivery network (CDN) that supports delivering
 
 ### Key Features
 
-- **Smart Asset Detection**: Automatically detects which themes and plugins are from wordpress.org and only serves those via CDN. Custom themes and plugins are served locally — no configuration needed!
+- **Smart Asset Detection**: Automatically detects which themes and plugins are from wordpress.org and only serves those via CDN. Custom themes and plugins are served locally. No configuration needed!
 - **Failure Memory System**: If a CDN resource fails to load, the plugin remembers and automatically serves it locally for 24 hours. No more repeated failures!
 - **Automatic URL Rewriting**: Automatically rewrites URLs of enqueued styles, scripts, and core files for themes, plugins, and WordPress itself to use the StaticDelivr CDN.
 - **Image Optimization**: Automatically optimizes images with compression and modern format conversion (WebP, AVIF). Turn 2MB images into 20KB without quality loss!
-- **Google Fonts Privacy Proxy**: Serve Google Fonts without tracking — GDPR compliant. A drop-in replacement that strips all user-identifying data and tracking cookies.
+- **Google Fonts Privacy Proxy**: Serve Google Fonts without tracking (GDPR compliant). A drop-in replacement that strips all user-identifying data and tracking cookies.
 - **Automatic Fallback**: If a CDN asset fails to load, the plugin automatically falls back to your origin server, ensuring your site never breaks.
 - **Localhost Detection**: Automatically detects development environments and serves images locally when CDN cannot reach them.
 - **Child Theme Support**: Intelligently handles child themes by checking parent theme availability on wordpress.org.
@@ -53,7 +53,7 @@ The plugin automatically verifies which themes and plugins exist on wordpress.or
 
 - **WordPress.org Assets**: Served via StaticDelivr CDN for maximum performance
 - **Custom/Premium Assets**: Automatically detected and served from your server
-- **Child Themes**: Parent theme is checked — if parent is on wordpress.org, assets load via CDN
+- **Child Themes**: Parent theme is checked. If the parent is on wordpress.org, assets load via CDN
 
 This means the plugin "just works" with any combination of wordpress.org and custom themes/plugins!
 
