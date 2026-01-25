@@ -5,7 +5,7 @@ Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.1.0
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,10 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.2.0 =
+* **Fixed: Critical Bug** - Improved recovery for malformed CDN URLs by looking up original attachment paths in the database instead of guessing dates
+* **Improved** - Better handling of older content with incorrect CDN URLs
+
 = 2.1.0 =
 * **New: Multi-language Support** - Added full localization for over 30 languages to support a global user base.
 * Added translations for Spanish, French, German, Italian, Portuguese, Arabic, Chinese, Japanese, and many others
@@ -374,6 +378,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.2.0 =
+Critical fix: Solves broken images issues by correctly recovering original file paths from the database for older content.
 
 = 2.1.0 =
 Massive update! StaticDelivr is now available in over 30 languages. Includes new debug tools and improved stability.
