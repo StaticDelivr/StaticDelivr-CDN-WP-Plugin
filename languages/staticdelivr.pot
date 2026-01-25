@@ -348,3 +348,47 @@ msgstr ""
 #: includes/class-staticdelivr-admin.php
 msgid "Assets:"
 msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Development & Debugging"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Dev Tools"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Tools for debugging and testing in development environments."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Debug Mode"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Enable detailed logging of image rewrites"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Logs all image URL processing details to the error log. Warning: Can generate large log files in production."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Bypass Localhost Detection"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Allow CDN rewrites for localhost/development URLs"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Enables image CDN rewrites even on localhost, .test, .local domains for testing. The CDN will not be able to fetch images from these URLs, so you'll see which images fail to convert."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Testing Note:"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "When enabled, image URLs will be rewritten to CDN format, but the CDN cannot actually fetch images from localhost. You'll see errors which helps identify which images are being processed and which might have issues on production."
+msgstr ""
