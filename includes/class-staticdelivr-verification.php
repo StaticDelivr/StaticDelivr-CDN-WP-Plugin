@@ -99,16 +99,6 @@ class StaticDelivr_Verification {
         $type = sanitize_key( $type );
         $slug = sanitize_file_name( $slug );
 
-        // For themes, check if it's a child theme and get parent.
-        if ( 'theme' === $type ) {
-            $parent_slug = $this->get_parent_theme_slug( $slug );
-            if ( $parent_slug && $parent_slug !== $slug ) {
-                // This is a child theme - check if parent is on wordpress.org.
-                // Child themes themselves are never on wordpress.org, but their parent's files are.
-                $slug = $parent_slug;
-            }
-        }
-
         // Load verification cache from database if not already loaded.
         $this->load_verification_cache();
 
@@ -430,28 +420,6 @@ class StaticDelivr_Verification {
     }
 
     /**
-     * Get parent theme slug if the given theme is a child theme.
-     *
-     * @param string $theme_slug Theme slug to check.
-     * @return string|null Parent theme slug or null if not a child theme.
-     */
-    public function get_parent_theme_slug( $theme_slug ) {
-        $theme = wp_get_theme( $theme_slug );
-
-        if ( ! $theme->exists() ) {
-            return null;
-        }
-
-        $parent = $theme->parent();
-
-        if ( $parent && $parent->exists() ) {
-            return $parent->get_stylesheet();
-        }
-
-        return null;
-    }
-
-    /**
      * Daily cleanup task - remove stale cache entries.
      *
      * Scheduled via WordPress cron.
@@ -678,18 +646,14 @@ class StaticDelivr_Verification {
         // Process themes.
         $installed_themes = wp_get_themes();
         foreach ( $installed_themes as $slug => $theme ) {
-            $parent_slug = $this->get_parent_theme_slug( $slug );
-            $check_slug  = $parent_slug ? $parent_slug : $slug;
-
-            $cached = isset( $this->verification_cache['themes'][ $check_slug ] )
-                ? $this->verification_cache['themes'][ $check_slug ]
+            $cached = isset( $this->verification_cache['themes'][ $slug ] )
+                ? $this->verification_cache['themes'][ $slug ]
                 : null;
 
             $info = array(
                 'name'       => $theme->get( 'Name' ),
                 'version'    => $theme->get( 'Version' ),
-                'is_child'   => ! empty( $parent_slug ),
-                'parent'     => $parent_slug,
+                'is_child'   => $theme->parent() ? true : false,
                 'checked_at' => $cached ? $cached['checked_at'] : null,
                 'method'     => $cached ? $cached['method'] : null,
             );
