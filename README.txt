@@ -239,6 +239,10 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.2.1 =
+* Fixed an issue with infinite recursion in the `rewrite_attachment_image_src` and `rewrite_attachment_url` filters.
+* Improved handling of image URLs to prevent errors when retrieving attachment URLs.
+
 = 2.2.0 =
 * **Fixed: Critical Bug** - Improved recovery for malformed CDN URLs by looking up original attachment paths in the database instead of guessing dates
 * **Improved** - Better handling of older content with incorrect CDN URLs
@@ -378,6 +382,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.2.1 =
+Fixes infinite recursion in image URL filters and improves handling of attachment URLs.
 
 = 2.2.0 =
 Critical fix: Solves broken images issues by correctly recovering original file paths from the database for older content.

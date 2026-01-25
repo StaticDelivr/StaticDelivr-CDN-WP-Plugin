@@ -541,17 +541,33 @@ class StaticDelivr_Images
         );
 
         if ($attachment_id) {
+            // Prevent infinite recursion: Temporarily remove our own filters
+            // because wp_get_attachment_image_src triggers the 'wp_get_attachment_image_src' filter
+            // which calls our rewrite_attachment_image_src() -> build_image_cdn_url() -> this function!
+            remove_filter('wp_get_attachment_image_src', array($this, 'rewrite_attachment_image_src'), 10);
+            remove_filter('wp_get_attachment_url', array($this, 'rewrite_attachment_url'), 10);
+
+            $original_url = false;
+
             // Check if we need a specific size.
             if ($filename !== $base_filename && preg_match('/-(\d+)x(\d+)(\.[^.]+)$/', $filename, $matches)) {
                 $width = intval($matches[1]);
                 $height = intval($matches[2]);
                 $image_src = wp_get_attachment_image_src($attachment_id, array($width, $height));
                 if ($image_src && isset($image_src[0])) {
-                    return $image_src[0];
+                    $original_url = $image_src[0];
                 }
             }
 
-            return wp_get_attachment_url($attachment_id);
+            if (!$original_url) {
+                $original_url = wp_get_attachment_url($attachment_id);
+            }
+
+            // Restore filters
+            add_filter('wp_get_attachment_image_src', array($this, 'rewrite_attachment_image_src'), 10, 4);
+            add_filter('wp_get_attachment_url', array($this, 'rewrite_attachment_url'), 10, 2);
+
+            return $original_url;
         }
 
         return false;
