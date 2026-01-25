@@ -5,7 +5,7 @@ Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 1.7.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -203,6 +203,22 @@ Failure results are cached for 24 hours. After this period, the plugin will retr
 
 == Changelog ==
 
+= 2.0.0 =
+* **Major Refactor: Modular Architecture** - Complete code reorganization for better maintainability
+* Split monolithic 2900+ line file into 9 modular, single-responsibility class files
+* New organized directory structure with dedicated includes/ folder
+* Implemented singleton pattern across all component classes
+* Main orchestration class (StaticDelivr) now manages all plugin components
+* Separate classes for each feature: Assets, Images, Google Fonts, Verification, Failure Tracker, Fallback, Admin
+* Improved code organization following WordPress plugin development best practices
+* Enhanced dependency management with clear component initialization order
+* Better code maintainability with focused, testable classes
+* Streamlined main plugin file as lightweight bootstrap
+* All functionality preserved - no breaking changes to features or settings
+* Improved inline documentation and PHPDoc comments throughout
+* Better separation of concerns for future feature development
+* Foundation for easier testing and extension of plugin features
+
 = 1.7.1 =
 * Fixed heredoc syntax to comply with WordPress coding standards
 * Fixed output escaping for failure statistics
@@ -308,6 +324,9 @@ Failure results are cached for 24 hours. After this period, the plugin will retr
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.0.0 =
+Major architectural improvement! Complete code refactor into modular structure. All features preserved with no breaking changes. Better maintainability and foundation for future enhancements. Simply update and continue using as before.
 
 = 1.7.0 =
 New Failure Memory System! The plugin now remembers when CDN resources fail and automatically serves them locally for 24 hours. No more repeated failures for problematic resources. Includes admin UI for viewing and clearing failure cache.
