@@ -1,0 +1,72 @@
+# Persian translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Persian <fa@li.org>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "تنظیمات"
+
+msgid "Website"
+msgstr "وب‌سایت"
+
+msgid "Support Development"
+msgstr "حمایت از توسعه"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN اکنون فعال است!"
+
+msgid "View Settings"
+msgstr "نمایش تنظیمات"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "تنظیمات StaticDelivr CDN"
+
+msgid "Enabled"
+msgstr "فعال"
+
+msgid "Disabled"
+msgstr "غیرفعال"
+
+msgid "Images:"
+msgstr "تصاویر:"
+
+msgid "Quality:"
+msgstr "کیفیت:"
+
+msgid "Format:"
+msgstr "فرمت:"
+
+msgid "Enable Assets CDN"
+msgstr "فعال‌سازی CDN دارایی‌ها"
+
+msgid "Enable Image Optimization"
+msgstr "فعال‌سازی بهینه‌سازی تصاویر"
+
+msgid "Auto (Best for browser)"
+msgstr "خودکار (بهترین برای مرورگر)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (توصیه شده)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (بهترین فشرده‌سازی)"
+
+msgid "Privacy First"
+msgstr "حریم خصوصی اول"
+
+msgid "GDPR Compliant"
+msgstr "مطابق با GDPR"

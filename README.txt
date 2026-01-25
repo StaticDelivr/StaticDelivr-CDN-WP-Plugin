@@ -206,7 +206,7 @@ Failure results are cached for 24 hours. After this period, the plugin will retr
 StaticDelivr CDN is available in the following languages:
 
 * English (default)
-* Spanish (Español) - es_ES
+* Spanish (Español) - es_ES, es_MX
 * French (Français) - fr_FR
 * German (Deutsch) - de_DE
 * Italian (Italiano) - it_IT
@@ -220,6 +220,20 @@ StaticDelivr CDN is available in the following languages:
 * Korean (한국어) - ko_KR
 * Turkish (Türkçe) - tr_TR
 * Polish (Polski) - pl_PL
+* Ukrainian (Українська) - uk
+* Czech (Čeština) - cs_CZ
+* Hungarian (Magyar) - hu_HU
+* Romanian (Română) - ro_RO
+* Swedish (Svenska) - sv_SE
+* Danish (Dansk) - da_DK
+* Finnish (Suomi) - fi
+* Hebrew (עברית) - he_IL
+* Persian (فارسی) - fa_IR
+* Hindi (हिन्दी) - hi
+* Vietnamese (Tiếng Việt) - vi
+* Thai (ไทย) - th
+* Indonesian (Bahasa Indonesia) - id_ID
+* Urdu (اردو) - ur
 
 Want to help translate StaticDelivr CDN into your language? Visit [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/staticdelivr/) to contribute!
 

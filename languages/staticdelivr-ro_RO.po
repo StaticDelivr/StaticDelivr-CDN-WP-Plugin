@@ -1,0 +1,72 @@
+# Romanian translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Romanian <ro@li.org>\n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "Setări"
+
+msgid "Website"
+msgstr "Site web"
+
+msgid "Support Development"
+msgstr "Sprijiniți dezvoltarea"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN este acum activ!"
+
+msgid "View Settings"
+msgstr "Vizualizați setările"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "Setări StaticDelivr CDN"
+
+msgid "Enabled"
+msgstr "Activat"
+
+msgid "Disabled"
+msgstr "Dezactivat"
+
+msgid "Images:"
+msgstr "Imagini:"
+
+msgid "Quality:"
+msgstr "Calitate:"
+
+msgid "Format:"
+msgstr "Format:"
+
+msgid "Enable Assets CDN"
+msgstr "Activați CDN pentru resurse"
+
+msgid "Enable Image Optimization"
+msgstr "Activați optimizarea imaginilor"
+
+msgid "Auto (Best for browser)"
+msgstr "Automat (Cel mai bun pentru browser)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (Recomandat)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (Cea mai bună compresie)"
+
+msgid "Privacy First"
+msgstr "Confidențialitatea pe primul loc"
+
+msgid "GDPR Compliant"
+msgstr "Conform GDPR"

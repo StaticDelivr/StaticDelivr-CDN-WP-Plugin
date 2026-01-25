@@ -1,0 +1,96 @@
+# Hebrew translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Hebrew <he@li.org>\n"
+"Language: he_IL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "הגדרות"
+
+msgid "Website"
+msgstr "אתר אינטרנט"
+
+msgid "Support Development"
+msgstr "תמיכה בפיתוח"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN פעיל כעת!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "האתר שלך כבר מותאם עם משלוח CDN, אופטימיזציה של תמונות, ו-Google Fonts עם עדיפות לפרטיות מופעלים כברירת מחדל."
+
+msgid "View Settings"
+msgstr "הצג הגדרות"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "הגדרות StaticDelivr CDN"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "מטמון כשלים נמחק בהצלחה."
+
+msgid "Assets CDN:"
+msgstr "CDN נכסים:"
+
+msgid "Enabled"
+msgstr "מופעל"
+
+msgid "Disabled"
+msgstr "מושבת"
+
+msgid "Images:"
+msgstr "תמונות:"
+
+msgid "Google Fonts:"
+msgstr "Google Fonts:"
+
+msgid "Quality:"
+msgstr "איכות:"
+
+msgid "Format:"
+msgstr "פורמט:"
+
+msgid "Enable Assets CDN"
+msgstr "הפעל CDN נכסים"
+
+msgid "Enable Image Optimization"
+msgstr "הפעל אופטימיזציה של תמונות"
+
+msgid "Enable Google Fonts Proxy"
+msgstr "הפעל פרוקסי Google Fonts"
+
+msgid "Auto (Best for browser)"
+msgstr "אוטומטי (הטוב ביותר לדפדפן)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (מומלץ)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (דחיסה הטובה ביותר)"
+
+msgid "Privacy First"
+msgstr "פרטיות קודם כל"
+
+msgid "GDPR Compliant"
+msgstr "תואם GDPR"
+
+msgid "Failed Resources"
+msgstr "משאבים שנכשלו"
+
+msgid "Clear Failure Cache"
+msgstr "נקה מטמון כשלים"

@@ -1,0 +1,267 @@
+# Hindi (India) translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Hindi <hi@li.org>\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+msgid "Website"
+msgstr "वेबसाइट"
+
+msgid "Support Development"
+msgstr "विकास का समर्थन करें"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN अब सक्रिय है!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "आपकी साइट पहले से ही CDN डिलीवरी, इमेज ऑप्टिमाइजेशन, और गोपनीयता-प्राथमिकता Google फॉन्ट्स के साथ डिफ़ॉल्ट रूप से अनुकूलित है।"
+
+msgid "View Settings"
+msgstr "सेटिंग्स देखें"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "StaticDelivr CDN सेटिंग्स"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "विफलता कैश सफलतापूर्वक साफ़ किया गया।"
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "निम्नलिखित के माध्यम से संपत्ति प्रदान करके अपनी WordPress साइट को अनुकूलित करें"
+
+msgid "WordPress:"
+msgstr "WordPress:"
+
+msgid "Assets CDN:"
+msgstr "संपत्ति CDN:"
+
+msgid "Enabled"
+msgstr "सक्षम"
+
+msgid "Disabled"
+msgstr "अक्षम"
+
+msgid "Images:"
+msgstr "छवियां:"
+
+msgid "Google Fonts:"
+msgstr "Google फॉन्ट्स:"
+
+msgid "Quality:"
+msgstr "गुणवत्ता:"
+
+msgid "Format:"
+msgstr "प्रारूप:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "संपत्ति अनुकूलन (CSS और JavaScript)"
+
+msgid "Smart Detection"
+msgstr "स्मार्ट पहचान"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "WordPress मुख्य फ़ाइलों, थीम और प्लगइन्स के URLs को StaticDelivr CDN का उपयोग करने के लिए फिर से लिखें। केवल wordpress.org की संपत्ति CDN के माध्यम से परोसी जाती है - कस्टम थीम और प्लगइन्स स्वचालित रूप से पहचाने जाते हैं और स्थानीय रूप से परोसे जाते हैं।"
+
+msgid "Enable Assets CDN"
+msgstr "संपत्ति CDN सक्षम करें"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "CSS और JavaScript फ़ाइलों के लिए CDN सक्षम करें"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "तेज़ लोडिंग के लिए StaticDelivr CDN से WordPress मुख्य, थीम और प्लगइन संपत्ति परोसता है।"
+
+msgid "Themes via CDN"
+msgstr "CDN के माध्यम से थीम"
+
+msgid "Child of"
+msgstr "चाइल्ड थीम, पैरेंट:"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "wordpress.org से कोई थीम नहीं मिला।"
+
+msgid "Themes Served Locally"
+msgstr "स्थानीय रूप से परोसे गए थीम"
+
+msgid "Child Theme"
+msgstr "चाइल्ड थीम"
+
+msgid "Local"
+msgstr "स्थानीय"
+
+msgid "All themes are served via CDN."
+msgstr "सभी थीम CDN के माध्यम से परोसे जाते हैं।"
+
+msgid "Plugins via CDN"
+msgstr "CDN के माध्यम से प्लगइन्स"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "wordpress.org से कोई प्लगइन नहीं मिला।"
+
+msgid "Plugins Served Locally"
+msgstr "स्थानीय रूप से परोसे गए प्लगइन्स"
+
+msgid "All plugins are served via CDN."
+msgstr "सभी प्लगइन्स CDN के माध्यम से परोसे जाते हैं।"
+
+msgid "How Smart Detection Works"
+msgstr "स्मार्ट पहचान कैसे काम करती है"
+
+msgid "WordPress.org Verification"
+msgstr "WordPress.org सत्यापन"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "प्लगइन CDN के माध्यम से परोसने का प्रयास करने से पहले जांचता है कि प्रत्येक थीम/प्लगइन wordpress.org पर मौजूद है या नहीं।"
+
+msgid "Custom Themes/Plugins"
+msgstr "कस्टम थीम/प्लगइन्स"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "कस्टम या प्रीमियम थीम/प्लगइन्स की संपत्ति स्वचालित रूप से आपके सर्वर से परोसी जाती है।"
+
+msgid "Child Themes"
+msgstr "चाइल्ड थीम"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "चाइल्ड थीम पैरेंट थीम सत्यापन का उपयोग करते हैं - यदि पैरेंट wordpress.org पर है, तो संपत्ति CDN के माध्यम से लोड होती है।"
+
+msgid "Cached Results"
+msgstr "कैश किए गए परिणाम"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "तेज़ पेज लोडिंग सुनिश्चित करने के लिए सत्यापन परिणाम 7 दिनों के लिए कैश किए जाते हैं।"
+
+msgid "Failure Memory"
+msgstr "विफलता स्मृति"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "यदि कोई CDN संसाधन लोड नहीं हो पाता है, तो प्लगइन इसे याद रखता है और 24 घंटों के लिए स्थानीय रूप से परोसता है।"
+
+msgid "Image Optimization"
+msgstr "छवि अनुकूलन"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "StaticDelivr CDN के माध्यम से छवियों को स्वचालित रूप से अनुकूलित और वितरित करें। यह छवि फ़ाइल आकार को नाटकीय रूप से कम कर सकता है (उदाहरण के लिए, 2MB → 20KB) और लोडिंग समय में सुधार कर सकता है।"
+
+msgid "Enable Image Optimization"
+msgstr "छवि अनुकूलन सक्षम करें"
+
+msgid "Enable CDN for images"
+msgstr "छवियों के लिए CDN सक्षम करें"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "स्वचालित प्रारूप रूपांतरण और संपीड़न के साथ StaticDelivr CDN के माध्यम से सभी छवियों को अनुकूलित और वितरित करता है।"
+
+msgid "Image Quality"
+msgstr "छवि गुणवत्ता"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "अनुकूलित छवियों के लिए गुणवत्ता स्तर (1-100)। कम मान = छोटी फ़ाइलें। अनुशंसित: 75-85।"
+
+msgid "Image Format"
+msgstr "छवि प्रारूप"
+
+msgid "Auto (Best for browser)"
+msgstr "स्वचालित (ब्राउज़र के लिए सर्वश्रेष्ठ)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (अनुशंसित)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (सर्वोत्तम संपीड़न)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "बेहतरीन संपीड़न, व्यापक रूप से समर्थित।"
+
+msgid "Best compression, newer format."
+msgstr "सर्वोत्तम संपीड़न, नया प्रारूप।"
+
+msgid "Automatically selects best format based on browser support."
+msgstr "ब्राउज़र समर्थन के आधार पर स्वचालित रूप से सर्वोत्तम प्रारूप का चयन करता है।"
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google फॉन्ट्स (गोपनीयता-प्रथम)"
+
+msgid "Privacy"
+msgstr "गोपनीयता"
+
+msgid "GDPR Compliant"
+msgstr "GDPR अनुपालित"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "ट्रैकिंग कुकीज़ को हटाने और गोपनीयता में सुधार के लिए StaticDelivr CDN के माध्यम से Google फॉन्ट्स को प्रॉक्सी करें।"
+
+msgid "Enable Google Fonts Proxy"
+msgstr "Google फॉन्ट्स प्रॉक्सी सक्षम करें"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "StaticDelivr के माध्यम से Google फॉन्ट्स प्रॉक्सी"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "StaticDelivr की गोपनीयता-सम्मानित प्रॉक्सी का उपयोग करने के लिए सभी Google फॉन्ट्स URLs को स्वचालित रूप से फिर से लिखता है।"
+
+msgid "Why Proxy Google Fonts?"
+msgstr "Google फॉन्ट्स को प्रॉक्सी क्यों करें?"
+
+msgid "Privacy First"
+msgstr "गोपनीयता प्रथम"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "सभी उपयोगकर्ता-पहचान डेटा और ट्रैकिंग कुकीज़ को हटाता है।"
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "अपने कुकी बैनर में Google फॉन्ट्स घोषित करने की आवश्यकता नहीं है।"
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 और Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "Brotli संपीड़न के साथ HTTP/3 पर फ़ाइलें परोसी जाती हैं।"
+
+msgid "CDN Failure Statistics"
+msgstr "CDN विफलता आंकड़े"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "CDN से लोड नहीं होने वाले संसाधन स्वचालित रूप से स्थानीय रूप से परोसे जाते हैं। यह कैश 24 घंटे बाद समाप्त हो जाता है।"
+
+msgid "Failed Resources"
+msgstr "असफल संसाधन"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d विफलताएं (%2$d अवरुद्ध)"
+
+msgid "Clear Failure Cache"
+msgstr "विफलता कैश साफ़ करें"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "यह अगले पेज लोड पर सभी पहले असफल संसाधनों को फिर से कोशिश करेगा।"
+
+msgid "Assets:"
+msgstr "संपत्ति:"

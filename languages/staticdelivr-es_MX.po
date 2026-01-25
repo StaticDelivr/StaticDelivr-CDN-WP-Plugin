@@ -1,0 +1,72 @@
+# Spanish (Mexico) translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Spanish (Mexico) <es_MX@li.org>\n"
+"Language: es_MX\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "Configuración"
+
+msgid "Website"
+msgstr "Sitio web"
+
+msgid "Support Development"
+msgstr "Apoyar el desarrollo"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "¡StaticDelivr CDN está activo ahora!"
+
+msgid "View Settings"
+msgstr "Ver configuración"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "Configuración de StaticDelivr CDN"
+
+msgid "Enabled"
+msgstr "Habilitado"
+
+msgid "Disabled"
+msgstr "Deshabilitado"
+
+msgid "Images:"
+msgstr "Imágenes:"
+
+msgid "Quality:"
+msgstr "Calidad:"
+
+msgid "Format:"
+msgstr "Formato:"
+
+msgid "Enable Assets CDN"
+msgstr "Habilitar CDN de activos"
+
+msgid "Enable Image Optimization"
+msgstr "Habilitar optimización de imágenes"
+
+msgid "Auto (Best for browser)"
+msgstr "Automático (Mejor para navegador)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (Recomendado)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (Mejor compresión)"
+
+msgid "Privacy First"
+msgstr "Privacidad primero"
+
+msgid "GDPR Compliant"
+msgstr "Compatible con GDPR"

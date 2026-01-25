@@ -1,0 +1,72 @@
+# Swedish translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Swedish <sv@li.org>\n"
+"Language: sv_SE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "Inställningar"
+
+msgid "Website"
+msgstr "Webbplats"
+
+msgid "Support Development"
+msgstr "Stöd utveckling"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN är nu aktivt!"
+
+msgid "View Settings"
+msgstr "Visa inställningar"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "StaticDelivr CDN-inställningar"
+
+msgid "Enabled"
+msgstr "Aktiverad"
+
+msgid "Disabled"
+msgstr "Inaktiverad"
+
+msgid "Images:"
+msgstr "Bilder:"
+
+msgid "Quality:"
+msgstr "Kvalitet:"
+
+msgid "Format:"
+msgstr "Format:"
+
+msgid "Enable Assets CDN"
+msgstr "Aktivera tillgångar CDN"
+
+msgid "Enable Image Optimization"
+msgstr "Aktivera bildoptimering"
+
+msgid "Auto (Best for browser)"
+msgstr "Auto (Bäst för webbläsare)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (Rekommenderas)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (Bästa komprimering)"
+
+msgid "Privacy First"
+msgstr "Integritet först"
+
+msgid "GDPR Compliant"
+msgstr "GDPR-kompatibel"

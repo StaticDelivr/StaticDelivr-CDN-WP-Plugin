@@ -1,0 +1,267 @@
+# Indonesian translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Indonesian <id@li.org>\n"
+"Language: id_ID\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "Pengaturan"
+
+msgid "Website"
+msgstr "Situs web"
+
+msgid "Support Development"
+msgstr "Dukung pengembangan"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN sekarang aktif!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "Situs Anda sudah dioptimalkan dengan pengiriman CDN, optimasi gambar, dan Google Fonts yang mengutamakan privasi diaktifkan secara default."
+
+msgid "View Settings"
+msgstr "Lihat pengaturan"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "Pengaturan StaticDelivr CDN"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "Cache kegagalan berhasil dibersihkan."
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "Optimalkan situs WordPress Anda dengan mengirimkan aset melalui"
+
+msgid "WordPress:"
+msgstr "WordPress:"
+
+msgid "Assets CDN:"
+msgstr "CDN Aset:"
+
+msgid "Enabled"
+msgstr "Diaktifkan"
+
+msgid "Disabled"
+msgstr "Dinonaktifkan"
+
+msgid "Images:"
+msgstr "Gambar:"
+
+msgid "Google Fonts:"
+msgstr "Google Fonts:"
+
+msgid "Quality:"
+msgstr "Kualitas:"
+
+msgid "Format:"
+msgstr "Format:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "Optimasi Aset (CSS & JavaScript)"
+
+msgid "Smart Detection"
+msgstr "Deteksi Pintar"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "Menulis ulang URL file inti WordPress, tema, dan plugin untuk menggunakan StaticDelivr CDN. Hanya aset dari wordpress.org yang disajikan melalui CDN - tema dan plugin kustom secara otomatis terdeteksi dan disajikan secara lokal."
+
+msgid "Enable Assets CDN"
+msgstr "Aktifkan CDN Aset"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "Aktifkan CDN untuk file CSS & JavaScript"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "Menyajikan aset inti WordPress, tema, dan plugin dari StaticDelivr CDN untuk loading yang lebih cepat."
+
+msgid "Themes via CDN"
+msgstr "Tema via CDN"
+
+msgid "Child of"
+msgstr "Tema anak dari"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "Tidak ada tema dari wordpress.org yang terdeteksi."
+
+msgid "Themes Served Locally"
+msgstr "Tema yang Disajikan Secara Lokal"
+
+msgid "Child Theme"
+msgstr "Tema Anak"
+
+msgid "Local"
+msgstr "Lokal"
+
+msgid "All themes are served via CDN."
+msgstr "Semua tema disajikan via CDN."
+
+msgid "Plugins via CDN"
+msgstr "Plugin via CDN"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "Tidak ada plugin dari wordpress.org yang terdeteksi."
+
+msgid "Plugins Served Locally"
+msgstr "Plugin yang Disajikan Secara Lokal"
+
+msgid "All plugins are served via CDN."
+msgstr "Semua plugin disajikan via CDN."
+
+msgid "How Smart Detection Works"
+msgstr "Cara Kerja Deteksi Pintar"
+
+msgid "WordPress.org Verification"
+msgstr "Verifikasi WordPress.org"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "Plugin memeriksa apakah setiap tema/plugin ada di wordpress.org sebelum mencoba menyajikannya via CDN."
+
+msgid "Custom Themes/Plugins"
+msgstr "Tema/Plugin Kustom"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "Aset dari tema/plugin kustom atau premium secara otomatis disajikan dari server Anda."
+
+msgid "Child Themes"
+msgstr "Tema Anak"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "Tema anak menggunakan verifikasi tema induk - jika induk ada di wordpress.org, aset dimuat via CDN."
+
+msgid "Cached Results"
+msgstr "Hasil yang Di-cache"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "Hasil verifikasi di-cache selama 7 hari untuk memastikan loading halaman yang cepat."
+
+msgid "Failure Memory"
+msgstr "Memori Kegagalan"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "Jika resource CDN gagal dimuat, plugin mengingat dan menyajikan secara lokal selama 24 jam."
+
+msgid "Image Optimization"
+msgstr "Optimasi Gambar"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "Secara otomatis mengoptimalkan dan mengirimkan gambar melalui StaticDelivr CDN. Ini dapat secara dramatis mengurangi ukuran file gambar (misalnya, 2MB → 20KB) dan meningkatkan waktu loading."
+
+msgid "Enable Image Optimization"
+msgstr "Aktifkan Optimasi Gambar"
+
+msgid "Enable CDN for images"
+msgstr "Aktifkan CDN untuk gambar"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "Mengoptimalkan dan mengirimkan semua gambar melalui StaticDelivr CDN dengan konversi format otomatis dan kompresi."
+
+msgid "Image Quality"
+msgstr "Kualitas Gambar"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "Level kualitas untuk gambar yang dioptimalkan (1-100). Nilai lebih rendah = file lebih kecil. Direkomendasikan: 75-85."
+
+msgid "Image Format"
+msgstr "Format Gambar"
+
+msgid "Auto (Best for browser)"
+msgstr "Otomatis (Terbaik untuk browser)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (Direkomendasikan)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (Kompresi terbaik)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "Kompresi hebat, didukung secara luas."
+
+msgid "Best compression, newer format."
+msgstr "Kompresi terbaik, format lebih baru."
+
+msgid "Automatically selects best format based on browser support."
+msgstr "Secara otomatis memilih format terbaik berdasarkan dukungan browser."
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google Fonts (Privasi Utama)"
+
+msgid "Privacy"
+msgstr "Privasi"
+
+msgid "GDPR Compliant"
+msgstr "Sesuai GDPR"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "Proxy Google Fonts melalui StaticDelivr CDN untuk menghilangkan cookie pelacakan dan meningkatkan privasi."
+
+msgid "Enable Google Fonts Proxy"
+msgstr "Aktifkan Proxy Google Fonts"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "Proxy Google Fonts melalui StaticDelivr"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "Secara otomatis menulis ulang semua URL Google Fonts untuk menggunakan proxy StaticDelivr yang menghormati privasi."
+
+msgid "Why Proxy Google Fonts?"
+msgstr "Mengapa Proxy Google Fonts?"
+
+msgid "Privacy First"
+msgstr "Privasi Utama"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "Menghilangkan semua data identifikasi pengguna dan cookie pelacakan."
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "Tidak perlu mendeklarasikan Google Fonts di banner cookie Anda."
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 & Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "File disajikan melalui HTTP/3 dengan kompresi Brotli."
+
+msgid "CDN Failure Statistics"
+msgstr "Statistik Kegagalan CDN"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "Resource yang gagal dimuat dari CDN secara otomatis disajikan secara lokal. Cache ini berakhir setelah 24 jam."
+
+msgid "Failed Resources"
+msgstr "Resource yang Gagal"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d kegagalan (%2$d diblokir)"
+
+msgid "Clear Failure Cache"
+msgstr "Bersihkan Cache Kegagalan"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "Ini akan mencoba ulang semua resource yang sebelumnya gagal pada loading halaman berikutnya."
+
+msgid "Assets:"
+msgstr "Aset:"

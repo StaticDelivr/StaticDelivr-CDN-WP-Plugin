@@ -1,0 +1,267 @@
+# Thai translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Thai <th@li.org>\n"
+"Language: th\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "การตั้งค่า"
+
+msgid "Website"
+msgstr "เว็บไซต์"
+
+msgid "Support Development"
+msgstr "สนับสนุนการพัฒนา"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN ได้เปิดใช้งานแล้ว!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "เว็บไซต์ของคุณได้รับการปรับแต่งให้เหมาะสมแล้วด้วยการส่งมอบ CDN การปรับแต่งรูปภาพ และ Google Fonts ที่ให้ความสำคัญกับความเป็นส่วนตัวที่เปิดใช้งานตามค่าเริ่มต้น"
+
+msgid "View Settings"
+msgstr "ดูการตั้งค่า"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "การตั้งค่า StaticDelivr CDN"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "ล้างแคชความล้มเหลวเรียบร้อยแล้ว"
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "ปรับแต่งเว็บไซต์ WordPress ของคุณให้เหมาะสมโดยการส่งมอบสินทรัพย์ผ่าน"
+
+msgid "WordPress:"
+msgstr "WordPress:"
+
+msgid "Assets CDN:"
+msgstr "CDN สินทรัพย์:"
+
+msgid "Enabled"
+msgstr "เปิดใช้งาน"
+
+msgid "Disabled"
+msgstr "ปิดใช้งาน"
+
+msgid "Images:"
+msgstr "รูปภาพ:"
+
+msgid "Google Fonts:"
+msgstr "Google Fonts:"
+
+msgid "Quality:"
+msgstr "คุณภาพ:"
+
+msgid "Format:"
+msgstr "รูปแบบ:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "การปรับแต่งสินทรัพย์ (CSS และ JavaScript)"
+
+msgid "Smart Detection"
+msgstr "การตรวจจับอัจฉริยะ"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "เขียน URL ของไฟล์ WordPress หลัก ธีม และปลั๊กอินใหม่เพื่อใช้ StaticDelivr CDN สินทรัพย์จาก wordpress.org เท่านั้นที่ให้บริการผ่าน CDN - ธีมและปลั๊กอินที่กำหนดเองจะถูกตรวจจับโดยอัตโนมัติและให้บริการภายใน"
+
+msgid "Enable Assets CDN"
+msgstr "เปิดใช้งาน CDN สินทรัพย์"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "เปิดใช้งาน CDN สำหรับไฟล์ CSS และ JavaScript"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "ให้บริการสินทรัพย์หลัก ธีม และปลั๊กอินของ WordPress จาก StaticDelivr CDN เพื่อการโหลดที่เร็วขึ้น"
+
+msgid "Themes via CDN"
+msgstr "ธีมผ่าน CDN"
+
+msgid "Child of"
+msgstr "ธีมลูกของ"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "ไม่พบธีมจาก wordpress.org"
+
+msgid "Themes Served Locally"
+msgstr "ธีมที่ให้บริการภายใน"
+
+msgid "Child Theme"
+msgstr "ธีมลูก"
+
+msgid "Local"
+msgstr "ภายใน"
+
+msgid "All themes are served via CDN."
+msgstr "ธีมทั้งหมดให้บริการผ่าน CDN"
+
+msgid "Plugins via CDN"
+msgstr "ปลั๊กอินผ่าน CDN"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "ไม่พบปลั๊กอินจาก wordpress.org"
+
+msgid "Plugins Served Locally"
+msgstr "ปลั๊กอินที่ให้บริการภายใน"
+
+msgid "All plugins are served via CDN."
+msgstr "ปลั๊กอินทั้งหมดให้บริการผ่าน CDN"
+
+msgid "How Smart Detection Works"
+msgstr "วิธีการทำงานของการตรวจจับอัจฉริยะ"
+
+msgid "WordPress.org Verification"
+msgstr "การตรวจสอบ WordPress.org"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "ปลั๊กอินตรวจสอบว่าแต่ละธีม/ปลั๊กอินมีอยู่ใน wordpress.org หรือไม่ก่อนพยายามให้บริการผ่าน CDN"
+
+msgid "Custom Themes/Plugins"
+msgstr "ธีม/ปลั๊กอินที่กำหนดเอง"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "สินทรัพย์จากธีม/ปลั๊กอินที่กำหนดเองหรือพรีเมียมจะให้บริการโดยอัตโนมัติจากเซิร์ฟเวอร์ของคุณ"
+
+msgid "Child Themes"
+msgstr "ธีมลูก"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "ธีมลูกใช้การตรวจสอบธีมแม่ - หากธีมแม่อยู่ใน wordpress.org สินทรัพย์จะโหลดผ่าน CDN"
+
+msgid "Cached Results"
+msgstr "ผลลัพธ์ที่แคช"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "ผลลัพธ์การตรวจสอบจะถูกแคชเป็นเวลา 7 วันเพื่อให้แน่ใจว่าการโหลดหน้าเร็ว"
+
+msgid "Failure Memory"
+msgstr "หน่วยความจำความล้มเหลว"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "หากทรัพยากร CDN โหลดไม่สำเร็จ ปลั๊กอินจะจดจำและให้บริการภายในเป็นเวลา 24 ชั่วโมง"
+
+msgid "Image Optimization"
+msgstr "การปรับแต่งรูปภาพ"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "ปรับแต่งและส่งมอบรูปภาพโดยอัตโนมัติผ่าน StaticDelivr CDN สามารถลดขนาดไฟล์รูปภาพได้อย่างมาก (เช่น 2MB → 20KB) และปรับปรุงเวลาในการโหลด"
+
+msgid "Enable Image Optimization"
+msgstr "เปิดใช้งานการปรับแต่งรูปภาพ"
+
+msgid "Enable CDN for images"
+msgstr "เปิดใช้งาน CDN สำหรับรูปภาพ"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "ปรับแต่งและส่งมอบรูปภาพทั้งหมดผ่าน StaticDelivr CDN ด้วยการแปลงรูปแบบอัตโนมัติและการบีบอัด"
+
+msgid "Image Quality"
+msgstr "คุณภาพรูปภาพ"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "ระดับคุณภาพสำหรับรูปภาพที่ปรับแต่ง (1-100) ค่าที่ต่ำกว่า = ไฟล์ที่เล็กกว่า แนะนำ: 75-85"
+
+msgid "Image Format"
+msgstr "รูปแบบรูปภาพ"
+
+msgid "Auto (Best for browser)"
+msgstr "อัตโนมัติ (ดีที่สุดสำหรับเบราว์เซอร์)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (แนะนำ)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (การบีบอัดที่ดีที่สุด)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "การบีบอัดที่ยอดเยี่ยม รองรับอย่างกว้างขวาง"
+
+msgid "Best compression, newer format."
+msgstr "การบีบอัดที่ดีที่สุด รูปแบบใหม่กว่า"
+
+msgid "Automatically selects best format based on browser support."
+msgstr "เลือกรูปแบบที่ดีที่สุดโดยอัตโนมัติตามการรองรับของเบราว์เซอร์"
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google Fonts (ความเป็นส่วนตัวเป็นอันดับแรก)"
+
+msgid "Privacy"
+msgstr "ความเป็นส่วนตัว"
+
+msgid "GDPR Compliant"
+msgstr "สอดคล้องกับ GDPR"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "พร็อกซี Google Fonts ผ่าน StaticDelivr CDN เพื่อลบคุกกี้ติดตามและปรับปรุงความเป็นส่วนตัว"
+
+msgid "Enable Google Fonts Proxy"
+msgstr "เปิดใช้งานพร็อกซี Google Fonts"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "พร็อกซี Google Fonts ผ่าน StaticDelivr"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "เขียน URL Google Fonts ทั้งหมดใหม่โดยอัตโนมัติเพื่อใช้พร็อกซีที่เคารพความเป็นส่วนตัวของ StaticDelivr"
+
+msgid "Why Proxy Google Fonts?"
+msgstr "ทำไมต้องพร็อกซี Google Fonts?"
+
+msgid "Privacy First"
+msgstr "ความเป็นส่วนตัวเป็นอันดับแรก"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "ลบข้อมูลระบุตัวตนผู้ใช้และคุกกี้ติดตามทั้งหมด"
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "ไม่จำเป็นต้องประกาศ Google Fonts ในแบนเนอร์คุกกี้ของคุณ"
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 และ Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "ไฟล์ที่ให้บริการผ่าน HTTP/3 ด้วยการบีบอัด Brotli"
+
+msgid "CDN Failure Statistics"
+msgstr "สถิติความล้มเหลวของ CDN"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "ทรัพยากรที่โหลดจาก CDN ไม่สำเร็จจะให้บริการภายในโดยอัตโนมัติ แคชนี้จะหมดอายุหลังจาก 24 ชั่วโมง"
+
+msgid "Failed Resources"
+msgstr "ทรัพยากรที่ล้มเหลว"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d ความล้มเหลว (%2$d ถูกบล็อก)"
+
+msgid "Clear Failure Cache"
+msgstr "ล้างแคชความล้มเหลว"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "สิ่งนี้จะลองทรัพยากรที่ล้มเหลวก่อนหน้านี้ทั้งหมดอีกครั้งในการโหลดหน้าถัดไป"
+
+msgid "Assets:"
+msgstr "สินทรัพย์:"

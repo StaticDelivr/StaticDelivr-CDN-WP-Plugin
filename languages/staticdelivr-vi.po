@@ -1,0 +1,267 @@
+# Vietnamese translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Vietnamese <vi@li.org>\n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "Cài đặt"
+
+msgid "Website"
+msgstr "Trang web"
+
+msgid "Support Development"
+msgstr "Hỗ trợ phát triển"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN đã được kích hoạt!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "Trang web của bạn đã được tối ưu hóa với phân phối CDN, tối ưu hóa hình ảnh và Google Fonts ưu tiên quyền riêng tư được bật theo mặc định."
+
+msgid "View Settings"
+msgstr "Xem cài đặt"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "Cài đặt StaticDelivr CDN"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "Bộ nhớ đệm lỗi đã được xóa thành công."
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "Tối ưu hóa trang WordPress của bạn bằng cách phân phối tài nguyên thông qua"
+
+msgid "WordPress:"
+msgstr "WordPress:"
+
+msgid "Assets CDN:"
+msgstr "CDN tài nguyên:"
+
+msgid "Enabled"
+msgstr "Đã bật"
+
+msgid "Disabled"
+msgstr "Đã tắt"
+
+msgid "Images:"
+msgstr "Hình ảnh:"
+
+msgid "Google Fonts:"
+msgstr "Google Fonts:"
+
+msgid "Quality:"
+msgstr "Chất lượng:"
+
+msgid "Format:"
+msgstr "Định dạng:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "Tối ưu hóa tài nguyên (CSS & JavaScript)"
+
+msgid "Smart Detection"
+msgstr "Phát hiện thông minh"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "Viết lại URL của các tệp lõi WordPress, theme và plugin để sử dụng StaticDelivr CDN. Chỉ các tài nguyên từ wordpress.org được phục vụ qua CDN - các theme và plugin tùy chỉnh được tự động phát hiện và phục vụ cục bộ."
+
+msgid "Enable Assets CDN"
+msgstr "Bật CDN tài nguyên"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "Bật CDN cho tệp CSS & JavaScript"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "Phục vụ tài nguyên lõi WordPress, theme và plugin từ StaticDelivr CDN để tải nhanh hơn."
+
+msgid "Themes via CDN"
+msgstr "Theme qua CDN"
+
+msgid "Child of"
+msgstr "Theme con của"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "Không phát hiện theme nào từ wordpress.org."
+
+msgid "Themes Served Locally"
+msgstr "Theme được phục vụ cục bộ"
+
+msgid "Child Theme"
+msgstr "Theme con"
+
+msgid "Local"
+msgstr "Cục bộ"
+
+msgid "All themes are served via CDN."
+msgstr "Tất cả theme được phục vụ qua CDN."
+
+msgid "Plugins via CDN"
+msgstr "Plugin qua CDN"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "Không phát hiện plugin nào từ wordpress.org."
+
+msgid "Plugins Served Locally"
+msgstr "Plugin được phục vụ cục bộ"
+
+msgid "All plugins are served via CDN."
+msgstr "Tất cả plugin được phục vụ qua CDN."
+
+msgid "How Smart Detection Works"
+msgstr "Cách thức hoạt động của phát hiện thông minh"
+
+msgid "WordPress.org Verification"
+msgstr "Xác minh WordPress.org"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "Plugin kiểm tra xem từng theme/plugin có tồn tại trên wordpress.org hay không trước khi cố gắng phục vụ qua CDN."
+
+msgid "Custom Themes/Plugins"
+msgstr "Theme/Plugin tùy chỉnh"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "Tài nguyên từ theme/plugin tùy chỉnh hoặc cao cấp được tự động phục vụ từ máy chủ của bạn."
+
+msgid "Child Themes"
+msgstr "Theme con"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "Theme con sử dụng xác minh theme cha - nếu theme cha có trên wordpress.org, tài nguyên tải qua CDN."
+
+msgid "Cached Results"
+msgstr "Kết quả được lưu cache"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "Kết quả xác minh được lưu cache trong 7 ngày để đảm bảo trang tải nhanh."
+
+msgid "Failure Memory"
+msgstr "Bộ nhớ lỗi"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "Nếu tài nguyên CDN không tải được, plugin sẽ nhớ và phục vụ cục bộ trong 24 giờ."
+
+msgid "Image Optimization"
+msgstr "Tối ưu hóa hình ảnh"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "Tự động tối ưu hóa và phân phối hình ảnh qua StaticDelivr CDN. Điều này có thể giảm đáng kể kích thước tệp hình ảnh (ví dụ: 2MB → 20KB) và cải thiện thời gian tải."
+
+msgid "Enable Image Optimization"
+msgstr "Bật tối ưu hóa hình ảnh"
+
+msgid "Enable CDN for images"
+msgstr "Bật CDN cho hình ảnh"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "Tối ưu hóa và phân phối tất cả hình ảnh qua StaticDelivr CDN với chuyển đổi định dạng tự động và nén."
+
+msgid "Image Quality"
+msgstr "Chất lượng hình ảnh"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "Mức chất lượng cho hình ảnh được tối ưu hóa (1-100). Giá trị thấp hơn = tệp nhỏ hơn. Khuyến nghị: 75-85."
+
+msgid "Image Format"
+msgstr "Định dạng hình ảnh"
+
+msgid "Auto (Best for browser)"
+msgstr "Tự động (Tốt nhất cho trình duyệt)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (Khuyến nghị)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (Nén tốt nhất)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "Nén tuyệt vời, hỗ trợ rộng rãi."
+
+msgid "Best compression, newer format."
+msgstr "Nén tốt nhất, định dạng mới hơn."
+
+msgid "Automatically selects best format based on browser support."
+msgstr "Tự động chọn định dạng tốt nhất dựa trên hỗ trợ của trình duyệt."
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google Fonts (Ưu tiên quyền riêng tư)"
+
+msgid "Privacy"
+msgstr "Quyền riêng tư"
+
+msgid "GDPR Compliant"
+msgstr "Tuân thủ GDPR"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "Proxy Google Fonts qua StaticDelivr CDN để loại bỏ cookie theo dõi và cải thiện quyền riêng tư."
+
+msgid "Enable Google Fonts Proxy"
+msgstr "Bật proxy Google Fonts"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "Proxy Google Fonts qua StaticDelivr"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "Tự động viết lại tất cả URL Google Fonts để sử dụng proxy tôn trọng quyền riêng tư của StaticDelivr."
+
+msgid "Why Proxy Google Fonts?"
+msgstr "Tại sao proxy Google Fonts?"
+
+msgid "Privacy First"
+msgstr "Ưu tiên quyền riêng tư"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "Loại bỏ tất cả dữ liệu nhận dạng người dùng và cookie theo dõi."
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "Không cần khai báo Google Fonts trong banner cookie của bạn."
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 & Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "Tệp được phục vụ qua HTTP/3 với nén Brotli."
+
+msgid "CDN Failure Statistics"
+msgstr "Thống kê lỗi CDN"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "Tài nguyên không tải được từ CDN sẽ tự động được phục vụ cục bộ. Cache này hết hạn sau 24 giờ."
+
+msgid "Failed Resources"
+msgstr "Tài nguyên bị lỗi"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d lỗi (%2$d bị chặn)"
+
+msgid "Clear Failure Cache"
+msgstr "Xóa cache lỗi"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "Điều này sẽ thử lại tất cả tài nguyên bị lỗi trước đó khi tải trang tiếp theo."
+
+msgid "Assets:"
+msgstr "Tài nguyên:"

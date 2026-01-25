@@ -1,0 +1,72 @@
+# Urdu translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Urdu <ur@li.org>\n"
+"Language: ur\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "ترتیبات"
+
+msgid "Website"
+msgstr "ویب سائٹ"
+
+msgid "Support Development"
+msgstr "ترقی میں مدد کریں"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN اب فعال ہے!"
+
+msgid "View Settings"
+msgstr "ترتیبات دیکھیں"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "StaticDelivr CDN ترتیبات"
+
+msgid "Enabled"
+msgstr "فعال"
+
+msgid "Disabled"
+msgstr "غیر فعال"
+
+msgid "Images:"
+msgstr "تصاویر:"
+
+msgid "Quality:"
+msgstr "معیار:"
+
+msgid "Format:"
+msgstr "فارمیٹ:"
+
+msgid "Enable Assets CDN"
+msgstr "اثاثوں کا CDN فعال کریں"
+
+msgid "Enable Image Optimization"
+msgstr "تصاویر کی بہتری فعال کریں"
+
+msgid "Auto (Best for browser)"
+msgstr "خودکار (براؤزر کے لیے بہترین)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (تجویز کردہ)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (بہترین کمپریشن)"
+
+msgid "Privacy First"
+msgstr "رازداری پہلے"
+
+msgid "GDPR Compliant"
+msgstr "GDPR مطابق"
