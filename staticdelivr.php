@@ -77,6 +77,20 @@ function staticdelivr_load_classes() {
 }
 
 /**
+ * Load plugin text domain for translations.
+ *
+ * @return void
+ */
+function staticdelivr_load_textdomain() {
+    load_plugin_textdomain(
+        'staticdelivr',
+        false,
+        dirname( plugin_basename( __FILE__ ) ) . '/languages'
+    );
+}
+add_action( 'init', 'staticdelivr_load_textdomain' );
+
+/**
  * Initialize the plugin.
  *
  * Loads classes and starts the plugin.

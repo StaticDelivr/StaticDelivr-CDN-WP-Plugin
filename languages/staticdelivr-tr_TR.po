@@ -1,0 +1,267 @@
+# Turkish translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Turkish <tr@li.org>\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "Ayarlar"
+
+msgid "Website"
+msgstr "Web sitesi"
+
+msgid "Support Development"
+msgstr "Geliştirmeyi destekle"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN artık aktif!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "Siteniz zaten CDN dağıtımı, görsel optimizasyonu ve gizlilik öncelikli Google Fonts varsayılan olarak etkinleştirilerek optimize edilmiş durumda."
+
+msgid "View Settings"
+msgstr "Ayarları görüntüle"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "StaticDelivr CDN Ayarları"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "Hata önbelleği başarıyla temizlendi."
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "Varlıkları şu yolla dağıtarak WordPress sitenizi optimize edin:"
+
+msgid "WordPress:"
+msgstr "WordPress:"
+
+msgid "Assets CDN:"
+msgstr "Varlık CDN:"
+
+msgid "Enabled"
+msgstr "Etkin"
+
+msgid "Disabled"
+msgstr "Devre dışı"
+
+msgid "Images:"
+msgstr "Görseller:"
+
+msgid "Google Fonts:"
+msgstr "Google Fonts:"
+
+msgid "Quality:"
+msgstr "Kalite:"
+
+msgid "Format:"
+msgstr "Format:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "Varlık Optimizasyonu (CSS & JavaScript)"
+
+msgid "Smart Detection"
+msgstr "Akıllı Algılama"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "WordPress çekirdek dosyalarının, temaların ve eklentilerin URL'lerini StaticDelivr CDN kullanacak şekilde yeniden yazın. Yalnızca wordpress.org'dan gelen varlıklar CDN üzerinden sunulur - özel temalar ve eklentiler otomatik olarak algılanır ve yerel olarak sunulur."
+
+msgid "Enable Assets CDN"
+msgstr "Varlık CDN'yi etkinleştir"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "CSS & JavaScript dosyaları için CDN'yi etkinleştir"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "Daha hızlı yükleme için WordPress çekirdek, tema ve eklenti varlıklarını StaticDelivr CDN'den sunar."
+
+msgid "Themes via CDN"
+msgstr "CDN üzerinden temalar"
+
+msgid "Child of"
+msgstr "Alt tema, üst tema:"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "wordpress.org'dan tema algılanmadı."
+
+msgid "Themes Served Locally"
+msgstr "Yerel olarak sunulan temalar"
+
+msgid "Child Theme"
+msgstr "Alt tema"
+
+msgid "Local"
+msgstr "Yerel"
+
+msgid "All themes are served via CDN."
+msgstr "Tüm temalar CDN üzerinden sunuluyor."
+
+msgid "Plugins via CDN"
+msgstr "CDN üzerinden eklentiler"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "wordpress.org'dan eklenti algılanmadı."
+
+msgid "Plugins Served Locally"
+msgstr "Yerel olarak sunulan eklentiler"
+
+msgid "All plugins are served via CDN."
+msgstr "Tüm eklentiler CDN üzerinden sunuluyor."
+
+msgid "How Smart Detection Works"
+msgstr "Akıllı Algılama Nasıl Çalışır"
+
+msgid "WordPress.org Verification"
+msgstr "WordPress.org Doğrulaması"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "Eklenti, her tema/eklentinin wordpress.org'da var olup olmadığını CDN üzerinden sunmaya çalışmadan önce kontrol eder."
+
+msgid "Custom Themes/Plugins"
+msgstr "Özel Temalar/Eklentiler"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "Özel veya premium temalardan/eklentilerden gelen varlıklar otomatik olarak sunucunuzdan sunulur."
+
+msgid "Child Themes"
+msgstr "Alt temalar"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "Alt temalar üst tema doğrulamasını kullanır - üst tema wordpress.org'daysa varlıklar CDN üzerinden yüklenir."
+
+msgid "Cached Results"
+msgstr "Önbelleğe alınmış sonuçlar"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "Hızlı sayfa yüklemelerini sağlamak için doğrulama sonuçları 7 gün boyunca önbelleğe alınır."
+
+msgid "Failure Memory"
+msgstr "Hata belleği"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "Bir CDN kaynağı yüklenemezse, eklenti bunu hatırlar ve 24 saat boyunca yerel olarak sunar."
+
+msgid "Image Optimization"
+msgstr "Görsel Optimizasyonu"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "StaticDelivr CDN aracılığıyla görselleri otomatik olarak optimize edin ve dağıtın. Bu, görsel dosya boyutlarını önemli ölçüde azaltabilir (örn., 2MB → 20KB) ve yükleme sürelerini iyileştirebilir."
+
+msgid "Enable Image Optimization"
+msgstr "Görsel optimizasyonunu etkinleştir"
+
+msgid "Enable CDN for images"
+msgstr "Görseller için CDN'yi etkinleştir"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "Otomatik format dönüştürme ve sıkıştırma ile tüm görselleri StaticDelivr CDN aracılığıyla optimize eder ve dağıtır."
+
+msgid "Image Quality"
+msgstr "Görsel kalitesi"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "Optimize edilmiş görseller için kalite seviyesi (1-100). Düşük değerler = küçük dosyalar. Önerilen: 75-85."
+
+msgid "Image Format"
+msgstr "Görsel formatı"
+
+msgid "Auto (Best for browser)"
+msgstr "Otomatik (Tarayıcı için en iyisi)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (Önerilen)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (En iyi sıkıştırma)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "Mükemmel sıkıştırma, geniş destek."
+
+msgid "Best compression, newer format."
+msgstr "En iyi sıkıştırma, yeni format."
+
+msgid "Automatically selects best format based on browser support."
+msgstr "Tarayıcı desteğine göre otomatik olarak en iyi formatı seçer."
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google Fonts (Gizlilik öncelikli)"
+
+msgid "Privacy"
+msgstr "Gizlilik"
+
+msgid "GDPR Compliant"
+msgstr "KVKK/GDPR Uyumlu"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "İzleme çerezlerini kaldırmak ve gizliliği artırmak için Google Fonts'u StaticDelivr CDN üzerinden proxy'leyin."
+
+msgid "Enable Google Fonts Proxy"
+msgstr "Google Fonts Proxy'sini etkinleştir"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "StaticDelivr üzerinden Google Fonts proxy'si"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "Tüm Google Fonts URL'lerini StaticDelivr'ın gizliliğe saygılı proxy'sini kullanacak şekilde otomatik olarak yeniden yazar."
+
+msgid "Why Proxy Google Fonts?"
+msgstr "Google Fonts neden proxy'lenmeli?"
+
+msgid "Privacy First"
+msgstr "Gizlilik öncelikli"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "Tüm kullanıcı tanımlama verilerini ve izleme çerezlerini kaldırır."
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "Çerez banner'ınızda Google Fonts'u bildirmenize gerek yok."
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 & Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "Dosyalar HTTP/3 ve Brotli sıkıştırması ile sunulur."
+
+msgid "CDN Failure Statistics"
+msgstr "CDN Hata İstatistikleri"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "CDN'den yüklenemeyen kaynaklar otomatik olarak yerel olarak sunulur. Bu önbellek 24 saat sonra sona erer."
+
+msgid "Failed Resources"
+msgstr "Başarısız kaynaklar"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d başarısız (%2$d engellendi)"
+
+msgid "Clear Failure Cache"
+msgstr "Hata önbelleğini temizle"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "Bu, bir sonraki sayfa yüklemesinde daha önce başarısız olan tüm kaynakları yeniden deneyecek."
+
+msgid "Assets:"
+msgstr "Varlıklar:"

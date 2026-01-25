@@ -1,0 +1,267 @@
+# German (Germany) translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: German <de@li.org>\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Website"
+msgstr "Webseite"
+
+msgid "Support Development"
+msgstr "Entwicklung unterstützen"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN ist jetzt aktiv!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "Ihre Website ist bereits mit CDN-Auslieferung, Bildoptimierung und datenschutzfreundlichen Google Fonts standardmäßig optimiert."
+
+msgid "View Settings"
+msgstr "Einstellungen anzeigen"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "StaticDelivr CDN Einstellungen"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "Fehler-Cache erfolgreich geleert."
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "Optimieren Sie Ihre WordPress-Website durch die Auslieferung von Ressourcen über"
+
+msgid "WordPress:"
+msgstr "WordPress:"
+
+msgid "Assets CDN:"
+msgstr "Ressourcen-CDN:"
+
+msgid "Enabled"
+msgstr "Aktiviert"
+
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgid "Images:"
+msgstr "Bilder:"
+
+msgid "Google Fonts:"
+msgstr "Google Fonts:"
+
+msgid "Quality:"
+msgstr "Qualität:"
+
+msgid "Format:"
+msgstr "Format:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "Ressourcen-Optimierung (CSS & JavaScript)"
+
+msgid "Smart Detection"
+msgstr "Intelligente Erkennung"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "URLs von WordPress-Core-Dateien, Themes und Plugins umschreiben, um StaticDelivr CDN zu verwenden. Nur Ressourcen von wordpress.org werden über CDN ausgeliefert - benutzerdefinierte Themes und Plugins werden automatisch erkannt und lokal ausgeliefert."
+
+msgid "Enable Assets CDN"
+msgstr "Ressourcen-CDN aktivieren"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "CDN für CSS & JavaScript-Dateien aktivieren"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "Liefert WordPress-Core-, Theme- und Plugin-Ressourcen von StaticDelivr CDN für schnelleres Laden."
+
+msgid "Themes via CDN"
+msgstr "Themes über CDN"
+
+msgid "Child of"
+msgstr "Kind von"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "Keine Themes von wordpress.org erkannt."
+
+msgid "Themes Served Locally"
+msgstr "Lokal ausgelieferte Themes"
+
+msgid "Child Theme"
+msgstr "Child-Theme"
+
+msgid "Local"
+msgstr "Lokal"
+
+msgid "All themes are served via CDN."
+msgstr "Alle Themes werden über CDN ausgeliefert."
+
+msgid "Plugins via CDN"
+msgstr "Plugins über CDN"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "Keine Plugins von wordpress.org erkannt."
+
+msgid "Plugins Served Locally"
+msgstr "Lokal ausgelieferte Plugins"
+
+msgid "All plugins are served via CDN."
+msgstr "Alle Plugins werden über CDN ausgeliefert."
+
+msgid "How Smart Detection Works"
+msgstr "Wie die intelligente Erkennung funktioniert"
+
+msgid "WordPress.org Verification"
+msgstr "WordPress.org-Verifizierung"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "Das Plugin prüft, ob jedes Theme/Plugin auf wordpress.org existiert, bevor es versucht, es über CDN auszuliefern."
+
+msgid "Custom Themes/Plugins"
+msgstr "Benutzerdefinierte Themes/Plugins"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "Ressourcen von benutzerdefinierten oder Premium-Themes/Plugins werden automatisch von Ihrem Server ausgeliefert."
+
+msgid "Child Themes"
+msgstr "Child-Themes"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "Child-Themes verwenden die Verifizierung des Parent-Themes - wenn das Parent auf wordpress.org ist, werden Ressourcen über CDN geladen."
+
+msgid "Cached Results"
+msgstr "Zwischengespeicherte Ergebnisse"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "Verifizierungsergebnisse werden 7 Tage zwischengespeichert, um schnelle Seitenladungen zu gewährleisten."
+
+msgid "Failure Memory"
+msgstr "Fehler-Speicher"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "Wenn eine CDN-Ressource nicht geladen werden kann, merkt sich das Plugin dies und liefert sie 24 Stunden lang lokal aus."
+
+msgid "Image Optimization"
+msgstr "Bildoptimierung"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "Bilder automatisch über StaticDelivr CDN optimieren und ausliefern. Dies kann Bilddateigrößen dramatisch reduzieren (z.B. 2MB → 20KB) und Ladezeiten verbessern."
+
+msgid "Enable Image Optimization"
+msgstr "Bildoptimierung aktivieren"
+
+msgid "Enable CDN for images"
+msgstr "CDN für Bilder aktivieren"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "Optimiert und liefert alle Bilder über StaticDelivr CDN mit automatischer Formatkonvertierung und Kompression."
+
+msgid "Image Quality"
+msgstr "Bildqualität"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "Qualitätsstufe für optimierte Bilder (1-100). Niedrigere Werte = kleinere Dateien. Empfohlen: 75-85."
+
+msgid "Image Format"
+msgstr "Bildformat"
+
+msgid "Auto (Best for browser)"
+msgstr "Auto (Optimal für Browser)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (Empfohlen)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (Beste Kompression)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "Gute Kompression, weit verbreitet."
+
+msgid "Best compression, newer format."
+msgstr "Beste Kompression, neueres Format."
+
+msgid "Automatically selects best format based on browser support."
+msgstr "Wählt automatisch das beste Format basierend auf Browser-Unterstützung."
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google Fonts (Datenschutz zuerst)"
+
+msgid "Privacy"
+msgstr "Datenschutz"
+
+msgid "GDPR Compliant"
+msgstr "DSGVO-konform"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "Google Fonts über StaticDelivr CDN proxyen, um Tracking-Cookies zu entfernen und den Datenschutz zu verbessern."
+
+msgid "Enable Google Fonts Proxy"
+msgstr "Google Fonts Proxy aktivieren"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "Google Fonts über StaticDelivr proxyen"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "Schreibt automatisch alle Google Fonts URLs um, um StaticDelivrs datenschutzfreundlichen Proxy zu verwenden."
+
+msgid "Why Proxy Google Fonts?"
+msgstr "Warum Google Fonts proxyen?"
+
+msgid "Privacy First"
+msgstr "Datenschutz zuerst"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "Entfernt alle benutzeridentifizierenden Daten und Tracking-Cookies."
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "Keine Notwendigkeit, Google Fonts in Ihrem Cookie-Banner zu deklarieren."
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 & Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "Dateien werden über HTTP/3 mit Brotli-Kompression ausgeliefert."
+
+msgid "CDN Failure Statistics"
+msgstr "CDN-Fehlerstatistiken"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "Ressourcen, die nicht vom CDN geladen werden konnten, werden automatisch lokal ausgeliefert. Dieser Cache läuft nach 24 Stunden ab."
+
+msgid "Failed Resources"
+msgstr "Fehlgeschlagene Ressourcen"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d Fehler (%2$d blockiert)"
+
+msgid "Clear Failure Cache"
+msgstr "Fehler-Cache leeren"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "Dies wird alle zuvor fehlgeschlagenen Ressourcen beim nächsten Seitenaufruf erneut versuchen."
+
+msgid "Assets:"
+msgstr "Ressourcen:"

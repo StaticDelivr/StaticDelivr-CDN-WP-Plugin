@@ -1,0 +1,267 @@
+# Arabic translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Arabic <ar@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "الإعدادات"
+
+msgid "Website"
+msgstr "الموقع الإلكتروني"
+
+msgid "Support Development"
+msgstr "دعم التطوير"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN نشط الآن!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "موقعك محسّن بالفعل مع توصيل CDN وتحسين الصور وخطوط Google التي تحترم الخصوصية مفعّلة افتراضياً."
+
+msgid "View Settings"
+msgstr "عرض الإعدادات"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "إعدادات StaticDelivr CDN"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "تم مسح ذاكرة التخزين المؤقت للأخطاء بنجاح."
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "حسّن موقع WordPress الخاص بك من خلال توصيل الموارد عبر"
+
+msgid "WordPress:"
+msgstr "ووردبريس:"
+
+msgid "Assets CDN:"
+msgstr "CDN الموارد:"
+
+msgid "Enabled"
+msgstr "مُفعّل"
+
+msgid "Disabled"
+msgstr "معطّل"
+
+msgid "Images:"
+msgstr "الصور:"
+
+msgid "Google Fonts:"
+msgstr "خطوط Google:"
+
+msgid "Quality:"
+msgstr "الجودة:"
+
+msgid "Format:"
+msgstr "الصيغة:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "تحسين الموارد (CSS و JavaScript)"
+
+msgid "Smart Detection"
+msgstr "الكشف الذكي"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "إعادة كتابة عناوين URL لملفات WordPress الأساسية والقوالب والإضافات لاستخدام StaticDelivr CDN. يتم تقديم الموارد من wordpress.org فقط عبر CDN - يتم اكتشاف القوالب والإضافات المخصصة تلقائياً وتقديمها محلياً."
+
+msgid "Enable Assets CDN"
+msgstr "تفعيل CDN للموارد"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "تفعيل CDN لملفات CSS و JavaScript"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "يقدم موارد WordPress الأساسية والقوالب والإضافات من StaticDelivr CDN لتحميل أسرع."
+
+msgid "Themes via CDN"
+msgstr "القوالب عبر CDN"
+
+msgid "Child of"
+msgstr "قالب فرعي من"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "لم يتم اكتشاف قوالب من wordpress.org."
+
+msgid "Themes Served Locally"
+msgstr "القوالب المقدمة محلياً"
+
+msgid "Child Theme"
+msgstr "قالب فرعي"
+
+msgid "Local"
+msgstr "محلي"
+
+msgid "All themes are served via CDN."
+msgstr "جميع القوالب تُقدم عبر CDN."
+
+msgid "Plugins via CDN"
+msgstr "الإضافات عبر CDN"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "لم يتم اكتشاف إضافات من wordpress.org."
+
+msgid "Plugins Served Locally"
+msgstr "الإضافات المقدمة محلياً"
+
+msgid "All plugins are served via CDN."
+msgstr "جميع الإضافات تُقدم عبر CDN."
+
+msgid "How Smart Detection Works"
+msgstr "كيف يعمل الكشف الذكي"
+
+msgid "WordPress.org Verification"
+msgstr "التحقق من WordPress.org"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "تتحقق الإضافة مما إذا كان كل قالب/إضافة موجوداً على wordpress.org قبل محاولة تقديمه عبر CDN."
+
+msgid "Custom Themes/Plugins"
+msgstr "القوالب/الإضافات المخصصة"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "الموارد من القوالب/الإضافات المخصصة أو المميزة تُقدم تلقائياً من خادمك."
+
+msgid "Child Themes"
+msgstr "القوالب الفرعية"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "تستخدم القوالب الفرعية التحقق من القالب الأصلي - إذا كان الأصلي على wordpress.org، تُحمّل الموارد عبر CDN."
+
+msgid "Cached Results"
+msgstr "النتائج المخزنة مؤقتاً"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "يتم تخزين نتائج التحقق مؤقتاً لمدة 7 أيام لضمان تحميل سريع للصفحات."
+
+msgid "Failure Memory"
+msgstr "ذاكرة الأخطاء"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "إذا فشل تحميل مورد CDN، تتذكر الإضافة ذلك وتقدمه محلياً لمدة 24 ساعة."
+
+msgid "Image Optimization"
+msgstr "تحسين الصور"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "تحسين وتوصيل الصور تلقائياً عبر StaticDelivr CDN. يمكن أن يقلل هذا بشكل كبير من حجم ملفات الصور (مثلاً، 2MB → 20KB) ويحسن أوقات التحميل."
+
+msgid "Enable Image Optimization"
+msgstr "تفعيل تحسين الصور"
+
+msgid "Enable CDN for images"
+msgstr "تفعيل CDN للصور"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "يحسّن ويوصل جميع الصور عبر StaticDelivr CDN مع تحويل الصيغة والضغط التلقائي."
+
+msgid "Image Quality"
+msgstr "جودة الصورة"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "مستوى الجودة للصور المحسّنة (1-100). قيم أقل = ملفات أصغر. موصى به: 75-85."
+
+msgid "Image Format"
+msgstr "صيغة الصورة"
+
+msgid "Auto (Best for browser)"
+msgstr "تلقائي (الأفضل للمتصفح)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (موصى به)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (أفضل ضغط)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "ضغط ممتاز، مدعوم على نطاق واسع."
+
+msgid "Best compression, newer format."
+msgstr "أفضل ضغط، صيغة أحدث."
+
+msgid "Automatically selects best format based on browser support."
+msgstr "يختار تلقائياً أفضل صيغة بناءً على دعم المتصفح."
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "خطوط Google (الخصوصية أولاً)"
+
+msgid "Privacy"
+msgstr "الخصوصية"
+
+msgid "GDPR Compliant"
+msgstr "متوافق مع GDPR"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "توجيه خطوط Google عبر StaticDelivr CDN لإزالة ملفات تعريف الارتباط للتتبع وتحسين الخصوصية."
+
+msgid "Enable Google Fonts Proxy"
+msgstr "تفعيل وكيل خطوط Google"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "توجيه خطوط Google عبر StaticDelivr"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "يعيد كتابة جميع عناوين URL لخطوط Google تلقائياً لاستخدام وكيل StaticDelivr الذي يحترم الخصوصية."
+
+msgid "Why Proxy Google Fonts?"
+msgstr "لماذا توجيه خطوط Google؟"
+
+msgid "Privacy First"
+msgstr "الخصوصية أولاً"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "يزيل جميع بيانات تعريف المستخدم وملفات تعريف الارتباط للتتبع."
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "لا حاجة للإعلان عن خطوط Google في شريط ملفات تعريف الارتباط."
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 و Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "تُقدم الملفات عبر HTTP/3 مع ضغط Brotli."
+
+msgid "CDN Failure Statistics"
+msgstr "إحصائيات أخطاء CDN"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "الموارد التي فشلت في التحميل من CDN تُقدم تلقائياً محلياً. تنتهي صلاحية هذه الذاكرة المؤقتة بعد 24 ساعة."
+
+msgid "Failed Resources"
+msgstr "الموارد الفاشلة"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d فشل (%2$d محظور)"
+
+msgid "Clear Failure Cache"
+msgstr "مسح ذاكرة التخزين المؤقت للأخطاء"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "سيعيد هذا محاولة جميع الموارد الفاشلة سابقاً في التحميل القادم للصفحة."
+
+msgid "Assets:"
+msgstr "الموارد:"

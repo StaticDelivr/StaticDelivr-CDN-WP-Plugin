@@ -1,0 +1,267 @@
+# Chinese Simplified translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Chinese Simplified <zh_CN@li.org>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Website"
+msgstr "网站"
+
+msgid "Support Development"
+msgstr "支持开发"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN 已激活！"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "您的网站已默认启用 CDN 分发、图片优化和隐私优先的 Google 字体进行优化。"
+
+msgid "View Settings"
+msgstr "查看设置"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "StaticDelivr CDN 设置"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "失败缓存已成功清除。"
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "通过以下方式分发资源来优化您的 WordPress 网站："
+
+msgid "WordPress:"
+msgstr "WordPress："
+
+msgid "Assets CDN:"
+msgstr "资源 CDN："
+
+msgid "Enabled"
+msgstr "已启用"
+
+msgid "Disabled"
+msgstr "已禁用"
+
+msgid "Images:"
+msgstr "图片："
+
+msgid "Google Fonts:"
+msgstr "Google 字体："
+
+msgid "Quality:"
+msgstr "质量："
+
+msgid "Format:"
+msgstr "格式："
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "资源优化（CSS 和 JavaScript）"
+
+msgid "Smart Detection"
+msgstr "智能检测"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "重写 WordPress 核心文件、主题和插件的 URL 以使用 StaticDelivr CDN。只有来自 wordpress.org 的资源会通过 CDN 分发 - 自定义主题和插件会被自动检测并从本地分发。"
+
+msgid "Enable Assets CDN"
+msgstr "启用资源 CDN"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "为 CSS 和 JavaScript 文件启用 CDN"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "从 StaticDelivr CDN 分发 WordPress 核心、主题和插件资源，实现更快的加载速度。"
+
+msgid "Themes via CDN"
+msgstr "通过 CDN 分发的主题"
+
+msgid "Child of"
+msgstr "子主题，父主题为："
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "未检测到来自 wordpress.org 的主题。"
+
+msgid "Themes Served Locally"
+msgstr "本地分发的主题"
+
+msgid "Child Theme"
+msgstr "子主题"
+
+msgid "Local"
+msgstr "本地"
+
+msgid "All themes are served via CDN."
+msgstr "所有主题都通过 CDN 分发。"
+
+msgid "Plugins via CDN"
+msgstr "通过 CDN 分发的插件"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "未检测到来自 wordpress.org 的插件。"
+
+msgid "Plugins Served Locally"
+msgstr "本地分发的插件"
+
+msgid "All plugins are served via CDN."
+msgstr "所有插件都通过 CDN 分发。"
+
+msgid "How Smart Detection Works"
+msgstr "智能检测的工作原理"
+
+msgid "WordPress.org Verification"
+msgstr "WordPress.org 验证"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "插件在尝试通过 CDN 分发之前会检查每个主题/插件是否存在于 wordpress.org。"
+
+msgid "Custom Themes/Plugins"
+msgstr "自定义主题/插件"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "来自自定义或付费主题/插件的资源会自动从您的服务器分发。"
+
+msgid "Child Themes"
+msgstr "子主题"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "子主题使用父主题的验证 - 如果父主题在 wordpress.org 上，资源将通过 CDN 加载。"
+
+msgid "Cached Results"
+msgstr "缓存结果"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "验证结果缓存 7 天以确保快速页面加载。"
+
+msgid "Failure Memory"
+msgstr "失败记忆"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "如果 CDN 资源加载失败，插件会记住并在 24 小时内从本地分发。"
+
+msgid "Image Optimization"
+msgstr "图片优化"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "通过 StaticDelivr CDN 自动优化和分发图片。这可以大幅减少图片文件大小（例如：2MB → 20KB）并改善加载时间。"
+
+msgid "Enable Image Optimization"
+msgstr "启用图片优化"
+
+msgid "Enable CDN for images"
+msgstr "为图片启用 CDN"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "通过 StaticDelivr CDN 优化和分发所有图片，支持自动格式转换和压缩。"
+
+msgid "Image Quality"
+msgstr "图片质量"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "优化图片的质量级别（1-100）。较低的值 = 较小的文件。推荐：75-85。"
+
+msgid "Image Format"
+msgstr "图片格式"
+
+msgid "Auto (Best for browser)"
+msgstr "自动（最适合浏览器）"
+
+msgid "WebP (Recommended)"
+msgstr "WebP（推荐）"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF（最佳压缩）"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "优秀的压缩率，广泛支持。"
+
+msgid "Best compression, newer format."
+msgstr "最佳压缩率，较新格式。"
+
+msgid "Automatically selects best format based on browser support."
+msgstr "根据浏览器支持自动选择最佳格式。"
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google 字体（隐私优先）"
+
+msgid "Privacy"
+msgstr "隐私"
+
+msgid "GDPR Compliant"
+msgstr "符合 GDPR"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "通过 StaticDelivr CDN 代理 Google 字体以移除跟踪 Cookie 并改善隐私。"
+
+msgid "Enable Google Fonts Proxy"
+msgstr "启用 Google 字体代理"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "通过 StaticDelivr 代理 Google 字体"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "自动重写所有 Google 字体 URL 以使用 StaticDelivr 的隐私保护代理。"
+
+msgid "Why Proxy Google Fonts?"
+msgstr "为什么要代理 Google 字体？"
+
+msgid "Privacy First"
+msgstr "隐私优先"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "移除所有用户识别数据和跟踪 Cookie。"
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "无需在 Cookie 横幅中声明 Google 字体。"
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 和 Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "文件通过 HTTP/3 和 Brotli 压缩分发。"
+
+msgid "CDN Failure Statistics"
+msgstr "CDN 失败统计"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "从 CDN 加载失败的资源会自动从本地分发。此缓存 24 小时后过期。"
+
+msgid "Failed Resources"
+msgstr "失败的资源"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d 次失败（%2$d 个被阻止）"
+
+msgid "Clear Failure Cache"
+msgstr "清除失败缓存"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "这将在下次页面加载时重试所有之前失败的资源。"
+
+msgid "Assets:"
+msgstr "资源："

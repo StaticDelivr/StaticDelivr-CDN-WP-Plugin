@@ -1,0 +1,267 @@
+# Korean translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Korean <ko@li.org>\n"
+"Language: ko_KR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "설정"
+
+msgid "Website"
+msgstr "웹사이트"
+
+msgid "Support Development"
+msgstr "개발 지원"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN이 활성화되었습니다!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "사이트가 CDN 전송, 이미지 최적화, 개인정보 보호 우선 Google 폰트가 기본적으로 활성화되어 최적화되었습니다."
+
+msgid "View Settings"
+msgstr "설정 보기"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "StaticDelivr CDN 설정"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "실패 캐시가 성공적으로 삭제되었습니다."
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "다음을 통해 자산을 전달하여 WordPress 사이트를 최적화하세요:"
+
+msgid "WordPress:"
+msgstr "WordPress:"
+
+msgid "Assets CDN:"
+msgstr "자산 CDN:"
+
+msgid "Enabled"
+msgstr "활성화됨"
+
+msgid "Disabled"
+msgstr "비활성화됨"
+
+msgid "Images:"
+msgstr "이미지:"
+
+msgid "Google Fonts:"
+msgstr "Google 폰트:"
+
+msgid "Quality:"
+msgstr "품질:"
+
+msgid "Format:"
+msgstr "형식:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "자산 최적화 (CSS & JavaScript)"
+
+msgid "Smart Detection"
+msgstr "스마트 감지"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "WordPress 코어 파일, 테마, 플러그인의 URL을 StaticDelivr CDN을 사용하도록 재작성합니다. wordpress.org의 자산만 CDN을 통해 제공되며 - 사용자 정의 테마와 플러그인은 자동으로 감지되어 로컬에서 제공됩니다."
+
+msgid "Enable Assets CDN"
+msgstr "자산 CDN 활성화"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "CSS & JavaScript 파일에 CDN 활성화"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "더 빠른 로딩을 위해 StaticDelivr CDN에서 WordPress 코어, 테마, 플러그인 자산을 제공합니다."
+
+msgid "Themes via CDN"
+msgstr "CDN을 통한 테마"
+
+msgid "Child of"
+msgstr "자식 테마, 부모:"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "wordpress.org의 테마가 감지되지 않았습니다."
+
+msgid "Themes Served Locally"
+msgstr "로컬에서 제공되는 테마"
+
+msgid "Child Theme"
+msgstr "자식 테마"
+
+msgid "Local"
+msgstr "로컬"
+
+msgid "All themes are served via CDN."
+msgstr "모든 테마가 CDN을 통해 제공됩니다."
+
+msgid "Plugins via CDN"
+msgstr "CDN을 통한 플러그인"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "wordpress.org의 플러그인이 감지되지 않았습니다."
+
+msgid "Plugins Served Locally"
+msgstr "로컬에서 제공되는 플러그인"
+
+msgid "All plugins are served via CDN."
+msgstr "모든 플러그인이 CDN을 통해 제공됩니다."
+
+msgid "How Smart Detection Works"
+msgstr "스마트 감지 작동 방식"
+
+msgid "WordPress.org Verification"
+msgstr "WordPress.org 확인"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "플러그인은 CDN을 통해 제공하기 전에 각 테마/플러그인이 wordpress.org에 있는지 확인합니다."
+
+msgid "Custom Themes/Plugins"
+msgstr "사용자 정의 테마/플러그인"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "사용자 정의 또는 프리미엄 테마/플러그인의 자산은 자동으로 서버에서 제공됩니다."
+
+msgid "Child Themes"
+msgstr "자식 테마"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "자식 테마는 부모 테마 확인을 사용합니다 - 부모가 wordpress.org에 있으면 자산이 CDN을 통해 로드됩니다."
+
+msgid "Cached Results"
+msgstr "캐시된 결과"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "빠른 페이지 로드를 위해 확인 결과가 7일 동안 캐시됩니다."
+
+msgid "Failure Memory"
+msgstr "실패 기억"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "CDN 리소스 로드에 실패하면 플러그인이 이를 기억하고 24시간 동안 로컬에서 제공합니다."
+
+msgid "Image Optimization"
+msgstr "이미지 최적화"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "StaticDelivr CDN을 통해 자동으로 이미지를 최적화하고 전달합니다. 이를 통해 이미지 파일 크기를 크게 줄이고(예: 2MB → 20KB) 로딩 시간을 개선할 수 있습니다."
+
+msgid "Enable Image Optimization"
+msgstr "이미지 최적화 활성화"
+
+msgid "Enable CDN for images"
+msgstr "이미지에 CDN 활성화"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "자동 형식 변환 및 압축과 함께 StaticDelivr CDN을 통해 모든 이미지를 최적화하고 전달합니다."
+
+msgid "Image Quality"
+msgstr "이미지 품질"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "최적화된 이미지의 품질 수준 (1-100). 낮은 값 = 작은 파일. 권장: 75-85."
+
+msgid "Image Format"
+msgstr "이미지 형식"
+
+msgid "Auto (Best for browser)"
+msgstr "자동 (브라우저에 최적)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (권장)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (최고 압축)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "우수한 압축, 폭넓게 지원됨."
+
+msgid "Best compression, newer format."
+msgstr "최고의 압축, 최신 형식."
+
+msgid "Automatically selects best format based on browser support."
+msgstr "브라우저 지원에 따라 자동으로 최적의 형식을 선택합니다."
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google 폰트 (개인정보 보호 우선)"
+
+msgid "Privacy"
+msgstr "개인정보 보호"
+
+msgid "GDPR Compliant"
+msgstr "GDPR 준수"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "StaticDelivr CDN을 통해 Google 폰트를 프록시하여 추적 쿠키를 제거하고 개인정보를 개선합니다."
+
+msgid "Enable Google Fonts Proxy"
+msgstr "Google 폰트 프록시 활성화"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "StaticDelivr를 통해 Google 폰트 프록시"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "모든 Google 폰트 URL을 StaticDelivr의 개인정보 보호 프록시를 사용하도록 자동으로 재작성합니다."
+
+msgid "Why Proxy Google Fonts?"
+msgstr "Google 폰트를 프록시하는 이유?"
+
+msgid "Privacy First"
+msgstr "개인정보 보호 우선"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "모든 사용자 식별 데이터와 추적 쿠키를 제거합니다."
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "쿠키 배너에서 Google 폰트를 선언할 필요가 없습니다."
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 & Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "HTTP/3와 Brotli 압축으로 파일을 제공합니다."
+
+msgid "CDN Failure Statistics"
+msgstr "CDN 실패 통계"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "CDN에서 로드에 실패한 리소스는 자동으로 로컬에서 제공됩니다. 이 캐시는 24시간 후에 만료됩니다."
+
+msgid "Failed Resources"
+msgstr "실패한 리소스"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d개 실패 (%2$d개 차단됨)"
+
+msgid "Clear Failure Cache"
+msgstr "실패 캐시 삭제"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "다음 페이지 로드 시 이전에 실패한 모든 리소스를 다시 시도합니다."
+
+msgid "Assets:"
+msgstr "자산:"

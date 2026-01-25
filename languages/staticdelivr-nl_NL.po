@@ -1,0 +1,267 @@
+# Dutch (Netherlands) translation for StaticDelivr CDN
+# Copyright (C) 2024 Coozywana
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: StaticDelivr CDN 2.0.0\n"
+"Report-Msgid-Bugs-To: https://staticdelivr.com/contact\n"
+"POT-Creation-Date: 2024-01-25 00:00:00+00:00\n"
+"PO-Revision-Date: 2024-01-25 00:00:00+00:00\n"
+"Last-Translator: StaticDelivr Team\n"
+"Language-Team: Dutch <nl@li.org>\n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit\n"
+"X-Domain: staticdelivr\n"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Support Development"
+msgstr "Ontwikkeling ondersteunen"
+
+msgid "StaticDelivr CDN is now active!"
+msgstr "StaticDelivr CDN is nu actief!"
+
+msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
+msgstr "Je site is al geoptimaliseerd met CDN-levering, afbeeldingsoptimalisatie en privacy-vriendelijke Google Fonts standaard ingeschakeld."
+
+msgid "View Settings"
+msgstr "Instellingen bekijken"
+
+msgid "StaticDelivr CDN Settings"
+msgstr "StaticDelivr CDN Instellingen"
+
+msgid "StaticDelivr CDN"
+msgstr "StaticDelivr CDN"
+
+msgid "Failure cache cleared successfully."
+msgstr "Faalcache succesvol gewist."
+
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr "Optimaliseer je WordPress-site door assets te leveren via de"
+
+msgid "WordPress:"
+msgstr "WordPress:"
+
+msgid "Assets CDN:"
+msgstr "Assets CDN:"
+
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+msgid "Images:"
+msgstr "Afbeeldingen:"
+
+msgid "Google Fonts:"
+msgstr "Google Fonts:"
+
+msgid "Quality:"
+msgstr "Kwaliteit:"
+
+msgid "Format:"
+msgstr "Formaat:"
+
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr "Assets-optimalisatie (CSS & JavaScript)"
+
+msgid "Smart Detection"
+msgstr "Slimme detectie"
+
+msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
+msgstr "Herschrijf URL's van WordPress-kernbestanden, thema's en plugins om StaticDelivr CDN te gebruiken. Alleen assets van wordpress.org worden via CDN geleverd - aangepaste thema's en plugins worden automatisch gedetecteerd en lokaal geleverd."
+
+msgid "Enable Assets CDN"
+msgstr "Assets CDN inschakelen"
+
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr "CDN inschakelen voor CSS & JavaScript-bestanden"
+
+msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
+msgstr "Levert WordPress-kern-, thema- en plugin-assets van StaticDelivr CDN voor sneller laden."
+
+msgid "Themes via CDN"
+msgstr "Thema's via CDN"
+
+msgid "Child of"
+msgstr "Kind van"
+
+msgid "CDN"
+msgstr "CDN"
+
+msgid "No themes from wordpress.org detected."
+msgstr "Geen thema's van wordpress.org gedetecteerd."
+
+msgid "Themes Served Locally"
+msgstr "Lokaal geleverde thema's"
+
+msgid "Child Theme"
+msgstr "Child-thema"
+
+msgid "Local"
+msgstr "Lokaal"
+
+msgid "All themes are served via CDN."
+msgstr "Alle thema's worden via CDN geleverd."
+
+msgid "Plugins via CDN"
+msgstr "Plugins via CDN"
+
+msgid "No plugins from wordpress.org detected."
+msgstr "Geen plugins van wordpress.org gedetecteerd."
+
+msgid "Plugins Served Locally"
+msgstr "Lokaal geleverde plugins"
+
+msgid "All plugins are served via CDN."
+msgstr "Alle plugins worden via CDN geleverd."
+
+msgid "How Smart Detection Works"
+msgstr "Hoe slimme detectie werkt"
+
+msgid "WordPress.org Verification"
+msgstr "WordPress.org-verificatie"
+
+msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
+msgstr "De plugin controleert of elk thema/plugin bestaat op wordpress.org voordat wordt geprobeerd het via CDN te leveren."
+
+msgid "Custom Themes/Plugins"
+msgstr "Aangepaste thema's/plugins"
+
+msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+msgstr "Assets van aangepaste of premium thema's/plugins worden automatisch vanaf je server geleverd."
+
+msgid "Child Themes"
+msgstr "Child-thema's"
+
+msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
+msgstr "Child-thema's gebruiken de verificatie van het ouder-thema - als de ouder op wordpress.org staat, worden assets via CDN geladen."
+
+msgid "Cached Results"
+msgstr "Gecachte resultaten"
+
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr "Verificatieresultaten worden 7 dagen gecacht voor snelle paginaladingen."
+
+msgid "Failure Memory"
+msgstr "Faalgeheugen"
+
+msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+msgstr "Als een CDN-resource niet kan laden, onthoudt de plugin dit en levert lokaal voor 24 uur."
+
+msgid "Image Optimization"
+msgstr "Afbeeldingsoptimalisatie"
+
+msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
+msgstr "Optimaliseer en lever afbeeldingen automatisch via StaticDelivr CDN. Dit kan bestandsgroottes drastisch verminderen (bijv. 2MB → 20KB) en laadtijden verbeteren."
+
+msgid "Enable Image Optimization"
+msgstr "Afbeeldingsoptimalisatie inschakelen"
+
+msgid "Enable CDN for images"
+msgstr "CDN voor afbeeldingen inschakelen"
+
+msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+msgstr "Optimaliseert en levert alle afbeeldingen via StaticDelivr CDN met automatische formaatconversie en compressie."
+
+msgid "Image Quality"
+msgstr "Afbeeldingskwaliteit"
+
+msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+msgstr "Kwaliteitsniveau voor geoptimaliseerde afbeeldingen (1-100). Lagere waarden = kleinere bestanden. Aanbevolen: 75-85."
+
+msgid "Image Format"
+msgstr "Afbeeldingsformaat"
+
+msgid "Auto (Best for browser)"
+msgstr "Auto (Best voor browser)"
+
+msgid "WebP (Recommended)"
+msgstr "WebP (Aanbevolen)"
+
+msgid "AVIF (Best compression)"
+msgstr "AVIF (Beste compressie)"
+
+msgid "JPEG"
+msgstr "JPEG"
+
+msgid "PNG"
+msgstr "PNG"
+
+msgid "Great compression, widely supported."
+msgstr "Uitstekende compressie, breed ondersteund."
+
+msgid "Best compression, newer format."
+msgstr "Beste compressie, nieuwer formaat."
+
+msgid "Automatically selects best format based on browser support."
+msgstr "Selecteert automatisch het beste formaat op basis van browserondersteuning."
+
+msgid "Google Fonts (Privacy-First)"
+msgstr "Google Fonts (Privacy eerst)"
+
+msgid "Privacy"
+msgstr "Privacy"
+
+msgid "GDPR Compliant"
+msgstr "AVG-conform"
+
+msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+msgstr "Proxy Google Fonts via StaticDelivr CDN om tracking-cookies te verwijderen en privacy te verbeteren."
+
+msgid "Enable Google Fonts Proxy"
+msgstr "Google Fonts Proxy inschakelen"
+
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr "Proxy Google Fonts via StaticDelivr"
+
+msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+msgstr "Herschrijft automatisch alle Google Fonts URL's om de privacy-respecterende proxy van StaticDelivr te gebruiken."
+
+msgid "Why Proxy Google Fonts?"
+msgstr "Waarom Google Fonts proxyen?"
+
+msgid "Privacy First"
+msgstr "Privacy eerst"
+
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr "Verwijdert alle gebruikersidentificerende gegevens en tracking-cookies."
+
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr "Geen noodzaak om Google Fonts in je cookiebanner te vermelden."
+
+msgid "HTTP/3 & Brotli"
+msgstr "HTTP/3 & Brotli"
+
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr "Bestanden geleverd via HTTP/3 met Brotli-compressie."
+
+msgid "CDN Failure Statistics"
+msgstr "CDN-faalstatistieken"
+
+msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+msgstr "Resources die niet van CDN konden laden worden automatisch lokaal geleverd. Deze cache verloopt na 24 uur."
+
+msgid "Failed Resources"
+msgstr "Gefaalde resources"
+
+msgid "%1$d failures (%2$d blocked)"
+msgstr "%1$d fouten (%2$d geblokkeerd)"
+
+msgid "Clear Failure Cache"
+msgstr "Faalcache wissen"
+
+msgid "This will retry all previously failed resources on next page load."
+msgstr "Dit zal alle eerder gefaalde resources opnieuw proberen bij de volgende paginalading."
+
+msgid "Assets:"
+msgstr "Assets:"

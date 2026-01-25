@@ -201,6 +201,28 @@ Failure results are cached for 24 hours. After this period, the plugin will retr
 3. **Smart Detection**: Automatic detection of wordpress.org vs custom assets.
 4. **Failure Statistics**: View and manage CDN failures with one-click cache clearing.
 
+== Translations ==
+
+StaticDelivr CDN is available in the following languages:
+
+* English (default)
+* Spanish (Español) - es_ES
+* French (Français) - fr_FR
+* German (Deutsch) - de_DE
+* Italian (Italiano) - it_IT
+* Portuguese Brazil (Português) - pt_BR
+* Dutch (Nederlands) - nl_NL
+* Japanese (日本語) - ja
+* Chinese Simplified (简体中文) - zh_CN
+* Chinese Traditional (繁體中文) - zh_TW
+* Russian (Русский) - ru_RU
+* Arabic (العربية) - ar
+* Korean (한국어) - ko_KR
+* Turkish (Türkçe) - tr_TR
+* Polish (Polski) - pl_PL
+
+Want to help translate StaticDelivr CDN into your language? Visit [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/staticdelivr/) to contribute!
+
 == Changelog ==
 
 = 2.0.0 =
