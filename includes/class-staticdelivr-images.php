@@ -470,11 +470,8 @@ class StaticDelivr_Images {
      * @return string
      */
     public function rewrite_thumbnail_html( $html, $post_id, $thumbnail_id, $size, $attr ) {
-        if ( ! $this->is_enabled() || empty( $html ) ) {
-            return $html;
-        }
-
-        // FIX: Use rewrite_content_images to properly parse HTML tags instead of treating the whole string as one img.
-        return $this->rewrite_content_images( $html );
+        // Optimization: wp_get_attachment_image already triggered our src/srcset filters.
+        // There is no need to re-parse this HTML with regex.
+        return $html;
     }
 }
