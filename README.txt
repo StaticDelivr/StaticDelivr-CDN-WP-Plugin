@@ -5,7 +5,7 @@ Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,20 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.1.0 =
+* **New: Multi-language Support** - Added full localization for over 30 languages to support a global user base.
+* Added translations for Spanish, French, German, Italian, Portuguese, Arabic, Chinese, Japanese, and many others
+* Full RTL (Right-to-Left) support for languages like Arabic and Persian
+* Integrated with wordpress.org translation system for future community contributions
+* **New: Dev Tools & Debugging** - Enhanced controls for developers to troubleshoot in local environments.
+* Added Debug Mode for detailed logging of image rewrite operations to the error log
+* New "Bypass Localhost" option to test CDN rewrites on .local, .test, and .dev domains
+* Improved dynamic debug mode support in the fallback failure script
+* **Improved: Reliability & Assets** - Refined asset handling and refreshed visuals.
+* Hardened image processing to detect and recover from malformed or legacy StaticDelivr URLs
+* Updated plugin branding with refreshed icons and new dashboard screenshots
+* Better handling of protocol-relative and site-relative URLs during optimization
+
 = 2.0.0 =
 * **Major Refactor: Modular Architecture** - Complete code reorganization for better maintainability
 * Split monolithic 2900+ line file into 9 modular, single-responsibility class files
@@ -360,6 +374,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+Massive update! StaticDelivr is now available in over 30 languages. Includes new debug tools and improved stability.
 
 = 2.0.0 =
 Major architectural improvement! Complete code refactor into modular structure. All features preserved with no breaking changes. Better maintainability and foundation for future enhancements. Simply update and continue using as before.
