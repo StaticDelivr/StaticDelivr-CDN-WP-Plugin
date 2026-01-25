@@ -5,7 +5,7 @@ Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.2.2
+Stable tag: 2.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,14 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.3.0 =
+* Major Improvement: Significant performance boost by removing blocking DNS lookups during image processing.
+* Fixed: Resolved "Path Math" issues where thumbnail URLs could become mangled by WordPress core.
+* Fixed: Robust HTML parsing for images now handles special characters (like >) in alt text without breaking layout.
+* Improved: Optimized thumbnail delivery by removing redundant regex parsing passes.
+* Hardened: Improved path parsing safety to ensure full compatibility with modern PHP 8.x environments.
+* Refined: Cleaned up internal logging and removed legacy recovery logic in favor of a more stable architecture.
+
 = 2.2.2 =
 * Fixed infinite recursion in image URL filters by removing database lookups for malformed CDN URLs
 * Improved image handling by simplifying thumbnail HTML rewriting to avoid redundant processing
@@ -387,6 +395,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.3.0 =
+This major update introduces significant performance optimizations and critical stability fixes for thumbnail generation and HTML parsing. Upgrading is highly recommended for a faster and more stable site experience.
 
 = 2.2.2 =
 Performance improvements and bug fixes for image handling and verification.
