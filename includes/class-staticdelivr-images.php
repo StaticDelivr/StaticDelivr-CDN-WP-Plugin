@@ -107,9 +107,17 @@ class StaticDelivr_Images {
      * @return bool True if URL is publicly accessible.
      */
     public function is_url_routable( $url ) {
+        // Check if localhost bypass is enabled for debugging.
+        $bypass_localhost = get_option( STATICDELIVR_PREFIX . 'bypass_localhost', false );
+        if ( $bypass_localhost ) {
+            $this->debug_log( 'Localhost bypass enabled - treating URL as routable: ' . $url );
+            return true;
+        }
+
         $host = wp_parse_url( $url, PHP_URL_HOST );
 
         if ( empty( $host ) ) {
+            $this->debug_log( 'URL has no host: ' . $url );
             return false;
         }
 
@@ -126,6 +134,7 @@ class StaticDelivr_Images {
 
         foreach ( $localhost_patterns as $pattern ) {
             if ( $host === $pattern || substr( $host, -strlen( $pattern ) ) === $pattern ) {
+                $this->debug_log( 'URL is localhost/dev environment (' . $pattern . '): ' . $url );
                 return false;
             }
         }
@@ -135,10 +144,12 @@ class StaticDelivr_Images {
         if ( $ip !== $host ) {
             // Check if IP is in private range.
             if ( filter_var( $ip, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE ) === false ) {
+                $this->debug_log( 'URL resolves to private/reserved IP (' . $ip . '): ' . $url );
                 return false;
             }
         }
 
+        $this->debug_log( 'URL is routable: ' . $url );
         return true;
     }
 
@@ -152,36 +163,48 @@ class StaticDelivr_Images {
      */
     public function build_image_cdn_url( $original_url, $width = null, $height = null ) {
         if ( empty( $original_url ) ) {
+            $this->debug_log( 'Skipped: Empty URL' );
             return $original_url;
         }
 
+        $this->debug_log( '=== Processing Image URL ===' );
+        $this->debug_log( 'Original URL: ' . $original_url );
+
         // Don't rewrite if already a StaticDelivr URL.
         if ( strpos( $original_url, 'cdn.staticdelivr.com' ) !== false ) {
+            $this->debug_log( 'Skipped: Already a StaticDelivr URL' );
             return $original_url;
         }
 
         // Ensure absolute URL.
         if ( strpos( $original_url, '//' ) === 0 ) {
             $original_url = 'https:' . $original_url;
+            $this->debug_log( 'Normalized protocol-relative URL: ' . $original_url );
         } elseif ( strpos( $original_url, '/' ) === 0 ) {
             $original_url = home_url( $original_url );
+            $this->debug_log( 'Normalized relative URL: ' . $original_url );
         }
 
         // Check if URL is routable (not localhost/private).
         if ( ! $this->is_url_routable( $original_url ) ) {
+            $this->debug_log( 'Skipped: URL not routable (localhost/private network)' );
             return $original_url;
         }
 
         // Check failure cache.
         if ( $this->failure_tracker->is_image_blocked( $original_url ) ) {
+            $this->debug_log( 'Skipped: URL in failure cache (previously failed to load from CDN)' );
             return $original_url;
         }
 
         // Validate it's an image URL.
         $extension = strtolower( pathinfo( wp_parse_url( $original_url, PHP_URL_PATH ), PATHINFO_EXTENSION ) );
         if ( ! in_array( $extension, $this->image_extensions, true ) ) {
+            $this->debug_log( 'Skipped: Not an image extension (' . $extension . ')' );
             return $original_url;
         }
+
+        $this->debug_log( 'Valid image extension: ' . $extension );
 
         // Build CDN URL with optimization parameters.
         $params = array();
@@ -207,7 +230,26 @@ class StaticDelivr_Images {
             $params['h'] = (int) $height;
         }
 
-        return STATICDELIVR_IMG_CDN_BASE . '?' . http_build_query( $params );
+        $cdn_url = STATICDELIVR_IMG_CDN_BASE . '?' . http_build_query( $params );
+        $this->debug_log( 'CDN URL created: ' . $cdn_url );
+        $this->debug_log( 'Parameters: quality=' . $quality . ', format=' . $format . ', width=' . $width . ', height=' . $height );
+
+        return $cdn_url;
+    }
+
+    /**
+     * Log debug message if debug mode is enabled.
+     *
+     * @param string $message Debug message to log.
+     * @return void
+     */
+    private function debug_log( $message ) {
+        if ( ! get_option( STATICDELIVR_PREFIX . 'debug_mode', false ) ) {
+            return;
+        }
+
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log
+        error_log( '[StaticDelivr Images] ' . $message );
     }
 
     /**

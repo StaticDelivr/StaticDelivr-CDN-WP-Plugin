@@ -371,6 +371,26 @@ class StaticDelivr_Admin {
                 'default'           => true,
             )
         );
+
+        register_setting(
+            STATICDELIVR_PREFIX . 'cdn_settings',
+            STATICDELIVR_PREFIX . 'debug_mode',
+            array(
+                'type'              => 'boolean',
+                'sanitize_callback' => 'absint',
+                'default'           => false,
+            )
+        );
+
+        register_setting(
+            STATICDELIVR_PREFIX . 'cdn_settings',
+            STATICDELIVR_PREFIX . 'bypass_localhost',
+            array(
+                'type'              => 'boolean',
+                'sanitize_callback' => 'absint',
+                'default'           => false,
+            )
+        );
     }
 
     /**
@@ -428,6 +448,8 @@ class StaticDelivr_Admin {
         $image_quality        = get_option( STATICDELIVR_PREFIX . 'image_quality', 80 );
         $image_format         = get_option( STATICDELIVR_PREFIX . 'image_format', 'webp' );
         $google_fonts_enabled = get_option( STATICDELIVR_PREFIX . 'google_fonts_enabled', true );
+        $debug_mode           = get_option( STATICDELIVR_PREFIX . 'debug_mode', false );
+        $bypass_localhost     = get_option( STATICDELIVR_PREFIX . 'bypass_localhost', false );
         $site_url             = home_url();
         $wp_version           = $this->assets->get_wp_version();
         $verification_summary = $this->verification->get_verification_summary();
@@ -688,6 +710,38 @@ class StaticDelivr_Admin {
                         <li><strong><?php esc_html_e( 'HTTP/3 & Brotli', 'staticdelivr' ); ?>:</strong> <?php esc_html_e( 'Files served over HTTP/3 with Brotli compression.', 'staticdelivr' ); ?></li>
                     </ul>
                 </div>
+
+                <h2 class="title">
+                    <?php esc_html_e( 'Development & Debugging', 'staticdelivr' ); ?>
+                    <span class="staticdelivr-badge" style="background: #fff3cd; color: #856404;"><?php esc_html_e( 'Dev Tools', 'staticdelivr' ); ?></span>
+                </h2>
+                <p class="description"><?php esc_html_e( 'Tools for debugging and testing in development environments.', 'staticdelivr' ); ?></p>
+
+                <table class="form-table">
+                    <tr valign="top">
+                        <th scope="row"><?php esc_html_e( 'Debug Mode', 'staticdelivr' ); ?></th>
+                        <td>
+                            <label>
+                                <input type="checkbox" name="<?php echo esc_attr( STATICDELIVR_PREFIX . 'debug_mode' ); ?>" value="1" <?php checked( 1, $debug_mode ); ?> />
+                                <?php esc_html_e( 'Enable detailed logging of image rewrites', 'staticdelivr' ); ?>
+                            </label>
+                            <p class="description"><?php esc_html_e( 'Logs all image URL processing details to the error log. Warning: Can generate large log files in production.', 'staticdelivr' ); ?></p>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php esc_html_e( 'Bypass Localhost Detection', 'staticdelivr' ); ?></th>
+                        <td>
+                            <label>
+                                <input type="checkbox" name="<?php echo esc_attr( STATICDELIVR_PREFIX . 'bypass_localhost' ); ?>" value="1" <?php checked( 1, $bypass_localhost ); ?> />
+                                <?php esc_html_e( 'Allow CDN rewrites for localhost/development URLs', 'staticdelivr' ); ?>
+                            </label>
+                            <p class="description"><?php esc_html_e( 'Enables image CDN rewrites even on localhost, .test, .local domains for testing. The CDN will not be able to fetch images from these URLs, so you\'ll see which images fail to convert.', 'staticdelivr' ); ?></p>
+                            <div class="staticdelivr-info-box" style="background: #fff3cd; border-color: #856404; margin-top: 10px;">
+                                <strong><?php esc_html_e( 'Testing Note:', 'staticdelivr' ); ?></strong> <?php esc_html_e( 'When enabled, image URLs will be rewritten to CDN format, but the CDN cannot actually fetch images from localhost. You\'ll see errors which helps identify which images are being processed and which might have issues on production.', 'staticdelivr' ); ?>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
                 <?php submit_button(); ?>
             </form>
