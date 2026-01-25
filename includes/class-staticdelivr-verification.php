@@ -654,6 +654,7 @@ class StaticDelivr_Verification {
                 'name'       => $theme->get( 'Name' ),
                 'version'    => $theme->get( 'Version' ),
                 'is_child'   => $theme->parent() ? true : false,
+                'parent'     => $theme->parent() ? $theme->parent()->get_stylesheet() : null,
                 'checked_at' => $cached ? $cached['checked_at'] : null,
                 'method'     => $cached ? $cached['method'] : null,
             );
