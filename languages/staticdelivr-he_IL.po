@@ -17,80 +17,426 @@ msgstr ""
 "X-Generator: Poedit\n"
 "X-Domain: staticdelivr\n"
 
+#: staticdelivr.php
 msgid "Settings"
 msgstr "הגדרות"
 
+#: staticdelivr.php
 msgid "Website"
 msgstr "אתר אינטרנט"
 
+#: staticdelivr.php
 msgid "Support Development"
 msgstr "תמיכה בפיתוח"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN is now active!"
 msgstr "StaticDelivr CDN פעיל כעת!"
 
-msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
-msgstr "האתר שלך כבר מותאם עם משלוח CDN, אופטימיזציה של תמונות, ו-Google Fonts עם עדיפות לפרטיות מופעלים כברירת מחדל."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Your site is already optimized with CDN delivery, image optimization, and "
+"privacy-first Google Fonts enabled by default."
+msgstr ""
+"האתר שלך כבר מותאם עם משלוח CDN, אופטימיזציה של תמונות, ו-Google Fonts עם "
+"עדיפות לפרטיות מופעלים כברירת מחדל."
 
+#: includes/class-staticdelivr-admin.php
 msgid "View Settings"
 msgstr "הצג הגדרות"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN Settings"
 msgstr "הגדרות StaticDelivr CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN"
 msgstr "StaticDelivr CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failure cache cleared successfully."
 msgstr "מטמון כשלים נמחק בהצלחה."
 
+#: includes/class-staticdelivr-admin.php
+msgid "Optimize your WordPress site by delivering assets through the"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "WordPress:"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
 msgid "Assets CDN:"
 msgstr "CDN נכסים:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enabled"
 msgstr "מופעל"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Disabled"
 msgstr "מושבת"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Images:"
 msgstr "תמונות:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Google Fonts:"
 msgstr "Google Fonts:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Quality:"
 msgstr "איכות:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Format:"
 msgstr "פורמט:"
 
+#: includes/class-staticdelivr-admin.php
+msgid "Assets Optimization (CSS & JavaScript)"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Smart Detection"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Rewrite URLs of WordPress core files, themes, and plugins to use "
+"StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom "
+"themes and plugins are automatically detected and served locally."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Assets CDN"
 msgstr "הפעל CDN נכסים"
 
+#: includes/class-staticdelivr-admin.php
+msgid "Enable CDN for CSS & JavaScript files"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for "
+"faster loading."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Themes via CDN"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Child of"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "CDN"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "No themes from wordpress.org detected."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Themes Served Locally"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Child Theme"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Local"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "All themes are served via CDN."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Plugins via CDN"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "No plugins from wordpress.org detected."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Plugins Served Locally"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "All plugins are served via CDN."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "How Smart Detection Works"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "WordPress.org Verification"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"The plugin checks if each theme/plugin exists on wordpress.org before "
+"attempting to serve it via CDN."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Custom Themes/Plugins"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Assets from custom or premium themes/plugins are automatically served from "
+"your server."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Child Themes"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Child themes use the parent theme verification - if the parent is on "
+"wordpress.org, assets load via CDN."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Cached Results"
+msgstr "משאבים שנכשלו"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Verification results are cached for 7 days to ensure fast page loads."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Failure Memory"
+msgstr "משאבים שנכשלו"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"If a CDN resource fails to load, the plugin remembers and serves locally for "
+"24 hours."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Image Optimization"
+msgstr "הפעל אופטימיזציה של תמונות"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Automatically optimize and deliver images through StaticDelivr CDN. This can "
+"dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading "
+"times."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Image Optimization"
 msgstr "הפעל אופטימיזציה של תמונות"
 
-msgid "Enable Google Fonts Proxy"
-msgstr "הפעל פרוקסי Google Fonts"
+#: includes/class-staticdelivr-admin.php
+msgid "Enable CDN for images"
+msgstr ""
 
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Optimizes and delivers all images through StaticDelivr CDN with automatic "
+"format conversion and compression."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Image Quality"
+msgstr "איכות:"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Quality level for optimized images (1-100). Lower values = smaller files. "
+"Recommended: 75-85."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Image Format"
+msgstr "פורמט:"
+
+#: includes/class-staticdelivr-admin.php
 msgid "Auto (Best for browser)"
 msgstr "אוטומטי (הטוב ביותר לדפדפן)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WebP (Recommended)"
 msgstr "WebP (מומלץ)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "AVIF (Best compression)"
 msgstr "AVIF (דחיסה הטובה ביותר)"
 
-msgid "Privacy First"
+#: includes/class-staticdelivr-admin.php
+msgid "JPEG"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "PNG"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Great compression, widely supported."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Best compression, newer format."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Automatically selects best format based on browser support."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Google Fonts (Privacy-First)"
+msgstr "הפעל פרוקסי Google Fonts"
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Privacy"
 msgstr "פרטיות קודם כל"
 
+#: includes/class-staticdelivr-admin.php
 msgid "GDPR Compliant"
 msgstr "תואם GDPR"
 
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and "
+"improve privacy."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Enable Google Fonts Proxy"
+msgstr "הפעל פרוקסי Google Fonts"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Proxy Google Fonts through StaticDelivr"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-"
+"respecting proxy."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Why Proxy Google Fonts?"
+msgstr "Google Fonts:"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Privacy First"
+msgstr "פרטיות קודם כל"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Strips all user-identifying data and tracking cookies."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "No need to declare Google Fonts in your cookie banner."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "HTTP/3 & Brotli"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "Files served over HTTP/3 with Brotli compression."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid "CDN Failure Statistics"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Resources that failed to load from CDN are automatically served locally. "
+"This cache expires after 24 hours."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
 msgid "Failed Resources"
 msgstr "משאבים שנכשלו"
 
+#. translators: 1: total failures, 2: blocked count
+#: includes/class-staticdelivr-admin.php
+msgid "%1$d failures (%2$d blocked)"
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
 msgid "Clear Failure Cache"
 msgstr "נקה מטמון כשלים"
+
+#: includes/class-staticdelivr-admin.php
+msgid "This will retry all previously failed resources on next page load."
+msgstr ""
+
+#: includes/class-staticdelivr-admin.php
+#, fuzzy
+msgid "Assets:"
+msgstr "CDN נכסים:"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Development & Debugging"
+msgstr "פיתוח וניפוי שגיאות"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Dev Tools"
+msgstr "כלי פיתוח"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Tools for debugging and testing in development environments."
+msgstr "כלים לניפוי שגיאות ובדיקות בסביבות פיתוח."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Debug Mode"
+msgstr "מצב ניפוי שגיאות"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Enable detailed logging of image rewrites"
+msgstr "אפשר רישום מפורט של שכתוב תמונות"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Logs all image URL processing details to the error log. Warning: Can "
+"generate large log files in production."
+msgstr "רושם את כל פרטי עיבוד כתובות ה-URL של התמונות ליומן השגיאות. אזהרה: עלול לייצר קבצי יומן גדולים בסביבת ייצור."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Bypass Localhost Detection"
+msgstr "עקוף זיהוי localhost"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Allow CDN rewrites for localhost/development URLs"
+msgstr "אפשר שכתוב CDN עבור כתובות URL של localhost/פיתוח"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Enables image CDN rewrites even on localhost, .test, .local domains for "
+"testing. The CDN will not be able to fetch images from these URLs, so you'll "
+"see which images fail to convert."
+msgstr "מאפשר שכתוב CDN של תמונות גם בדומיינים localhost, .test, .local לצורכי בדיקה. ה-CDN לא יוכל למשוך תמונות מכתובות URL אלו, כך שתראה אילו תמונות נכשלות בהמרה."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Testing Note:"
+msgstr "הערת בדיקה:"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"When enabled, image URLs will be rewritten to CDN format, but the CDN cannot "
+"actually fetch images from localhost. You'll see errors which helps identify "
+"which images are being processed and which might have issues on production."
+msgstr "כאשר מאופשר, כתובות ה-URL של התמונות ישוכתבו לפורמט CDN, אך ה-CDN לא באמת יכול למשוך תמונות מ-localhost. תראה שגיאות שיעזרו לזהות אילו תמונות מעובדות ואילו עלולות לסבול מבעיות בייצור."

@@ -17,251 +17,449 @@ msgstr ""
 "X-Generator: Poedit\n"
 "X-Domain: staticdelivr\n"
 
+#: staticdelivr.php
 msgid "Settings"
 msgstr "Instellingen"
 
+#: staticdelivr.php
 msgid "Website"
 msgstr "Website"
 
+#: staticdelivr.php
 msgid "Support Development"
 msgstr "Ontwikkeling ondersteunen"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN is now active!"
 msgstr "StaticDelivr CDN is nu actief!"
 
-msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
-msgstr "Je site is al geoptimaliseerd met CDN-levering, afbeeldingsoptimalisatie en privacy-vriendelijke Google Fonts standaard ingeschakeld."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Your site is already optimized with CDN delivery, image optimization, and "
+"privacy-first Google Fonts enabled by default."
+msgstr ""
+"Je site is al geoptimaliseerd met CDN-levering, afbeeldingsoptimalisatie en "
+"privacy-vriendelijke Google Fonts standaard ingeschakeld."
 
+#: includes/class-staticdelivr-admin.php
 msgid "View Settings"
 msgstr "Instellingen bekijken"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN Settings"
 msgstr "StaticDelivr CDN Instellingen"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN"
 msgstr "StaticDelivr CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failure cache cleared successfully."
 msgstr "Faalcache succesvol gewist."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Optimize your WordPress site by delivering assets through the"
 msgstr "Optimaliseer je WordPress-site door assets te leveren via de"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WordPress:"
 msgstr "WordPress:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets CDN:"
 msgstr "Assets CDN:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Disabled"
 msgstr "Uitgeschakeld"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Images:"
 msgstr "Afbeeldingen:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Google Fonts:"
 msgstr "Google Fonts:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Quality:"
 msgstr "Kwaliteit:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Format:"
 msgstr "Formaat:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets Optimization (CSS & JavaScript)"
 msgstr "Assets-optimalisatie (CSS & JavaScript)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Smart Detection"
 msgstr "Slimme detectie"
 
-msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
-msgstr "Herschrijf URL's van WordPress-kernbestanden, thema's en plugins om StaticDelivr CDN te gebruiken. Alleen assets van wordpress.org worden via CDN geleverd - aangepaste thema's en plugins worden automatisch gedetecteerd en lokaal geleverd."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Rewrite URLs of WordPress core files, themes, and plugins to use "
+"StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom "
+"themes and plugins are automatically detected and served locally."
+msgstr ""
+"Herschrijf URL's van WordPress-kernbestanden, thema's en plugins om "
+"StaticDelivr CDN te gebruiken. Alleen assets van wordpress.org worden via "
+"CDN geleverd - aangepaste thema's en plugins worden automatisch gedetecteerd "
+"en lokaal geleverd."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Assets CDN"
 msgstr "Assets CDN inschakelen"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable CDN for CSS & JavaScript files"
 msgstr "CDN inschakelen voor CSS & JavaScript-bestanden"
 
-msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
-msgstr "Levert WordPress-kern-, thema- en plugin-assets van StaticDelivr CDN voor sneller laden."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for "
+"faster loading."
+msgstr ""
+"Levert WordPress-kern-, thema- en plugin-assets van StaticDelivr CDN voor "
+"sneller laden."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Themes via CDN"
 msgstr "Thema's via CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child of"
 msgstr "Kind van"
 
+#: includes/class-staticdelivr-admin.php
 msgid "CDN"
 msgstr "CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "No themes from wordpress.org detected."
 msgstr "Geen thema's van wordpress.org gedetecteerd."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Themes Served Locally"
 msgstr "Lokaal geleverde thema's"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child Theme"
 msgstr "Child-thema"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Local"
 msgstr "Lokaal"
 
+#: includes/class-staticdelivr-admin.php
 msgid "All themes are served via CDN."
 msgstr "Alle thema's worden via CDN geleverd."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Plugins via CDN"
 msgstr "Plugins via CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "No plugins from wordpress.org detected."
 msgstr "Geen plugins van wordpress.org gedetecteerd."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Plugins Served Locally"
 msgstr "Lokaal geleverde plugins"
 
+#: includes/class-staticdelivr-admin.php
 msgid "All plugins are served via CDN."
 msgstr "Alle plugins worden via CDN geleverd."
 
+#: includes/class-staticdelivr-admin.php
 msgid "How Smart Detection Works"
 msgstr "Hoe slimme detectie werkt"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WordPress.org Verification"
 msgstr "WordPress.org-verificatie"
 
-msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
-msgstr "De plugin controleert of elk thema/plugin bestaat op wordpress.org voordat wordt geprobeerd het via CDN te leveren."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"The plugin checks if each theme/plugin exists on wordpress.org before "
+"attempting to serve it via CDN."
+msgstr ""
+"De plugin controleert of elk thema/plugin bestaat op wordpress.org voordat "
+"wordt geprobeerd het via CDN te leveren."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Custom Themes/Plugins"
 msgstr "Aangepaste thema's/plugins"
 
-msgid "Assets from custom or premium themes/plugins are automatically served from your server."
-msgstr "Assets van aangepaste of premium thema's/plugins worden automatisch vanaf je server geleverd."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Assets from custom or premium themes/plugins are automatically served from "
+"your server."
+msgstr ""
+"Assets van aangepaste of premium thema's/plugins worden automatisch vanaf je "
+"server geleverd."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child Themes"
 msgstr "Child-thema's"
 
-msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
-msgstr "Child-thema's gebruiken de verificatie van het ouder-thema - als de ouder op wordpress.org staat, worden assets via CDN geladen."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Child themes use the parent theme verification - if the parent is on "
+"wordpress.org, assets load via CDN."
+msgstr ""
+"Child-thema's gebruiken de verificatie van het ouder-thema - als de ouder op "
+"wordpress.org staat, worden assets via CDN geladen."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Cached Results"
 msgstr "Gecachte resultaten"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Verification results are cached for 7 days to ensure fast page loads."
-msgstr "Verificatieresultaten worden 7 dagen gecacht voor snelle paginaladingen."
+msgstr ""
+"Verificatieresultaten worden 7 dagen gecacht voor snelle paginaladingen."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failure Memory"
 msgstr "Faalgeheugen"
 
-msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
-msgstr "Als een CDN-resource niet kan laden, onthoudt de plugin dit en levert lokaal voor 24 uur."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"If a CDN resource fails to load, the plugin remembers and serves locally for "
+"24 hours."
+msgstr ""
+"Als een CDN-resource niet kan laden, onthoudt de plugin dit en levert lokaal "
+"voor 24 uur."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Optimization"
 msgstr "Afbeeldingsoptimalisatie"
 
-msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
-msgstr "Optimaliseer en lever afbeeldingen automatisch via StaticDelivr CDN. Dit kan bestandsgroottes drastisch verminderen (bijv. 2MB → 20KB) en laadtijden verbeteren."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Automatically optimize and deliver images through StaticDelivr CDN. This can "
+"dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading "
+"times."
+msgstr ""
+"Optimaliseer en lever afbeeldingen automatisch via StaticDelivr CDN. Dit kan "
+"bestandsgroottes drastisch verminderen (bijv. 2MB → 20KB) en laadtijden "
+"verbeteren."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Image Optimization"
 msgstr "Afbeeldingsoptimalisatie inschakelen"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable CDN for images"
 msgstr "CDN voor afbeeldingen inschakelen"
 
-msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
-msgstr "Optimaliseert en levert alle afbeeldingen via StaticDelivr CDN met automatische formaatconversie en compressie."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Optimizes and delivers all images through StaticDelivr CDN with automatic "
+"format conversion and compression."
+msgstr ""
+"Optimaliseert en levert alle afbeeldingen via StaticDelivr CDN met "
+"automatische formaatconversie en compressie."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Quality"
 msgstr "Afbeeldingskwaliteit"
 
-msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
-msgstr "Kwaliteitsniveau voor geoptimaliseerde afbeeldingen (1-100). Lagere waarden = kleinere bestanden. Aanbevolen: 75-85."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Quality level for optimized images (1-100). Lower values = smaller files. "
+"Recommended: 75-85."
+msgstr ""
+"Kwaliteitsniveau voor geoptimaliseerde afbeeldingen (1-100). Lagere waarden "
+"= kleinere bestanden. Aanbevolen: 75-85."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Format"
 msgstr "Afbeeldingsformaat"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Auto (Best for browser)"
 msgstr "Auto (Best voor browser)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WebP (Recommended)"
 msgstr "WebP (Aanbevolen)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "AVIF (Best compression)"
 msgstr "AVIF (Beste compressie)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "JPEG"
 msgstr "JPEG"
 
+#: includes/class-staticdelivr-admin.php
 msgid "PNG"
 msgstr "PNG"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Great compression, widely supported."
 msgstr "Uitstekende compressie, breed ondersteund."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Best compression, newer format."
 msgstr "Beste compressie, nieuwer formaat."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Automatically selects best format based on browser support."
-msgstr "Selecteert automatisch het beste formaat op basis van browserondersteuning."
+msgstr ""
+"Selecteert automatisch het beste formaat op basis van browserondersteuning."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Google Fonts (Privacy-First)"
 msgstr "Google Fonts (Privacy eerst)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Privacy"
 msgstr "Privacy"
 
+#: includes/class-staticdelivr-admin.php
 msgid "GDPR Compliant"
 msgstr "AVG-conform"
 
-msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
-msgstr "Proxy Google Fonts via StaticDelivr CDN om tracking-cookies te verwijderen en privacy te verbeteren."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and "
+"improve privacy."
+msgstr ""
+"Proxy Google Fonts via StaticDelivr CDN om tracking-cookies te verwijderen "
+"en privacy te verbeteren."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Google Fonts Proxy"
 msgstr "Google Fonts Proxy inschakelen"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Proxy Google Fonts through StaticDelivr"
 msgstr "Proxy Google Fonts via StaticDelivr"
 
-msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
-msgstr "Herschrijft automatisch alle Google Fonts URL's om de privacy-respecterende proxy van StaticDelivr te gebruiken."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-"
+"respecting proxy."
+msgstr ""
+"Herschrijft automatisch alle Google Fonts URL's om de privacy-respecterende "
+"proxy van StaticDelivr te gebruiken."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Why Proxy Google Fonts?"
 msgstr "Waarom Google Fonts proxyen?"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Privacy First"
 msgstr "Privacy eerst"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Strips all user-identifying data and tracking cookies."
-msgstr "Verwijdert alle gebruikersidentificerende gegevens en tracking-cookies."
+msgstr ""
+"Verwijdert alle gebruikersidentificerende gegevens en tracking-cookies."
 
+#: includes/class-staticdelivr-admin.php
 msgid "No need to declare Google Fonts in your cookie banner."
 msgstr "Geen noodzaak om Google Fonts in je cookiebanner te vermelden."
 
+#: includes/class-staticdelivr-admin.php
 msgid "HTTP/3 & Brotli"
 msgstr "HTTP/3 & Brotli"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Files served over HTTP/3 with Brotli compression."
 msgstr "Bestanden geleverd via HTTP/3 met Brotli-compressie."
 
+#: includes/class-staticdelivr-admin.php
 msgid "CDN Failure Statistics"
 msgstr "CDN-faalstatistieken"
 
-msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
-msgstr "Resources die niet van CDN konden laden worden automatisch lokaal geleverd. Deze cache verloopt na 24 uur."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Resources that failed to load from CDN are automatically served locally. "
+"This cache expires after 24 hours."
+msgstr ""
+"Resources die niet van CDN konden laden worden automatisch lokaal geleverd. "
+"Deze cache verloopt na 24 uur."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failed Resources"
 msgstr "Gefaalde resources"
 
+#. translators: 1: total failures, 2: blocked count
+#: includes/class-staticdelivr-admin.php
 msgid "%1$d failures (%2$d blocked)"
 msgstr "%1$d fouten (%2$d geblokkeerd)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Clear Failure Cache"
 msgstr "Faalcache wissen"
 
+#: includes/class-staticdelivr-admin.php
 msgid "This will retry all previously failed resources on next page load."
-msgstr "Dit zal alle eerder gefaalde resources opnieuw proberen bij de volgende paginalading."
+msgstr ""
+"Dit zal alle eerder gefaalde resources opnieuw proberen bij de volgende "
+"paginalading."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets:"
 msgstr "Assets:"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Development & Debugging"
+msgstr "Ontwikkeling & Debugging"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Dev Tools"
+msgstr "Ontwikkeltools"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Tools for debugging and testing in development environments."
+msgstr "Tools voor debugging en testen in ontwikkelomgevingen."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Debug Mode"
+msgstr "Debugmodus"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Enable detailed logging of image rewrites"
+msgstr "Gedetailleerde logregistratie van afbeeldingherschrijvingen inschakelen"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Logs all image URL processing details to the error log. Warning: Can "
+"generate large log files in production."
+msgstr "Logt alle details van de verwerking van afbeelding-URL's in het foutenlogboek. Waarschuwing: Kan grote logbestanden genereren in productie."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Bypass Localhost Detection"
+msgstr "Localhost-detectie omzeilen"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Allow CDN rewrites for localhost/development URLs"
+msgstr "CDN-herschrijvingen toestaan voor localhost/ontwikkelings-URL's"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Enables image CDN rewrites even on localhost, .test, .local domains for "
+"testing. The CDN will not be able to fetch images from these URLs, so you'll "
+"see which images fail to convert."
+msgstr "Schakelt afbeelding-CDN-herschrijvingen in, zelfs op localhost, .test, .local domeinen voor testen. De CDN kan geen afbeeldingen ophalen van deze URL's, dus u ziet welke afbeeldingen niet kunnen worden geconverteerd."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Testing Note:"
+msgstr "Opmerking bij testen:"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"When enabled, image URLs will be rewritten to CDN format, but the CDN cannot "
+"actually fetch images from localhost. You'll see errors which helps identify "
+"which images are being processed and which might have issues on production."
+msgstr "Indien ingeschakeld, worden afbeelding-URL's herschreven naar CDN-formaat, maar de CDN kan geen afbeeldingen ophalen van localhost. U ziet fouten die helpen identificeren welke afbeeldingen worden verwerkt en welke problemen kunnen geven in productie."

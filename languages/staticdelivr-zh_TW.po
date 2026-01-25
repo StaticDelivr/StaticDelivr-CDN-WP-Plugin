@@ -17,251 +17,426 @@ msgstr ""
 "X-Generator: Poedit\n"
 "X-Domain: staticdelivr\n"
 
+#: staticdelivr.php
 msgid "Settings"
 msgstr "設定"
 
+#: staticdelivr.php
 msgid "Website"
 msgstr "網站"
 
+#: staticdelivr.php
 msgid "Support Development"
 msgstr "支持開發"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN is now active!"
 msgstr "StaticDelivr CDN 已啟用！"
 
-msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
-msgstr "您的網站已預設啟用 CDN 分發、圖片優化和隱私優先的 Google 字型進行優化。"
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Your site is already optimized with CDN delivery, image optimization, and "
+"privacy-first Google Fonts enabled by default."
+msgstr ""
+"您的網站已預設啟用 CDN 分發、圖片優化和隱私優先的 Google 字型進行優化。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "View Settings"
 msgstr "檢視設定"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN Settings"
 msgstr "StaticDelivr CDN 設定"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN"
 msgstr "StaticDelivr CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failure cache cleared successfully."
 msgstr "失敗快取已成功清除。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Optimize your WordPress site by delivering assets through the"
 msgstr "透過以下方式分發資源來優化您的 WordPress 網站："
 
+#: includes/class-staticdelivr-admin.php
 msgid "WordPress:"
 msgstr "WordPress："
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets CDN:"
 msgstr "資源 CDN："
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enabled"
 msgstr "已啟用"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Disabled"
 msgstr "已停用"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Images:"
 msgstr "圖片："
 
+#: includes/class-staticdelivr-admin.php
 msgid "Google Fonts:"
 msgstr "Google 字型："
 
+#: includes/class-staticdelivr-admin.php
 msgid "Quality:"
 msgstr "品質："
 
+#: includes/class-staticdelivr-admin.php
 msgid "Format:"
 msgstr "格式："
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets Optimization (CSS & JavaScript)"
 msgstr "資源優化（CSS 和 JavaScript）"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Smart Detection"
 msgstr "智慧偵測"
 
-msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
-msgstr "重寫 WordPress 核心檔案、佈景主題和外掛的 URL 以使用 StaticDelivr CDN。只有來自 wordpress.org 的資源會透過 CDN 分發 - 自訂佈景主題和外掛會被自動偵測並從本機分發。"
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Rewrite URLs of WordPress core files, themes, and plugins to use "
+"StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom "
+"themes and plugins are automatically detected and served locally."
+msgstr ""
+"重寫 WordPress 核心檔案、佈景主題和外掛的 URL 以使用 StaticDelivr CDN。只有來"
+"自 wordpress.org 的資源會透過 CDN 分發 - 自訂佈景主題和外掛會被自動偵測並從本"
+"機分發。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Assets CDN"
 msgstr "啟用資源 CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable CDN for CSS & JavaScript files"
 msgstr "為 CSS 和 JavaScript 檔案啟用 CDN"
 
-msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
-msgstr "從 StaticDelivr CDN 分發 WordPress 核心、佈景主題和外掛資源，實現更快的載入速度。"
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for "
+"faster loading."
+msgstr ""
+"從 StaticDelivr CDN 分發 WordPress 核心、佈景主題和外掛資源，實現更快的載入速"
+"度。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Themes via CDN"
 msgstr "透過 CDN 分發的佈景主題"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child of"
 msgstr "子佈景主題，父佈景主題為："
 
+#: includes/class-staticdelivr-admin.php
 msgid "CDN"
 msgstr "CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "No themes from wordpress.org detected."
 msgstr "未偵測到來自 wordpress.org 的佈景主題。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Themes Served Locally"
 msgstr "本機分發的佈景主題"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child Theme"
 msgstr "子佈景主題"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Local"
 msgstr "本機"
 
+#: includes/class-staticdelivr-admin.php
 msgid "All themes are served via CDN."
 msgstr "所有佈景主題都透過 CDN 分發。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Plugins via CDN"
 msgstr "透過 CDN 分發的外掛"
 
+#: includes/class-staticdelivr-admin.php
 msgid "No plugins from wordpress.org detected."
 msgstr "未偵測到來自 wordpress.org 的外掛。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Plugins Served Locally"
 msgstr "本機分發的外掛"
 
+#: includes/class-staticdelivr-admin.php
 msgid "All plugins are served via CDN."
 msgstr "所有外掛都透過 CDN 分發。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "How Smart Detection Works"
 msgstr "智慧偵測的運作原理"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WordPress.org Verification"
 msgstr "WordPress.org 驗證"
 
-msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
-msgstr "外掛在嘗試透過 CDN 分發之前會檢查每個佈景主題/外掛是否存在於 wordpress.org。"
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"The plugin checks if each theme/plugin exists on wordpress.org before "
+"attempting to serve it via CDN."
+msgstr ""
+"外掛在嘗試透過 CDN 分發之前會檢查每個佈景主題/外掛是否存在於 wordpress.org。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Custom Themes/Plugins"
 msgstr "自訂佈景主題/外掛"
 
-msgid "Assets from custom or premium themes/plugins are automatically served from your server."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Assets from custom or premium themes/plugins are automatically served from "
+"your server."
 msgstr "來自自訂或付費佈景主題/外掛的資源會自動從您的伺服器分發。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child Themes"
 msgstr "子佈景主題"
 
-msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
-msgstr "子佈景主題使用父佈景主題的驗證 - 如果父佈景主題在 wordpress.org 上，資源將透過 CDN 載入。"
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Child themes use the parent theme verification - if the parent is on "
+"wordpress.org, assets load via CDN."
+msgstr ""
+"子佈景主題使用父佈景主題的驗證 - 如果父佈景主題在 wordpress.org 上，資源將透"
+"過 CDN 載入。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Cached Results"
 msgstr "快取結果"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Verification results are cached for 7 days to ensure fast page loads."
 msgstr "驗證結果快取 7 天以確保快速頁面載入。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failure Memory"
 msgstr "失敗記憶"
 
-msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"If a CDN resource fails to load, the plugin remembers and serves locally for "
+"24 hours."
 msgstr "如果 CDN 資源載入失敗，外掛會記住並在 24 小時內從本機分發。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Optimization"
 msgstr "圖片優化"
 
-msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
-msgstr "透過 StaticDelivr CDN 自動優化和分發圖片。這可以大幅減少圖片檔案大小（例如：2MB → 20KB）並改善載入時間。"
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Automatically optimize and deliver images through StaticDelivr CDN. This can "
+"dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading "
+"times."
+msgstr ""
+"透過 StaticDelivr CDN 自動優化和分發圖片。這可以大幅減少圖片檔案大小（例如："
+"2MB → 20KB）並改善載入時間。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Image Optimization"
 msgstr "啟用圖片優化"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable CDN for images"
 msgstr "為圖片啟用 CDN"
 
-msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Optimizes and delivers all images through StaticDelivr CDN with automatic "
+"format conversion and compression."
 msgstr "透過 StaticDelivr CDN 優化和分發所有圖片，支援自動格式轉換和壓縮。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Quality"
 msgstr "圖片品質"
 
-msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Quality level for optimized images (1-100). Lower values = smaller files. "
+"Recommended: 75-85."
 msgstr "優化圖片的品質級別（1-100）。較低的值 = 較小的檔案。建議：75-85。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Format"
 msgstr "圖片格式"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Auto (Best for browser)"
 msgstr "自動（最適合瀏覽器）"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WebP (Recommended)"
 msgstr "WebP（建議）"
 
+#: includes/class-staticdelivr-admin.php
 msgid "AVIF (Best compression)"
 msgstr "AVIF（最佳壓縮）"
 
+#: includes/class-staticdelivr-admin.php
 msgid "JPEG"
 msgstr "JPEG"
 
+#: includes/class-staticdelivr-admin.php
 msgid "PNG"
 msgstr "PNG"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Great compression, widely supported."
 msgstr "優秀的壓縮率，廣泛支援。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Best compression, newer format."
 msgstr "最佳壓縮率，較新格式。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Automatically selects best format based on browser support."
 msgstr "根據瀏覽器支援自動選擇最佳格式。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Google Fonts (Privacy-First)"
 msgstr "Google 字型（隱私優先）"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Privacy"
 msgstr "隱私"
 
+#: includes/class-staticdelivr-admin.php
 msgid "GDPR Compliant"
 msgstr "符合 GDPR"
 
-msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and "
+"improve privacy."
 msgstr "透過 StaticDelivr CDN 代理 Google 字型以移除追蹤 Cookie 並改善隱私。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Google Fonts Proxy"
 msgstr "啟用 Google 字型代理"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Proxy Google Fonts through StaticDelivr"
 msgstr "透過 StaticDelivr 代理 Google 字型"
 
-msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-"
+"respecting proxy."
 msgstr "自動重寫所有 Google 字型 URL 以使用 StaticDelivr 的隱私保護代理。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Why Proxy Google Fonts?"
 msgstr "為什麼要代理 Google 字型？"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Privacy First"
 msgstr "隱私優先"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Strips all user-identifying data and tracking cookies."
 msgstr "移除所有使用者識別資料和追蹤 Cookie。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "No need to declare Google Fonts in your cookie banner."
 msgstr "無需在 Cookie 橫幅中聲明 Google 字型。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "HTTP/3 & Brotli"
 msgstr "HTTP/3 和 Brotli"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Files served over HTTP/3 with Brotli compression."
 msgstr "檔案透過 HTTP/3 和 Brotli 壓縮分發。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "CDN Failure Statistics"
 msgstr "CDN 失敗統計"
 
-msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Resources that failed to load from CDN are automatically served locally. "
+"This cache expires after 24 hours."
 msgstr "從 CDN 載入失敗的資源會自動從本機分發。此快取 24 小時後過期。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failed Resources"
 msgstr "失敗的資源"
 
+#. translators: 1: total failures, 2: blocked count
+#: includes/class-staticdelivr-admin.php
 msgid "%1$d failures (%2$d blocked)"
 msgstr "%1$d 次失敗（%2$d 個被阻止）"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Clear Failure Cache"
 msgstr "清除失敗快取"
 
+#: includes/class-staticdelivr-admin.php
 msgid "This will retry all previously failed resources on next page load."
 msgstr "這將在下次頁面載入時重試所有之前失敗的資源。"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets:"
 msgstr "資源："
+
+#: includes/class-staticdelivr-admin.php
+msgid "Development & Debugging"
+msgstr "開發與偵錯"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Dev Tools"
+msgstr "開發工具"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Tools for debugging and testing in development environments."
+msgstr "用於在開發環境中進行偵錯和測試的工具。"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Debug Mode"
+msgstr "偵錯模式"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Enable detailed logging of image rewrites"
+msgstr "啟用詳細的圖片重寫記錄"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Logs all image URL processing details to the error log. Warning: Can "
+"generate large log files in production."
+msgstr "將所有圖片 URL 處理詳細資訊記錄到錯誤記錄中。警告：在實際運作環境中可能會產生大型記錄檔。"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Bypass Localhost Detection"
+msgstr "跳過 Localhost 偵測"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Allow CDN rewrites for localhost/development URLs"
+msgstr "允許對 localhost/開發 URL 進行 CDN 重寫"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Enables image CDN rewrites even on localhost, .test, .local domains for "
+"testing. The CDN will not be able to fetch images from these URLs, so you'll "
+"see which images fail to convert."
+msgstr "即使在 localhost、.test、.local 網域下也啟用圖片 CDN 重寫以進行測試。CDN 將無法從這些 URL 擷取圖片，因此您可以看到哪些圖片轉換失敗。"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Testing Note:"
+msgstr "測試說明："
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"When enabled, image URLs will be rewritten to CDN format, but the CDN cannot "
+"actually fetch images from localhost. You'll see errors which helps identify "
+"which images are being processed and which might have issues on production."
+msgstr "啟用後，圖片 URL 將被重寫為 CDN 格式，但 CDN 實際上無法從 localhost 擷取圖片。您將看到錯誤，這有助於識別正在處理哪些圖片以及在實際運作環境中可能出現哪些問題。"

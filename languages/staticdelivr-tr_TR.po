@@ -17,251 +17,448 @@ msgstr ""
 "X-Generator: Poedit\n"
 "X-Domain: staticdelivr\n"
 
+#: staticdelivr.php
 msgid "Settings"
 msgstr "Ayarlar"
 
+#: staticdelivr.php
 msgid "Website"
 msgstr "Web sitesi"
 
+#: staticdelivr.php
 msgid "Support Development"
 msgstr "Geliştirmeyi destekle"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN is now active!"
 msgstr "StaticDelivr CDN artık aktif!"
 
-msgid "Your site is already optimized with CDN delivery, image optimization, and privacy-first Google Fonts enabled by default."
-msgstr "Siteniz zaten CDN dağıtımı, görsel optimizasyonu ve gizlilik öncelikli Google Fonts varsayılan olarak etkinleştirilerek optimize edilmiş durumda."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Your site is already optimized with CDN delivery, image optimization, and "
+"privacy-first Google Fonts enabled by default."
+msgstr ""
+"Siteniz zaten CDN dağıtımı, görsel optimizasyonu ve gizlilik öncelikli "
+"Google Fonts varsayılan olarak etkinleştirilerek optimize edilmiş durumda."
 
+#: includes/class-staticdelivr-admin.php
 msgid "View Settings"
 msgstr "Ayarları görüntüle"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN Settings"
 msgstr "StaticDelivr CDN Ayarları"
 
+#: includes/class-staticdelivr-admin.php
 msgid "StaticDelivr CDN"
 msgstr "StaticDelivr CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failure cache cleared successfully."
 msgstr "Hata önbelleği başarıyla temizlendi."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Optimize your WordPress site by delivering assets through the"
 msgstr "Varlıkları şu yolla dağıtarak WordPress sitenizi optimize edin:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WordPress:"
 msgstr "WordPress:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets CDN:"
 msgstr "Varlık CDN:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enabled"
 msgstr "Etkin"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Disabled"
 msgstr "Devre dışı"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Images:"
 msgstr "Görseller:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Google Fonts:"
 msgstr "Google Fonts:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Quality:"
 msgstr "Kalite:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Format:"
 msgstr "Format:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets Optimization (CSS & JavaScript)"
 msgstr "Varlık Optimizasyonu (CSS & JavaScript)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Smart Detection"
 msgstr "Akıllı Algılama"
 
-msgid "Rewrite URLs of WordPress core files, themes, and plugins to use StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom themes and plugins are automatically detected and served locally."
-msgstr "WordPress çekirdek dosyalarının, temaların ve eklentilerin URL'lerini StaticDelivr CDN kullanacak şekilde yeniden yazın. Yalnızca wordpress.org'dan gelen varlıklar CDN üzerinden sunulur - özel temalar ve eklentiler otomatik olarak algılanır ve yerel olarak sunulur."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Rewrite URLs of WordPress core files, themes, and plugins to use "
+"StaticDelivr CDN. Only assets from wordpress.org are served via CDN - custom "
+"themes and plugins are automatically detected and served locally."
+msgstr ""
+"WordPress çekirdek dosyalarının, temaların ve eklentilerin URL'lerini "
+"StaticDelivr CDN kullanacak şekilde yeniden yazın. Yalnızca "
+"wordpress.org'dan gelen varlıklar CDN üzerinden sunulur - özel temalar ve "
+"eklentiler otomatik olarak algılanır ve yerel olarak sunulur."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Assets CDN"
 msgstr "Varlık CDN'yi etkinleştir"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable CDN for CSS & JavaScript files"
 msgstr "CSS & JavaScript dosyaları için CDN'yi etkinleştir"
 
-msgid "Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for faster loading."
-msgstr "Daha hızlı yükleme için WordPress çekirdek, tema ve eklenti varlıklarını StaticDelivr CDN'den sunar."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Serves WordPress core, theme, and plugin assets from StaticDelivr CDN for "
+"faster loading."
+msgstr ""
+"Daha hızlı yükleme için WordPress çekirdek, tema ve eklenti varlıklarını "
+"StaticDelivr CDN'den sunar."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Themes via CDN"
 msgstr "CDN üzerinden temalar"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child of"
 msgstr "Alt tema, üst tema:"
 
+#: includes/class-staticdelivr-admin.php
 msgid "CDN"
 msgstr "CDN"
 
+#: includes/class-staticdelivr-admin.php
 msgid "No themes from wordpress.org detected."
 msgstr "wordpress.org'dan tema algılanmadı."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Themes Served Locally"
 msgstr "Yerel olarak sunulan temalar"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child Theme"
 msgstr "Alt tema"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Local"
 msgstr "Yerel"
 
+#: includes/class-staticdelivr-admin.php
 msgid "All themes are served via CDN."
 msgstr "Tüm temalar CDN üzerinden sunuluyor."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Plugins via CDN"
 msgstr "CDN üzerinden eklentiler"
 
+#: includes/class-staticdelivr-admin.php
 msgid "No plugins from wordpress.org detected."
 msgstr "wordpress.org'dan eklenti algılanmadı."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Plugins Served Locally"
 msgstr "Yerel olarak sunulan eklentiler"
 
+#: includes/class-staticdelivr-admin.php
 msgid "All plugins are served via CDN."
 msgstr "Tüm eklentiler CDN üzerinden sunuluyor."
 
+#: includes/class-staticdelivr-admin.php
 msgid "How Smart Detection Works"
 msgstr "Akıllı Algılama Nasıl Çalışır"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WordPress.org Verification"
 msgstr "WordPress.org Doğrulaması"
 
-msgid "The plugin checks if each theme/plugin exists on wordpress.org before attempting to serve it via CDN."
-msgstr "Eklenti, her tema/eklentinin wordpress.org'da var olup olmadığını CDN üzerinden sunmaya çalışmadan önce kontrol eder."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"The plugin checks if each theme/plugin exists on wordpress.org before "
+"attempting to serve it via CDN."
+msgstr ""
+"Eklenti, her tema/eklentinin wordpress.org'da var olup olmadığını CDN "
+"üzerinden sunmaya çalışmadan önce kontrol eder."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Custom Themes/Plugins"
 msgstr "Özel Temalar/Eklentiler"
 
-msgid "Assets from custom or premium themes/plugins are automatically served from your server."
-msgstr "Özel veya premium temalardan/eklentilerden gelen varlıklar otomatik olarak sunucunuzdan sunulur."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Assets from custom or premium themes/plugins are automatically served from "
+"your server."
+msgstr ""
+"Özel veya premium temalardan/eklentilerden gelen varlıklar otomatik olarak "
+"sunucunuzdan sunulur."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Child Themes"
 msgstr "Alt temalar"
 
-msgid "Child themes use the parent theme verification - if the parent is on wordpress.org, assets load via CDN."
-msgstr "Alt temalar üst tema doğrulamasını kullanır - üst tema wordpress.org'daysa varlıklar CDN üzerinden yüklenir."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Child themes use the parent theme verification - if the parent is on "
+"wordpress.org, assets load via CDN."
+msgstr ""
+"Alt temalar üst tema doğrulamasını kullanır - üst tema wordpress.org'daysa "
+"varlıklar CDN üzerinden yüklenir."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Cached Results"
 msgstr "Önbelleğe alınmış sonuçlar"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Verification results are cached for 7 days to ensure fast page loads."
-msgstr "Hızlı sayfa yüklemelerini sağlamak için doğrulama sonuçları 7 gün boyunca önbelleğe alınır."
+msgstr ""
+"Hızlı sayfa yüklemelerini sağlamak için doğrulama sonuçları 7 gün boyunca "
+"önbelleğe alınır."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failure Memory"
 msgstr "Hata belleği"
 
-msgid "If a CDN resource fails to load, the plugin remembers and serves locally for 24 hours."
-msgstr "Bir CDN kaynağı yüklenemezse, eklenti bunu hatırlar ve 24 saat boyunca yerel olarak sunar."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"If a CDN resource fails to load, the plugin remembers and serves locally for "
+"24 hours."
+msgstr ""
+"Bir CDN kaynağı yüklenemezse, eklenti bunu hatırlar ve 24 saat boyunca yerel "
+"olarak sunar."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Optimization"
 msgstr "Görsel Optimizasyonu"
 
-msgid "Automatically optimize and deliver images through StaticDelivr CDN. This can dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading times."
-msgstr "StaticDelivr CDN aracılığıyla görselleri otomatik olarak optimize edin ve dağıtın. Bu, görsel dosya boyutlarını önemli ölçüde azaltabilir (örn., 2MB → 20KB) ve yükleme sürelerini iyileştirebilir."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Automatically optimize and deliver images through StaticDelivr CDN. This can "
+"dramatically reduce image file sizes (e.g., 2MB → 20KB) and improve loading "
+"times."
+msgstr ""
+"StaticDelivr CDN aracılığıyla görselleri otomatik olarak optimize edin ve "
+"dağıtın. Bu, görsel dosya boyutlarını önemli ölçüde azaltabilir (örn., 2MB → "
+"20KB) ve yükleme sürelerini iyileştirebilir."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Image Optimization"
 msgstr "Görsel optimizasyonunu etkinleştir"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable CDN for images"
 msgstr "Görseller için CDN'yi etkinleştir"
 
-msgid "Optimizes and delivers all images through StaticDelivr CDN with automatic format conversion and compression."
-msgstr "Otomatik format dönüştürme ve sıkıştırma ile tüm görselleri StaticDelivr CDN aracılığıyla optimize eder ve dağıtır."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Optimizes and delivers all images through StaticDelivr CDN with automatic "
+"format conversion and compression."
+msgstr ""
+"Otomatik format dönüştürme ve sıkıştırma ile tüm görselleri StaticDelivr CDN "
+"aracılığıyla optimize eder ve dağıtır."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Quality"
 msgstr "Görsel kalitesi"
 
-msgid "Quality level for optimized images (1-100). Lower values = smaller files. Recommended: 75-85."
-msgstr "Optimize edilmiş görseller için kalite seviyesi (1-100). Düşük değerler = küçük dosyalar. Önerilen: 75-85."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Quality level for optimized images (1-100). Lower values = smaller files. "
+"Recommended: 75-85."
+msgstr ""
+"Optimize edilmiş görseller için kalite seviyesi (1-100). Düşük değerler = "
+"küçük dosyalar. Önerilen: 75-85."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Image Format"
 msgstr "Görsel formatı"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Auto (Best for browser)"
 msgstr "Otomatik (Tarayıcı için en iyisi)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "WebP (Recommended)"
 msgstr "WebP (Önerilen)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "AVIF (Best compression)"
 msgstr "AVIF (En iyi sıkıştırma)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "JPEG"
 msgstr "JPEG"
 
+#: includes/class-staticdelivr-admin.php
 msgid "PNG"
 msgstr "PNG"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Great compression, widely supported."
 msgstr "Mükemmel sıkıştırma, geniş destek."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Best compression, newer format."
 msgstr "En iyi sıkıştırma, yeni format."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Automatically selects best format based on browser support."
 msgstr "Tarayıcı desteğine göre otomatik olarak en iyi formatı seçer."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Google Fonts (Privacy-First)"
 msgstr "Google Fonts (Gizlilik öncelikli)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Privacy"
 msgstr "Gizlilik"
 
+#: includes/class-staticdelivr-admin.php
 msgid "GDPR Compliant"
 msgstr "KVKK/GDPR Uyumlu"
 
-msgid "Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and improve privacy."
-msgstr "İzleme çerezlerini kaldırmak ve gizliliği artırmak için Google Fonts'u StaticDelivr CDN üzerinden proxy'leyin."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Proxy Google Fonts through StaticDelivr CDN to strip tracking cookies and "
+"improve privacy."
+msgstr ""
+"İzleme çerezlerini kaldırmak ve gizliliği artırmak için Google Fonts'u "
+"StaticDelivr CDN üzerinden proxy'leyin."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Enable Google Fonts Proxy"
 msgstr "Google Fonts Proxy'sini etkinleştir"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Proxy Google Fonts through StaticDelivr"
 msgstr "StaticDelivr üzerinden Google Fonts proxy'si"
 
-msgid "Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-respecting proxy."
-msgstr "Tüm Google Fonts URL'lerini StaticDelivr'ın gizliliğe saygılı proxy'sini kullanacak şekilde otomatik olarak yeniden yazar."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Automatically rewrites all Google Fonts URLs to use StaticDelivr's privacy-"
+"respecting proxy."
+msgstr ""
+"Tüm Google Fonts URL'lerini StaticDelivr'ın gizliliğe saygılı proxy'sini "
+"kullanacak şekilde otomatik olarak yeniden yazar."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Why Proxy Google Fonts?"
 msgstr "Google Fonts neden proxy'lenmeli?"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Privacy First"
 msgstr "Gizlilik öncelikli"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Strips all user-identifying data and tracking cookies."
 msgstr "Tüm kullanıcı tanımlama verilerini ve izleme çerezlerini kaldırır."
 
+#: includes/class-staticdelivr-admin.php
 msgid "No need to declare Google Fonts in your cookie banner."
 msgstr "Çerez banner'ınızda Google Fonts'u bildirmenize gerek yok."
 
+#: includes/class-staticdelivr-admin.php
 msgid "HTTP/3 & Brotli"
 msgstr "HTTP/3 & Brotli"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Files served over HTTP/3 with Brotli compression."
 msgstr "Dosyalar HTTP/3 ve Brotli sıkıştırması ile sunulur."
 
+#: includes/class-staticdelivr-admin.php
 msgid "CDN Failure Statistics"
 msgstr "CDN Hata İstatistikleri"
 
-msgid "Resources that failed to load from CDN are automatically served locally. This cache expires after 24 hours."
-msgstr "CDN'den yüklenemeyen kaynaklar otomatik olarak yerel olarak sunulur. Bu önbellek 24 saat sonra sona erer."
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Resources that failed to load from CDN are automatically served locally. "
+"This cache expires after 24 hours."
+msgstr ""
+"CDN'den yüklenemeyen kaynaklar otomatik olarak yerel olarak sunulur. Bu "
+"önbellek 24 saat sonra sona erer."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Failed Resources"
 msgstr "Başarısız kaynaklar"
 
+#. translators: 1: total failures, 2: blocked count
+#: includes/class-staticdelivr-admin.php
 msgid "%1$d failures (%2$d blocked)"
 msgstr "%1$d başarısız (%2$d engellendi)"
 
+#: includes/class-staticdelivr-admin.php
 msgid "Clear Failure Cache"
 msgstr "Hata önbelleğini temizle"
 
+#: includes/class-staticdelivr-admin.php
 msgid "This will retry all previously failed resources on next page load."
-msgstr "Bu, bir sonraki sayfa yüklemesinde daha önce başarısız olan tüm kaynakları yeniden deneyecek."
+msgstr ""
+"Bu, bir sonraki sayfa yüklemesinde daha önce başarısız olan tüm kaynakları "
+"yeniden deneyecek."
 
+#: includes/class-staticdelivr-admin.php
 msgid "Assets:"
 msgstr "Varlıklar:"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Development & Debugging"
+msgstr "Geliştirme ve Hata Ayıklama"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Dev Tools"
+msgstr "Geliştirici Araçları"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Tools for debugging and testing in development environments."
+msgstr "Geliştirme ortamlarında hata ayıklama ve test için araçlar."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Debug Mode"
+msgstr "Hata Ayıklama Modu"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Enable detailed logging of image rewrites"
+msgstr "Görüntü yeniden yazımlarının ayrıntılı günlüğe kaydedilmesini etkinleştir"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Logs all image URL processing details to the error log. Warning: Can "
+"generate large log files in production."
+msgstr "Tüm görüntü URL'si işleme ayrıntılarını hata günlüğüne kaydeder. Uyarı: Üretim ortamında büyük günlük dosyaları oluşturabilir."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Bypass Localhost Detection"
+msgstr "Localhost Algılamayı Atla"
+
+#: includes/class-staticdelivr-admin.php
+msgid "Allow CDN rewrites for localhost/development URLs"
+msgstr "Localhost/geliştirme URL'leri için CDN yeniden yazımlarına izin ver"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"Enables image CDN rewrites even on localhost, .test, .local domains for "
+"testing. The CDN will not be able to fetch images from these URLs, so you'll "
+"see which images fail to convert."
+msgstr "Test için localhost, .test, .local alan adlarında bile görüntü CDN yeniden yazımlarını etkinleştirir. CDN bu URL'lerden görüntü alamayacaktır, bu nedenle hangi görüntülerin dönüştürülemediğini göreceksiniz."
+
+#: includes/class-staticdelivr-admin.php
+msgid "Testing Note:"
+msgstr "Test Notu:"
+
+#: includes/class-staticdelivr-admin.php
+msgid ""
+"When enabled, image URLs will be rewritten to CDN format, but the CDN cannot "
+"actually fetch images from localhost. You'll see errors which helps identify "
+"which images are being processed and which might have issues on production."
+msgstr "Etkinleştirildiğinde, görüntü URL'leri CDN biçiminde yeniden yazılacaktır, ancak CDN aslında localhost'tan görüntü alamaz. İşlenen görüntülerin ve üretim aşamasında sorun çıkarabilecek görüntülerin belirlenmesine yardımcı olan hatalar göreceksiniz."
