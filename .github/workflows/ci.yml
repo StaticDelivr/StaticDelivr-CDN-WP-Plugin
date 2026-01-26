@@ -42,6 +42,8 @@ jobs:
 
       - name: Build Plugin Zip
         uses: 10up/action-wordpress-plugin-build-zip@stable
+        with:
+          slug: staticdelivr
 
       - name: Publish Build Summary
         run: |
