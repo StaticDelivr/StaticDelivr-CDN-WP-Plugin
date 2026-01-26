@@ -16,8 +16,7 @@ jobs:
       - name: WordPress Code Quality Scan
         uses: 10up/wpcs-action@stable
         with:
-          standard: WordPress
-          paths: 'includes staticdelivr.php'
+          use_local_config: true
 
   security:
     name: Vulnerability Scan
