@@ -298,6 +298,23 @@ class StaticDelivr_Images {
         $width  = preg_match( '/width=["\']?(\d+)/i', $img_tag, $w_match ) ? (int)$w_match[1] : null;
         $height = preg_match( '/height=["\']?(\d+)/i', $img_tag, $h_match ) ? (int)$h_match[1] : null;
 
+        // Smart Attribute Injection: If dimensions are missing, try to find them via the WP ID class
+        if ( ( ! $width || ! $height ) && preg_match( '/wp-image-([0-9]+)/i', $img_tag, $id_match ) ) {
+            $attachment_id = (int) $id_match[1];
+            $meta = wp_get_attachment_metadata( $attachment_id );
+
+            if ( $meta ) {
+                if ( ! $width && ! empty( $meta['width'] ) ) {
+                    $width = $meta['width'];
+                    $img_tag = str_replace( '<img', '<img width="' . esc_attr( $width ) . '"', $img_tag );
+                }
+                if ( ! $height && ! empty( $meta['height'] ) ) {
+                    $height = $meta['height'];
+                    $img_tag = str_replace( '<img', '<img height="' . esc_attr( $height ) . '"', $img_tag );
+                }
+            }
+        }
+
         return preg_replace_callback(
             '/src=["\']([^"\']+)["\']/i',
             function ( $src_match ) use ( $width, $height ) {

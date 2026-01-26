@@ -239,6 +239,12 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.4.0 =
+* New: Smart Dimension Detection. The plugin now automatically identifies missing width and height attributes for WordPress images and restores them using attachment metadata.
+* Improved: Resolves Google PageSpeed Insights warnings regarding "Explicit width and height" for image elements.
+* Improved: Enhances Cumulative Layout Shift (CLS) scores by ensuring browsers reserve the correct aspect ratio during image loading.
+* Improved: Synchronized CDN URL optimization parameters with detected database dimensions for more accurate image scaling.
+
 = 2.3.0 =
 * Major Improvement: Significant performance boost by removing blocking DNS lookups during image processing.
 * Fixed: Resolved "Path Math" issues where thumbnail URLs could become mangled by WordPress core.
@@ -395,6 +401,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.4.0 =
+This update introduces Smart Dimension Detection to automatically fix PageSpeed Insights warnings and improve your site's SEO and CLS scores. Highly recommended for all users.
 
 = 2.3.0 =
 This major update introduces significant performance optimizations and critical stability fixes for thumbnail generation and HTML parsing. Upgrading is highly recommended for a faster and more stable site experience.
