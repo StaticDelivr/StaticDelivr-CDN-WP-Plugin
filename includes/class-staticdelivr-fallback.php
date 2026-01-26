@@ -216,7 +216,7 @@ class StaticDelivr_Fallback {
 		$script .= "    }\n";
 		$script .= "\n";
 		$script .= "    window.addEventListener('error', handleError, true);\n";
-		$script .= "    window.addEventListener('load', function() { setTimeout(scanForBrokenImages, 2500); });\n"; // Run after lazy load might have failed
+		$script .= "    window.addEventListener('load', function() { setTimeout(scanForBrokenImages, 2500); });\n"; // Run after lazy load might have failed.
 		$script .= "    log('Fallback script initialized (v%s)');\n";
 		$script .= '})();';
 

@@ -289,13 +289,15 @@ class StaticDelivr_Images {
 
 	/**
 	 * Rewrite image URLs in post content.
+	 *
+	 * @param string $content The post content.
 	 */
 	public function rewrite_content_images( $content ) {
 		if ( ! $this->is_enabled() || empty( $content ) ) {
 			return $content;
 		}
 
-		// Match img tags robustly (handles > symbols inside attributes like alt text)
+		// Match img tags robustly (handles > symbols inside attributes like alt text).
 		$content = preg_replace_callback( '/<img\s+.*?>/is', array( $this, 'rewrite_img_tag' ), $content );
 
 		// Match background-image in inline styles.
@@ -310,6 +312,8 @@ class StaticDelivr_Images {
 
 	/**
 	 * Rewrite a single img tag found in content.
+	 *
+	 * @param array $matches The preg_replace_callback matches.
 	 */
 	public function rewrite_img_tag( $matches ) {
 		$img_tag = $matches[0];
@@ -325,7 +329,7 @@ class StaticDelivr_Images {
 		$width  = preg_match( '/width=["\']?(\d+)/i', $img_tag, $w_match ) ? (int) $w_match[1] : null;
 		$height = preg_match( '/height=["\']?(\d+)/i', $img_tag, $h_match ) ? (int) $h_match[1] : null;
 
-		// Smart Attribute Injection: If dimensions are missing, try to find them via the WP ID class
+		// Smart Attribute Injection: If dimensions are missing, try to find them via the WP ID class.
 		if ( ( ! $width || ! $height ) && preg_match( '/wp-image-([0-9]+)/i', $img_tag, $id_match ) ) {
 			$attachment_id = (int) $id_match[1];
 			$meta          = wp_get_attachment_metadata( $attachment_id );
@@ -359,6 +363,8 @@ class StaticDelivr_Images {
 
 	/**
 	 * Rewrite background-image URL.
+	 *
+	 * @param array $matches The preg_replace_callback matches.
 	 */
 	public function rewrite_background_image( $matches ) {
 		$url = $matches[2];
@@ -372,6 +378,12 @@ class StaticDelivr_Images {
 	/**
 	 * Pass-through for post thumbnails.
 	 * Handled more efficiently by attachment filters.
+	 *
+	 * @param string $html          The thumbnail HTML.
+	 * @param int    $post_id       The post ID.
+	 * @param int    $thumbnail_id  The thumbnail ID.
+	 * @param string $size          The image size.
+	 * @param array  $attr          The image attributes.
 	 */
 	public function rewrite_thumbnail_html( $html, $post_id, $thumbnail_id, $size, $attr ) {
 		return $html;
