@@ -32,3 +32,9 @@ jobs:
       - uses: actions/checkout@v6
       - name: Build Plugin Zip
         uses: 10up/action-wordpress-plugin-build-zip@stable
+
+      - name: Publish Build Summary
+        run: |
+          echo "### 📦 Build Complete" >> $GITHUB_STEP_SUMMARY
+          echo "A testable zip archive of the plugin has been generated." >> $GITHUB_STEP_SUMMARY
+          echo "You can download it from the **Artifacts** section at the bottom of this page to verify changes before tagging a release." >> $GITHUB_STEP_SUMMARY

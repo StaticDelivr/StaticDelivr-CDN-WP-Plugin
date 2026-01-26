@@ -22,3 +22,8 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SLUG: staticdelivr
           IGNORE_OTHER_FILES: true
+
+      - name: Publish Summary
+        run: |
+          echo "### 🖌️ Asset Sync Complete" >> $GITHUB_STEP_SUMMARY
+          echo "The latest \`readme.txt\` and \`.wordpress-org\` assets have been synchronized with the WordPress.org SVN repository." >> $GITHUB_STEP_SUMMARY
