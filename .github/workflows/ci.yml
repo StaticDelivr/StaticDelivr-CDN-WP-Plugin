@@ -1,0 +1,34 @@
+name: CI & Security
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    name: PHPCS Linting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: WordPress Code Quality Scan
+        uses: 10up/wpcs-action@stable
+
+  security:
+    name: Vulnerability Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: WP Scanner
+        uses: 10up/wp-scanner-action@stable
+        with:
+          # Uses Wordfence Intelligence (no API key required for basic scan)
+          vulnerability-scanner: wordfence
+
+  build:
+    name: Build Test Zip
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build Plugin Zip
+        uses: 10up/action-wordpress-plugin-build-zip@stable
