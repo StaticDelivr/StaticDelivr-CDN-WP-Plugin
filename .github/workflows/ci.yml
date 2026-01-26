@@ -17,7 +17,7 @@ jobs:
         uses: 10up/wpcs-action@stable
         with:
           standard: WordPress
-          paths: includes,staticdelivr.php,languages
+          paths: 'includes staticdelivr.php'
 
   security:
     name: Vulnerability Scan
@@ -28,8 +28,7 @@ jobs:
       - name: WP Scanner
         uses: 10up/wp-scanner-action@v1
         with:
-          # Uses Wordfence Intelligence (no API key required for basic scan)
-          vulnerability-scanner: wordfence
+          vuln_api_provider: wordfence
 
   build:
     name: Build Test Zip
@@ -42,8 +41,8 @@ jobs:
 
       - name: Build Plugin Zip
         uses: 10up/action-wordpress-plugin-build-zip@stable
-        with:
-          slug: staticdelivr
+        env:
+          SLUG: staticdelivr
 
       - name: Publish Build Summary
         run: |
