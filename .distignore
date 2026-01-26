@@ -5,3 +5,5 @@
 .wordpress-org
 .distignore
 node_modules
+composer.json
+composer.lock
