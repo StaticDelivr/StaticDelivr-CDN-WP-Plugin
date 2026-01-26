@@ -5,7 +5,7 @@ Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.4.1
+Stable tag: 2.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,12 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.5.0 =
+* New: Diagnostic Console API. You can now type `window.staticDelivr.status()` in the browser console to view active settings, version, and debug status instantly.
+* New: Added `window.staticDelivr.reset()` console command to clear fallback states, useful for developers testing image recovery.
+* Improved: Refactored diagnostic logic into a dedicated `DevTools` module to keep the fallback script lightweight and focused.
+* Improved: Performance optimization - diagnostic scripts are printed in the footer to prevent render blocking.
+
 = 2.4.1 =
 * Fixed: Resolved an issue where lazy-loaded images could fail silently without triggering the fallback mechanism (Browser Intervention).
 * Improved: Fallback script now aggressively removes `srcset` and `loading` attributes to force browsers to retry failed images immediately.
@@ -407,6 +413,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.5.0 =
+Introduces new Developer Tools for easier troubleshooting. You can now check your configuration directly from the browser console.
 
 = 2.4.1 =
 Critical fix for images failing to load on modern browsers. This update handles "Lazy Load Interventions" and ensures the fallback mechanism works 100% of the time. Recommended for all users.

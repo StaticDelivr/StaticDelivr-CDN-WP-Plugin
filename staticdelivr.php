@@ -2,7 +2,7 @@
 /**
  * Plugin Name: StaticDelivr CDN
  * Description: Speed up your WordPress site with free CDN delivery and automatic image optimization. Reduces load times and bandwidth costs.
- * Version: 2.4.1
+ * Version: 2.5.0
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * Author: Coozywana
@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) {
 
 // Define plugin constants.
 if (!defined('STATICDELIVR_VERSION')) {
-    define('STATICDELIVR_VERSION', '2.4.1');
+    define('STATICDELIVR_VERSION', '2.5.0');
 }
 if (!defined('STATICDELIVR_PLUGIN_FILE')) {
     define('STATICDELIVR_PLUGIN_FILE', __FILE__);
@@ -73,6 +73,7 @@ function staticdelivr_load_classes()
     require_once $includes_path . 'class-staticdelivr-images.php';
     require_once $includes_path . 'class-staticdelivr-google-fonts.php';
     require_once $includes_path . 'class-staticdelivr-fallback.php';
+    require_once $includes_path . 'class-staticdelivr-devtools.php';
     require_once $includes_path . 'class-staticdelivr-admin.php';
     require_once $includes_path . 'class-staticdelivr.php';
 }

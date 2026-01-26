@@ -66,6 +66,13 @@ class StaticDelivr {
     private $fallback;
 
     /**
+     * DevTools handler instance.
+     *
+     * @var StaticDelivr_DevTools
+     */
+    private $devtools;
+
+    /**
      * Admin handler instance.
      *
      * @var StaticDelivr_Admin
@@ -119,6 +126,9 @@ class StaticDelivr {
 
         // Initialize fallback system (depends on assets and images).
         $this->fallback = StaticDelivr_Fallback::get_instance();
+
+        // Initialize devtools (standalone diagnostic).
+        $this->devtools = StaticDelivr_DevTools::get_instance();
 
         // Initialize admin interface (depends on all other components).
         $this->admin = StaticDelivr_Admin::get_instance();
@@ -176,6 +186,15 @@ class StaticDelivr {
      */
     public function get_fallback() {
         return $this->fallback;
+    }
+
+    /**
+     * Get the devtools handler instance.
+     *
+     * @return StaticDelivr_DevTools
+     */
+    public function get_devtools() {
+        return $this->devtools;
     }
 
     /**
