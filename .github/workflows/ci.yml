@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: WordPress Code Quality Scan
-        uses: 10up/wpcs-action@stable
+        uses: 10up/wpcs-action@v3
 
   security:
     name: Vulnerability Scan
@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: WP Scanner
-        uses: 10up/wp-scanner-action@stable
+        uses: 10up/wp-scanner-action@v1
         with:
           # Uses Wordfence Intelligence (no API key required for basic scan)
           vulnerability-scanner: wordfence
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Build Plugin Zip
-        uses: 10up/action-wordpress-plugin-build-zip@stable
+        uses: 10up/action-wordpress-plugin-build-zip@v1
 
       - name: Publish Build Summary
         run: |
