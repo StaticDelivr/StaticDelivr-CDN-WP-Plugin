@@ -15,6 +15,9 @@ jobs:
 
       - name: WordPress Code Quality Scan
         uses: 10up/wpcs-action@stable
+        with:
+          standard: WordPress
+          paths: includes,staticdelivr.php,languages
 
   security:
     name: Vulnerability Scan
@@ -33,6 +36,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+
+      - name: Install SVN
+        run: sudo apt-get update && sudo apt-get install -y subversion
 
       - name: Build Plugin Zip
         uses: 10up/action-wordpress-plugin-build-zip@stable
