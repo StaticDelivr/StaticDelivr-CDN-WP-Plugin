@@ -5,7 +5,7 @@ Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.3.0
+Stable tag: 2.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,12 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.4.1 =
+* Fixed: Resolved an issue where lazy-loaded images could fail silently without triggering the fallback mechanism (Browser Intervention).
+* Improved: Fallback script now aggressively removes `srcset` and `loading` attributes to force browsers to retry failed images immediately.
+* New: Added a "Sweeper" function to automatically detect and repair broken images that were missed by standard error listeners.
+* Fixed: Improved error detection logic to prioritize `currentSrc`, ensuring failures in responsive thumbnails are caught even if the main src is valid.
+
 = 2.4.0 =
 * New: Smart Dimension Detection. The plugin now automatically identifies missing width and height attributes for WordPress images and restores them using attachment metadata.
 * Improved: Resolves Google PageSpeed Insights warnings regarding "Explicit width and height" for image elements.
@@ -401,6 +407,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.4.1 =
+Critical fix for images failing to load on modern browsers. This update handles "Lazy Load Interventions" and ensures the fallback mechanism works 100% of the time. Recommended for all users.
 
 = 2.4.0 =
 This update introduces Smart Dimension Detection to automatically fix PageSpeed Insights warnings and improve your site's SEO and CLS scores. Highly recommended for all users.
