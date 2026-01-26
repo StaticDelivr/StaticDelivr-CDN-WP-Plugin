@@ -1,4 +1,5 @@
 name: CI & Security
+
 on:
   push:
     branches:
@@ -10,21 +11,38 @@ jobs:
     name: PHPCS Linting
     runs-on: ubuntu-latest
     steps:
+      # Checkout code
       - uses: actions/checkout@v6
+
+      # Set up Composer & WordPress Coding Standards
       - name: Install WordPress Coding Standards
         run: |
+          echo "Adding composer vendor bin to PATH..."
           export PATH="$HOME/.composer/vendor/bin:$PATH"
+
+          echo "Allow WPCS installer plugin..."
           composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+
+          echo "Installing WPCS globally..."
           composer global require wp-coding-standards/wpcs
-          phpcs --config-set installed_paths ~/.composer/vendor/wp-coding-standards/wpcs
+
+          echo "Setting PHPCS installed paths..."
+          phpcs --config-set installed_paths $HOME/.composer/vendor/wp-coding-standards/wpcs
+
+      # Run PHPCS scan using 10up action
       - name: WordPress Code Quality Scan
         uses: 10up/wpcs-action@stable
+        with:
+          standard: WordPress
+          # Optional: target specific directories
+          paths: includes,dev-tools,staticdelivr.php,languages
 
   security:
     name: Vulnerability Scan
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+
       - name: WP Scanner
         uses: 10up/wp-scanner-action@v1
         with:
@@ -36,6 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+
       - name: Build Plugin Zip
         uses: 10up/action-wordpress-plugin-build-zip@stable
 

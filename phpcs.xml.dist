@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="StaticDelivr WordPress Coding Standards">
+    <description>WordPress Coding Standards for StaticDelivr plugin</description>
+
+    <!-- Use the built-in WordPress standard -->
+    <rule ref="WordPress"/>
+
+    <!-- Include main plugin directories -->
+    <file>includes</file>
+    <file>languages</file>
+    <file>staticdelivr.php</file>
+
+</ruleset>
