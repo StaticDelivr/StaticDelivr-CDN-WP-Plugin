@@ -118,5 +118,7 @@ jobs:
         echo "- **Artifact:** \`${{ steps.rename.outputs.zip-path }}\`" >> $GITHUB_STEP_SUMMARY
         echo "- **Target:** WordPress.org SVN (trunk & tags)" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "#### Changelog Summary" >> $GITHUB_STEP_SUMMARY
-        echo "${{ steps.changelog.outputs.body }}" >> $GITHUB_STEP_SUMMARY
+        cat << 'EOF' >> $GITHUB_STEP_SUMMARY
+        #### Changelog Summary
+        ${{ steps.changelog.outputs.body }}
+        EOF
