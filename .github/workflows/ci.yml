@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: WordPress Code Quality Scan
-        uses: 10up/wpcs-action@v3
+        uses: 10up/wpcs-action@stable
 
   security:
     name: Vulnerability Scan
@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Build Plugin Zip
-        uses: 10up/action-wordpress-plugin-build-zip@v1
+        uses: 10up/action-wordpress-plugin-build-zip@stable
 
       - name: Publish Build Summary
         run: |
