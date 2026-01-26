@@ -5,7 +5,7 @@ Tags: CDN, image optimization, speed, cache, gdpr
 Requires at least: 5.8
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 2.5.0
+Stable tag: 2.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -239,6 +239,11 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.5.1 =
+* Fixed: Resolved "Admin Leak" issue where images were incorrectly rewritten to CDN URLs inside the WordPress dashboard.
+* Fixed: Improved compatibility with the Block Editor (Gutenberg) by disabling image rewriting for REST API requests.
+* Improved: Ensures 100% stability in the Media Library and Post Editor by serving local files for administrative tasks.
+
 = 2.5.0 =
 * New: Diagnostic Console API. You can now type `window.staticDelivr.status()` in the browser console to view active settings, version, and debug status instantly.
 * New: Added `window.staticDelivr.reset()` console command to clear fallback states, useful for developers testing image recovery.
@@ -413,6 +418,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.5.1 =
+Fixed a critical conflict where featured images would disappear or fail to load in the WordPress post editor (Gutenberg) due to CDN rewriting in the backend.
 
 = 2.5.0 =
 Introduces new Developer Tools for easier troubleshooting. You can now check your configuration directly from the browser console.

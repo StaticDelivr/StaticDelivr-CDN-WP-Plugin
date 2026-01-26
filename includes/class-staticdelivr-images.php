@@ -87,6 +87,15 @@ class StaticDelivr_Images {
      * @return bool
      */
     public function is_enabled() {
+        /**
+         * Always disable for the admin dashboard and REST API requests.
+         * Gutenberg loads media via the REST API, which is not caught by is_admin().
+         * This prevents "Broken Image" icons and CORS issues in the post editor.
+         */
+        if ( is_admin() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) ) {
+            return false;
+        }
+
         return (bool) get_option( STATICDELIVR_PREFIX . 'images_enabled', true );
     }
 
