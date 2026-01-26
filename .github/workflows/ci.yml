@@ -13,6 +13,7 @@ jobs:
       - uses: actions/checkout@v6
       - name: Install WordPress Coding Standards
         run: |
+          export PATH="$HOME/.composer/vendor/bin:$PATH"
           composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
           composer global require wp-coding-standards/wpcs
           phpcs --config-set installed_paths ~/.composer/vendor/wp-coding-standards/wpcs
