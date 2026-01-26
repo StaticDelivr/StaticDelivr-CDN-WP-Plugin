@@ -11,6 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - name: Install WordPress Coding Standards
+        run: |
+          composer global require wp-coding-standards/wpcs
+          phpcs --config-set installed_paths ~/.composer/vendor/wp-coding-standards/wpcs
       - name: WordPress Code Quality Scan
         uses: 10up/wpcs-action@stable
 
