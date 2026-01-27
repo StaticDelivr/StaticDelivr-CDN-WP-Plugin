@@ -239,6 +239,14 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 
 == Changelog ==
 
+= 2.5.2 =
+* Improved: Complete code quality overhaul with full WordPress Coding Standards (WPCS) compliance
+* Improved: Added comprehensive PHPDoc documentation across all plugin files
+* Improved: Enhanced CI/CD pipeline with automated code quality checks via GitHub Actions
+* Improved: Refactored code formatting, indentation, and spacing throughout the codebase
+* Improved: Added development tooling for easier maintenance and testing
+* Improved: Strengthened infrastructure for better reliability and maintainability
+
 = 2.5.1 =
 * Fixed: Resolved "Admin Leak" issue where images were incorrectly rewritten to CDN URLs inside the WordPress dashboard.
 * Fixed: Improved compatibility with the Block Editor (Gutenberg) by disabling image rewriting for REST API requests.
@@ -418,6 +426,9 @@ Want to help translate StaticDelivr CDN into your language? Visit [translate.wor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.5.2 =
+Maintenance release focused on code quality and infrastructure improvements. All functionality remains unchanged with enhanced reliability and maintainability.
 
 = 2.5.1 =
 Fixed a critical conflict where featured images would disappear or fail to load in the WordPress post editor (Gutenberg) due to CDN rewriting in the backend.
